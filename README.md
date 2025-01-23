@@ -81,18 +81,57 @@ Avoid making changes directly to the `main` branch. Create a new branch instead.
 
 ---
 
-## Project Management Tool
-
-We will use **GitHub Project** for task and milestone management, and **Schej.it** for scheduling meetings
-
----
-
-## Team Roles and Responsibilities
-
-- **Team Member 1:** 
-- **Team Member 2:**
-- **Team Member 3:** 
-
----
+## Team members' roles and responsibilities.
 
 
+Uladzislau Kashchuk: Developer/tester 
+
+Keomony Mary: Developer/tester 
+
+Brippney Vargas: Scrum Master 
+
+Jacob West: Recorder 
+
+Devin Winters: Product Owner 
+
+
+## Workflow and Tool Usage 
+
+Version Control: 
+
+Tool: GitHub 
+
+Purpose: Code repository, collaboration, and version tracking. 
+
+Workflow: Each feature or fix is developed on a branch, reviewed via pull requests, and merged into the main branch after approval. 
+
+
+
+Task Management:
+
+Tool: GitHub Projects
+
+Purpose: Tracks tasks, assigns responsibilities, sets deadlines, and monitors progress to ensure efficient collaboration and project completion.
+
+Workflow: Tasks are divided into actionable items under milestones, providing a clear structure for achieving specific goals within the project timeline.
+
+ 
+Communication: 
+
+Tool:  Microsoft Teams 
+
+Purpose: Quick communication, videocalls meetings, and updates. 
+
+Workflow: Daily stand-ups and asynchronous discussions. 
+
+
+Schedule Meeting:
+
+Tool: When2Meet
+
+Purpose: Identifies team members' availability to streamline scheduling and find the most convenient time for everyone.
+
+Workflow: Team members input their availability into the tool, which generates an overview to determine the best meeting time based on the overlap of available slots.
+
+
+ 
