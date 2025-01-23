@@ -105,7 +105,7 @@ Purpose: Code repository, collaboration, and version tracking.
 
 Workflow: Each feature or fix is developed on a branch, reviewed via pull requests, and merged into the main branch after approval. 
 
-
+---
 
 Task Management:
 
@@ -115,7 +115,8 @@ Purpose: Tracks tasks, assigns responsibilities, sets deadlines, and monitors pr
 
 Workflow: Tasks are divided into actionable items under milestones, providing a clear structure for achieving specific goals within the project timeline.
 
- 
+---
+
 Communication: 
 
 Tool:  Microsoft Teams 
@@ -124,6 +125,7 @@ Purpose: Quick communication, videocalls meetings, and updates.
 
 Workflow: Daily stand-ups and asynchronous discussions. 
 
+---
 
 Schedule Meeting:
 
