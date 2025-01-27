@@ -84,7 +84,7 @@ Avoid making changes directly to the `main` branch. Create a new branch instead.
 ## Team members' roles and responsibilities.
 
 
-Uladzislau Kashchuk: Developer/tester 
+Vlad Kashchuk: Developer/tester 
 
 Keomony Mary: Developer/tester 
 
@@ -97,9 +97,7 @@ Devin Winters: Product Owner
 
 ## Workflow and Tool Usage 
 
-Version Control: 
-
-Tool: GitHub 
+Version Control Tool: GitHub 
 
 Purpose: Code repository, collaboration, and version tracking. 
 
