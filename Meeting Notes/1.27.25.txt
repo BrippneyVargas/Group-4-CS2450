@@ -2,7 +2,7 @@
 
 Everyone is here!
 
-Product Manager: Devin
+Devin: Project Manager
 Vlad: Developer
 Brippney: Scrum Master
 Keomony: Developer
@@ -35,3 +35,33 @@ Focus: SINGLE PERSON, not team-oriented.
 
 Collaborate tasks with other users?
 
+
+
+
+OVERVIEW:
+Project Scope:
+- Made for individual users, not necessarily groups (although we could add group collaboration if we have the bandwidth)
+- Reminders
+- Task scheduling
+    - Repeatability feature (set frequency and expiration date)
+    - Add, edit, and delete
+    - When deleting, don't completely remove; archive the data so that it can be recovered (reversibility)
+    - Milestones (Open, In Progress, Completed, Late, Expired, etc.)
+    - If we have bandwidth we can sync it to a calendar of the users choice (maybe we offer a few options like iPhone, Outlook, and Google Calendar)
+    - Task prioritizing (low, medium, high)
+    - Categorize tasks (school, chores, maintenance, family, etc.)
+
+Technology:
+- Python
+- Flask/Django for web framework?
+- HTML/CSS?
+- MySQL or SQLite for the database
+    (do we need to host our project somewhere?)
+
+Goals for next meeting:
+- Further define the scope/features
+- Set up our first spring
+    - Assign points to each item in the product backlog
+    - Product Owner and Scrum Master will determine what will go into the sprint backlog for the developers
+        - Based on number of points 
+    - Product Owner & Scrum Master add the sprint backlog items to the GitHub project 
