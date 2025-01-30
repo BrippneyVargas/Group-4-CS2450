@@ -60,8 +60,9 @@ Technology:
 
 Goals for next meeting:
 - Further define the scope/features
-- Set up our first spring
-    - Assign points to each item in the product backlog
+    - WE NEED TO UPDATE THE SRS (See Milestone 1): Jacob 
+- Assign points to each item in the product backlog: Keomony, Vlad
+- Set up our first sprint: Devin, Brippney
     - Product Owner and Scrum Master will determine what will go into the sprint backlog for the developers
         - Based on number of points 
     - Product Owner & Scrum Master add the sprint backlog items to the GitHub project 
