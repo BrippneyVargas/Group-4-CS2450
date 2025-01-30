@@ -82,7 +82,11 @@ conda --version
 
 1. Install **[Anaconda](https://www.anaconda.com/products/individual)** if not already installed.
 
+<<<<<<< HEAD
 2. Create and activate a new environment:
+=======
+Vlad Kashchuk: Developer/tester 
+>>>>>>> a0b8ef64a1f2f1ea16a8ef0b11693a774f1403f3
 
    ```bash
    conda create --name myenv python=3.x
@@ -91,10 +95,25 @@ conda --version
 
    Replace `3.x` with the desired Python version.
 
+<<<<<<< HEAD
 3. Install dependencies:
    ```bash
    conda install --file requirements.txt
    ```
+=======
+Jacob West: Recorder 
+
+Devin Winters: Product Owner 
+
+
+## Workflow and Tool Usage 
+
+Version Control Tool: GitHub 
+
+Purpose: Code repository, collaboration, and version tracking. 
+
+Workflow: Each feature or fix is developed on a branch, reviewed via pull requests, and merged into the main branch after approval. 
+>>>>>>> a0b8ef64a1f2f1ea16a8ef0b11693a774f1403f3
 
 ---
 
@@ -153,6 +172,7 @@ git pull origin main
 
 ### 1. **Version Control**
 
+<<<<<<< HEAD
 - **Tool**: GitHub
 
 - **Purpose**: Code repository, collaboration, and version tracking.
@@ -182,3 +202,6 @@ git pull origin main
 - **Purpose**: Coordinate team availability for meetings.
 
 - **Workflow**: Input availability and determine the best time slot for everyone.
+=======
+ 
+>>>>>>> a0b8ef64a1f2f1ea16a8ef0b11693a774f1403f3
