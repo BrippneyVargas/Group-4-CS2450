@@ -1,7 +1,7 @@
+
 # Project Setup Guide
 
-## Step 1: Clone the Repository
-
+### Step 1: Clone the Repository
 1. Copy the repository URL:
    ```
    https://github.com/BrippneyVargas/Group-4-CS2450.git
@@ -15,11 +15,8 @@
    git clone https://github.com/BrippneyVargas/Group-4-CS2450.git
    ```
 
----
-
-## Step 2: Navigate to the Project Folder
-
-1. Enter the project directory:
+### Step 2: Navigate to the Project Folder
+1. Change into the project directory:
    ```bash
    cd Group-4-CS2450
    ```
@@ -28,79 +25,71 @@
 
 ## IDE and Virtual Environment Setup
 
-### 1. Install an IDE (Recommended: VS Code)
+1. **Install IDE (Recommended: VS Code)(if applicable):**
+   - Download and install **[Visual Studio Code](https://code.visualstudio.com/)**.
+   - Install the **Python** and **GitHub** extensions in VS Code.
 
-- Download **[VS Code](https://code.visualstudio.com/)**.
+2. **Set Up a Virtual Environment:**
+   - Install **[Anaconda](https://www.anaconda.com/products/individual)** if you don't have it already.
+   - Open the Anaconda prompt, navigate to the project folder, and create a new environment:
+     ```bash
+     conda create --name myenv python=3.x
+     conda activate myenv
+     ```
+     Replace `3.x` with the version of Python you want to use.
 
-- Install the **Python** and **GitHub** extensions from the VS Code marketplace.
+3. **Configure VSCode with Your Virtual Environment:**
+   - In VS Code, press `Ctrl+Shift+P` and select **Python: Select Interpreter**.
+   - Choose the `myenv` environment from the list.
+
+4. **Install Python Dependencies:**
+   - Install required packages using:
+     ```bash
+     conda install --file requirements.txt
+     ```
+     (Currently empty, but will include dependencies in the future.)
+---
+
+## Version Control Operations
+
+Avoid making changes directly to the `main` branch. Create a new branch instead.
+
+1. **Create a New Branch:**
+   ```bash
+   git checkout -b new-branch-name
+   ```
+
+2. **Make Changes & Commit:**
+   - Modify any file in the project.
+   - Stage and commit your changes:
+     ```bash
+     git add .
+     git commit -m "Your commit message"
+     ```
+
+3. **Push Changes to the Repository:**
+   - Push your changes to the remote repository:
+     ```bash
+     git push origin new-branch-name
+     ```
+
+4. **Pull the Latest Changes:**
+   - Before working, always pull the latest updates:
+     ```bash
+     git pull origin main
+     ```
 
 ---
 
-### 2. Add Conda to PATH (If Applicable)
+## Team members' roles and responsibilities.
 
-#### Windows:
 
-1. Locate Conda’s installation folder (e.g., `C:\Users\<YourUsername>\Anaconda3`).
-
-2. Search for "Environment Variables" in the Start menu.
-
-3. Edit the `Path` variable under System Variables and add:
-
-   - `<Conda_Install_Dir>\Scripts`
-   - `<Conda_Install_Dir>\condabin`
-
-4. Save the changes.
-
-#### Mac/Linux:
-
-1. Open your terminal and edit the appropriate shell config file (e.g., `~/.bashrc`):
-
-   ```bash
-   nano ~/.bashrc
-   ```
-
-2. Add the line:
-   ```bash
-   export PATH="<Conda_Install_Dir>/bin:$PATH"
-   ```
-3. Save the file and run:
-   ```bash
-   source ~/.bashrc
-   ```
-
-#### Verify:
-
-Run the following to check if Conda is added to PATH:
-
-```bash
-conda --version
-```
-
----
-
-### 3. Set Up a Virtual Environment
-
-1. Install **[Anaconda](https://www.anaconda.com/products/individual)** if not already installed.
-
-<<<<<<< HEAD
-2. Create and activate a new environment:
-=======
 Vlad Kashchuk: Developer/tester 
->>>>>>> a0b8ef64a1f2f1ea16a8ef0b11693a774f1403f3
 
-   ```bash
-   conda create --name myenv python=3.x
-   conda activate myenv
-   ```
+Keomony Mary: Developer/tester 
 
-   Replace `3.x` with the desired Python version.
+Brippney Vargas: Scrum Master 
 
-<<<<<<< HEAD
-3. Install dependencies:
-   ```bash
-   conda install --file requirements.txt
-   ```
-=======
 Jacob West: Recorder 
 
 Devin Winters: Product Owner 
@@ -113,95 +102,36 @@ Version Control Tool: GitHub
 Purpose: Code repository, collaboration, and version tracking. 
 
 Workflow: Each feature or fix is developed on a branch, reviewed via pull requests, and merged into the main branch after approval. 
->>>>>>> a0b8ef64a1f2f1ea16a8ef0b11693a774f1403f3
 
 ---
 
-### 4. Configure VS Code with Virtual Environment
+Task Management:
 
-1. Open VS Code and press `Ctrl+Shift+P`.
+Tool: GitHub Projects
 
-2. Select **Python: Select Interpreter** and choose `myenv`.
+Purpose: Tracks tasks, assigns responsibilities, sets deadlines, and monitors progress to ensure efficient collaboration and project completion.
 
----
-
-## Version Control Workflow
-
-### 1. Create a New Branch
-
-```bash
-git checkout -b your-branch-name
-```
-
-### 2. Commit Changes
-
-1. Stage your changes:
-   ```bash
-   git add .
-   ```
-2. Commit with a message:
-   ```bash
-   git commit -m "Your commit message"
-   ```
-
-### 3. Push Changes
-
-```bash
-git push origin your-branch-name
-```
-
-### 4. Pull Latest Updates
-
-```bash
-git pull origin main
-```
+Workflow: Tasks are divided into actionable items under milestones, providing a clear structure for achieving specific goals within the project timeline.
 
 ---
 
-## Team Members and Roles
+Communication: 
 
-- **Uladzislau Kashchuk**: Developer/Tester
-- **Keomony Mary**: Developer/Tester
-- **Brippney Vargas**: Scrum Master
-- **Jacob West**: Recorder
-- **Devin Winters**: Product Owner
+Tool:  Microsoft Teams 
+
+Purpose: Quick communication, videocalls meetings, and updates. 
+
+Workflow: Daily stand-ups and asynchronous discussions. 
 
 ---
 
-## Workflow Tools
+Schedule Meeting:
 
-### 1. **Version Control**
+Tool: When2Meet
 
-<<<<<<< HEAD
-- **Tool**: GitHub
+Purpose: Identifies team members' availability to streamline scheduling and find the most convenient time for everyone.
 
-- **Purpose**: Code repository, collaboration, and version tracking.
+Workflow: Team members input their availability into the tool, which generates an overview to determine the best meeting time based on the overlap of available slots.
 
-- **Workflow**: Use branches and pull requests for development and merge after reviews.
 
-### 2. **Task Management**
-
-- **Tool**: GitHub Projects
-
-- **Purpose**: Track tasks, assign responsibilities, and monitor progress.
-
-- **Workflow**: Break tasks into actionable items and organize them under milestones.
-
-### 3. **Communication**
-
-- **Tool**: Microsoft Teams
-
-- **Purpose**: Communication, video calls, and updates.
-
-- **Workflow**: Daily stand-ups and asynchronous discussions.
-
-### 4. **Scheduling Meetings**
-
-- **Tool**: When2Meet
-
-- **Purpose**: Coordinate team availability for meetings.
-
-- **Workflow**: Input availability and determine the best time slot for everyone.
-=======
  
->>>>>>> a0b8ef64a1f2f1ea16a8ef0b11693a774f1403f3
