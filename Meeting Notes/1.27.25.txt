@@ -2,7 +2,7 @@
 
 Everyone is here!
 
-Devin: Project Manager
+Devin: Product Owner
 Vlad: Developer
 Brippney: Scrum Master
 Keomony: Developer
