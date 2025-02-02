@@ -21,6 +21,30 @@
 - **Milestone 4**: Vlad Kashchuk
 - **Milestone 5**: Devin Winters
 
+## Product Owner Rotation Plan
+
+- **Milestone 1**: Devin Winters
+- **Milestone 2**: Brippney Vargas
+- **Milestone 3**: Keomony Mary
+- **Milestone 4**: Jacob West
+- **Milestone 5**: Vlad Kashchuck
+
+## Developer/tester Rotation Plan
+
+- **Milestone 1**: Keomony Mary/Vlad Kashchuck
+- **Milestone 2**: Jacob West/Devin Winters
+- **Milestone 3**: Vlad Kashchuk/Brippney Vargas
+- **Milestone 4**: Keomony Mary/Devin Winters
+- **Milestone 5**: Jacob West/Brippney Vargas
+
+## Recorder Rotation Plan
+
+- **Milestone 1**: Jacob West
+- **Milestone 2**: Vlad Kashchuk
+- **Milestone 3**: Devin Winters
+- **Milestone 4**: Brippney Vargas
+- **Milestone 5**: Keomony Mary
+
 ## Project Vision Statement
 
 The Task Manager Application is designed to help users efficiently organize and prioritize their personal tasks. Tailored for students, professionals, or anyone managing daily responsibilities, the app provides a simple and intuitive solution for task scheduling, setting repeatable reminders, and tracking milestones.
