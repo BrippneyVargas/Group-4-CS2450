@@ -47,11 +47,32 @@
 
 ## Project Vision Statement
 
-The Task Manager Application is designed to help users efficiently organize and prioritize their personal tasks. Tailored for students, professionals, or anyone managing daily responsibilities, the app provides a simple and intuitive solution for task scheduling, setting repeatable reminders, and tracking milestones.
+The Task Manager Application is designed to help users efficiently organize and prioritize their personal tasks. Tailored for students, professionals, or anyone managing daily responsibilities, the app provides a simple and intuitive solution for task scheduling, setting repeatable reminders, and tracking milestones. It also allow for the creation, tracking and completion of tasks.
+
+The problems it solves is to help with users cognitive load. Human's mind has limited working memeory and therefore, it is necessary to write down tasks that need to be completed in some space. Our product is one of those spaces.
 
 Key features include customizable reminders, task scheduling with repeatability options, and the ability to categorize and prioritize tasks. Tasks can also be archived rather than deleted, ensuring that users can recover important information when needed. The application focuses on empowering users to stay organized and manage their time effectively.
 
 The app’s core goal is to support productivity and time management by offering an accessible tool to keep track of tasks, deadlines, and priorities—designed specifically for users.
+
+Our target users are people with smartphones and lots of asks that need to be completed every day. Example may include small business owners, parents, teachers, students, local political leaders, etc. How our target users will benefit:
+
+a. Teachers:
+
+- help organize lesson plan, grading and administrative tasks.
+- help in time management by categorize tasks based on priority (high, medium, low)
+- keep track of faculty events
+
+b. Students:
+
+- help organize schedule, classes and homework.
+- help reminding of the upcoming deadline
+- enhance student's skill in organization, planning and consistency
+
+c. Local political leaders:
+
+- assist in allocating time efficiently and organize daily tasks such as meeting, events
+- track the progress of tasks completed or achieved per week
 
 ### Brainstorming Summary
 
