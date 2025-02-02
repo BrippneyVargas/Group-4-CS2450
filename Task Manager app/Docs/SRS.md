@@ -1,21 +1,10 @@
-## User Stories:
-
-<<<<<<< HEAD
-To do:
--12+ (15+ for a group of 5 students) user stories focusing on user needs and benefits.
--1–2 non-functional requirements (e.g., performance or usability goals).
--Future Enhancements Section:
-A list of advanced features brainstormed by the team.
-
 ## Initial SRS
 
-## 12 Users Stories:
+## 12 User Stories:
 
-=======
->>>>>>> 2716d2608deabb7293722a99dc18eb4f6fd22824
-1. As a person who has to take medication at the same time every day, I want repeatable reminders (series) that I can define the timeframe of so I do not have to repeatedly set the same reminders.
+1. As a person who has to take medication at the same time every day, I want repeatable reminders (series) that I can define the timeframe of, so I do not have to repeatedly set the same reminders.
 
-2. As an impulsive person, I want to be able to recover tasks that I deleted within a set time period in case I want to recover in case I delete something I should not have.
+2. As an impulsive person, I want to be able to recover tasks that I deleted within a set time period in case I want to recover something I should not have deleted.
 
 3. As a person who gets lost in my notes if they are not organized, I would like to be able to label my tasks. Tagging something as pertaining to school or work will hopefully help me stay on track and not get lost in an avalanche of notes.
 
@@ -27,7 +16,7 @@ A list of advanced features brainstormed by the team.
 
 7. As a person who values customization and visual learning, I would like to be able to change the colors of each task I create. This will help me more quickly identify which task I want to find.
 
-8. As a user, I want to add notes to tasks, so I can keep additional details for each task.
+8. As a user, I want to add notes to tasks so I can keep additional details for each task.
 
 9. As a user, I want to make my tasks private but also enable sharing if I want to.
 
@@ -37,11 +26,7 @@ A list of advanced features brainstormed by the team.
 
 12. As a person whose eyesight is worsening, I would like to be able to change the size of the font inside the app. This will lessen the strain on my eyes.
 
-<<<<<<< HEAD
 13. As a normal person, I want an app with few visual glitches and bugs. I want something pleasing to look at and that will not delete my tasks. My day would go a whole lot better that way.
-=======
-13. As a normal person, I want an app with few visual glitches and bugs. Iwant something pleasing to look at and that will not delete my tasks. My day would go a whole lot better that way.
->>>>>>> 2716d2608deabb7293722a99dc18eb4f6fd22824
 
 14. As a person who speaks multiple languages, I would like to be able to change the language the app uses. This will make it easier when I forget what a certain button does.
 
@@ -49,36 +34,26 @@ A list of advanced features brainstormed by the team.
 
 ## Non-Functional Requirements:
 
-<<<<<<< HEAD
-Ensure privacy and security such as user authentication or else.
-Simple but aesthetic interface that is user-friendly and easy to navigate.  
-The system should load the dashboard within 2 seconds.
-The response time for adding, updating, or deleting tasks should be less than 1 second.
-The application should be designed to scale horizontally to accommodate increasing users and tasks. .
-
-## Future Enhancements Section:
-=======
-1. Ensure privacy and security such as user authentication or else.
+1. Ensure privacy and security, such as user authentication.
 2. Simple but aesthetic interface that is user-friendly and easy to navigate.
 3. The system should load the dashboard within 2 seconds.
 4. The response time for adding, updating, or deleting tasks should be less than 1 second.
-5. The application should be designed to scale horizontally to accommodate increasing users and tasks. .
+5. The application should be designed to scale horizontally to accommodate increasing users and tasks.
 
-## Future Enhancements Section
+## Future Enhancements Section:
 
-#### A list of advanced features brainstormed by the team.
+#### A list of advanced features brainstormed by the team:
 
-1. Using Flask
-2. Recurring task
+1. Using Flask.
+2. Recurring tasks.
 
-#### AI powered Task Automation
+#### AI-powered Task Automation:
 
-1. Implement AI-driven task suggestions based on user behavior and priorities
+1. Implement AI-driven task suggestions based on user behavior and priorities.
 2. Use natural language processing to allow users to create tasks via voice or chat.
 3. Introduce automated reminders and follow-ups based on task deadlines and urgency.
 
-#### Security & Privacy Enhancements
+#### Security & Privacy Enhancements:
 
 1. Offer end-to-end encryption for sensitive task data.
 2. Provide automatic daily cloud backups.
->>>>>>> 2716d2608deabb7293722a99dc18eb4f6fd22824
