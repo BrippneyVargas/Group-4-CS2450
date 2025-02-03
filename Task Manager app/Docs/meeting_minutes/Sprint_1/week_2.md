@@ -107,3 +107,20 @@ _Brainstorm Project Ideas_
 - Complete the SRS
 - Organize the user stories and features into an order
 - Assign points and determine what will be completed at the end of each milestone
+
+USER STORIES:
+
+As a person who has to take medication at the same time every day, I want repeatable reminders (series) that I can define the timeframe of so I do not have to repeatedly set the same reminders.
+As an impulsive person, I want to be able to recover tasks that I deleted within a set time period in case I want to recover in case I delete something I should not have. As a person who gets lost in my notes if they are not organized, 3. I would like to be able to label my tasks. Tagging something as pertaining to school or work will hopefully help me stay on track and not get lost in an avalanche of notes.
+As a person who gets overwhelmed, I would like to not have all my notes in one place. Instead, I would like them to be divided into different folders or pages by type. This will make the app a lot more usable for me.
+As a person who tends to ignore a lot of my phone notifications, I would like to be able to decide the priority of tasks I make and how I am reminded of tasks of varying priority. This will help me not ignore more important tasks.
+As a person who uses their phone too much at night, I would like to be able to set the app to use a light or dark theme, or to default to my device's settings. This will make my experience using the app at varying times of day more enjoyable.
+As a person who values customization and visual learning, I would like to be able to change the colors of each task I create. This will help me more quickly identify which task I want to find.
+As a user, I want to add notes to tasks, so I can keep additional details for each task.
+As a user, I want to make my tasks private but also enable sharing if I want to.
+As a user who wants to feel accomplished, I want to be able to mark a task as complete. This will allow me to know what I have done and still have yet to do in a given day.
+As a busy person, I want an app that loads quickly and experiences few performance hiccups. This will help me be more efficient with my time.
+As a person whose eyesight is worsening, I would like to be able to change the size of the font inside the app. This will lessen the strain on my eyes.
+As a normal person, I want an app with few visual glitches and bugs. Iwant something pleasing to look at and that will not delete my tasks. My day would go a whole lot better that way.
+As a person who speaks multiple languages, I would like to be able to change the language the app uses. This will make it easier when I forget what a certain button does.
+As a person who forgets to lock the door when I leave work, I would like to be able to remind myself to do so when I get too far from where I work. This would help me not get in trouble with security.
