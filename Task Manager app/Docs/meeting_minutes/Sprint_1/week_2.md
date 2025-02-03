@@ -124,3 +124,15 @@ As a person whose eyesight is worsening, I would like to be able to change the s
 As a normal person, I want an app with few visual glitches and bugs. Iwant something pleasing to look at and that will not delete my tasks. My day would go a whole lot better that way.
 As a person who speaks multiple languages, I would like to be able to change the language the app uses. This will make it easier when I forget what a certain button does.
 As a person who forgets to lock the door when I leave work, I would like to be able to remind myself to do so when I get too far from where I work. This would help me not get in trouble with security.
+
+2/3/25
+
+We reviewed the notes from Friday, and had a little bit of discussion about high-level requirements.
+
+We reviewed the SRS, made some minor adjustments and added a few items.
+
+We reviewed the Project Launch document, and discussed what our specific target audience should be (and whether it should be something more general rather than for a specific target audience like coders)
+We settled on making students our specific target audience, and may expand it to anyone within Academics.
+We'll need fairly minor adjustments to the Project Launch document, then we should be okay.
+
+Brippney will updated the Project Launch document, and then the general information should be ready to submit.
