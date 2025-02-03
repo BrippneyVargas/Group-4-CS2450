@@ -1,6 +1,6 @@
 ## Initial SRS
 
-## 12 User Stories:
+## 15 User Stories:
 
 1. As a person who has to take medication at the same time every day, I want repeatable reminders (series) that I can define the timeframe of, so I do not have to repeatedly set the same reminders.
 
@@ -44,8 +44,12 @@
 
 #### A list of advanced features brainstormed by the team:
 
-1. Using Flask.
-2. Recurring tasks.
+1. Recurring tasks.
+2. AI Implementation
+3. Progress bar
+4. Task grouping
+5. Local storage for offline support
+6. Mobile Responsiveness
 
 #### AI-powered Task Automation:
 
