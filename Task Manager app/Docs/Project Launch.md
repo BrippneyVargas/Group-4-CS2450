@@ -45,85 +45,134 @@
 - **Milestone 4**: Brippney Vargas
 - **Milestone 5**: Keomony Mary
 
-## Project Vision Statement
+# Project Vision Statement
 
-The Task Manager Application is designed to help users efficiently organize and prioritize their personal tasks. Tailored for students, professionals, or anyone managing daily responsibilities, the app provides a simple and intuitive solution for task scheduling, setting repeatable reminders, and tracking milestones. It also allow for the creation, tracking and completion of tasks.
+The Task Manager Website is designed to help students efficiently organize and prioritize their academic tasks. Tailored specifically for students managing coursework, assignments, and study schedules, the app provides a simple and intuitive solution for academic task scheduling, setting assignment reminders, and tracking educational milestones.
 
-The problems it solves is to help with users cognitive load. Human's mind has limited working memeory and therefore, it is necessary to write down tasks that need to be completed in some space. Our product is one of those spaces.
+The problem it solves is helping students manage their cognitive load during busy academic periods. Students typically juggle multiple courses, assignments, and deadlines simultaneously, making it important to have a centralized space for tracking academic responsibilities. Our product serves as that dedicated academic organization space.
 
-Key features include customizable reminders, task scheduling with repeatability options, and the ability to categorize and prioritize tasks. Tasks can also be archived rather than deleted, ensuring that users can recover important information when needed. The application focuses on empowering users to stay organized and manage their time effectively.
+## Key Features
 
-The app’s core goal is to support productivity and time management by offering an accessible tool to keep track of tasks, deadlines, and priorities—designed specifically for users.
+- Assignment tracking and deadline management across courses
+- Study schedule organization and exam preparation tools
+- Project progress monitoring and group work coordination
+- Academic workload balancing between subjects
+- Research and reading activity planning
 
-Our target users are people with smartphones and lots of asks that need to be completed every day. Example may include small business owners, parents, teachers, students, local political leaders, etc. How our target users will benefit:
+## Target Users: Students
 
-a. Teachers:
+Our solution helps students:
 
-- help organize lesson plan, grading and administrative tasks.
-- help in time management by categorize tasks based on priority (high, medium, low)
-- keep track of faculty events
+- Organize schedules, classes, and homework effectively
+- Receive timely reminders for upcoming deadlines
+- Enhance skills in organization, planning, and consistency
+- Track assignments and deadlines across multiple courses
+- Manage study schedules and exam preparation time
+- Monitor project progress and group work coordination
+- Balance academic workload between different subjects
+- Plan research and reading activities effectively
 
-b. Students:
+# Brainstorming Summary
 
-- help organize schedule, classes and homework.
-- help reminding of the upcoming deadline
-- enhance student's skill in organization, planning and consistency
+## Core Functionalities
 
-c. Local political leaders:
+### 1. Academic Reminders
 
-- assist in allocating time efficiently and organize daily tasks such as meeting, events
-- track the progress of tasks completed or achieved per week
+- Assignment due dates with customizable frequencies
+- Exam preparation reminders
+- Study session scheduling alerts
+- Course-specific notification settings
 
-### Brainstorming Summary
+### 2. Academic Task Management
 
-#### Core Functionalities Agreed Upon:
+- Add, edit, and track assignments by course
+- Archive completed assignments for future reference
+- Course-specific task organization
+- Study session planning tools
 
-1. **Reminders**:
-   - Repeatable reminders for tasks, allowing users to define frequency and expiration dates. For example, reminders for medication that need to repeat every day or week, and have a defined end time.
-2. **Task Scheduling**:
-   - Add, edit, and delete tasks with flexibility for users to manage their to-do lists.
-   - **Reversibility**: Deleted tasks won’t be permanently erased but archived, providing users with the ability to recover them if necessary.
-3. **Milestones/Task Statuses**:
+### 3. Academic Progress Tracking
 
-   - Tasks will have status markers such as:
-     - Open
-     - In Progress
-     - Completed
-     - Late
-     - Expired
+Status markers for academic tasks:
 
-4. **Task Prioritization**:
+- Not Started
+- In Progress
+- Under Review
+- Completed
+- Past Due
 
-   - Ability to prioritize tasks (low, medium, high) so users can focus on what matters most.
+### 4. Academic Priority Levels
 
-5. **Task Categorization**:
-   - Tasks can be categorized into different types, such as:
-     - School
-     - Chores
-     - Maintenance
-     - Family
-     - Etc.
+- Critical (due within 24 hours)
+- High (due within week)
+- Medium (due within two weeks)
+- Low (due beyond two weeks)
 
-#### Advanced Features to Explore if Time Permits:
+### 5. Academic Categories
 
-1. **Calendar Synchronization**:
-   - If resources allow, the app can sync with a calendar (Google Calendar, iPhone, Outlook) so that users can see tasks and reminders alongside their personal events.
-2. **Collaborative Tasks**:
-   - Although the app is designed for individual users, collaborative tasking could be added later. This would allow users to share tasks or collaborate on projects with others.
+- Assignments
+- Exams/Quizzes
+- Group Projects
+- Research Tasks
+- Reading Materials
+- Lab Work
+- Study Sessions
 
-#### Unique Ideas/Twists that Differentiate the Project:
+## Advanced Features (Future Development)
 
-1. **Focus on Individual Users**:
+### 1. Learning Management System Integration
 
-   - The app is specifically designed for individual use, with features to manage personal tasks. Unlike traditional team-oriented task managers, it will prioritize individual task management but could eventually support group features if bandwidth allows.
+- Connect with Canvas, Blackboard, Moodle
+- Auto-import assignment due dates
+- Sync course schedules
+- Import syllabus information
 
-2. **Task Reversibility**:
+### 2. Study Group Features
 
-   - Instead of deleting tasks permanently, the app will archive tasks. This ensures that users don’t lose important data and can recover tasks if needed.
+- Create and manage study groups
+- Share course materials
+- Coordinate group projects
+- Schedule group study sessions
 
-3. **Customizable Reminders**:
+### 3. Academic Analytics
 
-   - Customizable reminder frequencies for tasks, allowing users to adjust reminders to suit their needs, from daily medication reminders to monthly recurring tasks.
+- Track study time per subject
+- Monitor assignment completion patterns
+- Analyze study session effectiveness
+- Generate academic progress reports
 
-4. **Task Categorization and Prioritization**:
-   - Providing detailed task categorization (e.g., school, chores, family) and prioritization ensures that users can manage different aspects of their life and make sure they’re completing the most important tasks first.
+## Unique Features
+
+### 1. Academic Focus
+
+- Course-centric organization
+- Term/semester planning tools
+- Academic milestone tracking
+- Grade performance monitoring
+
+### 2. Smart Study Planning
+
+- AI-powered study schedule recommendations
+- Workload distribution optimization
+- Break time management
+- Priority adjustments based on grade weights
+
+### 3. Study Progress Tracking
+
+- Assignment completion analytics
+- Study hour logging
+- Course milestone tracking
+- Performance metrics by subject
+
+### 4. Academic Resource Management
+
+- Course material organization
+- Research citation tracking
+- Study resource library
+- Document version control
+
+### 5. Learning Analytics
+
+- Grade prediction tools
+- Study efficiency metrics
+- Course difficulty assessment
+- Academic performance trends
