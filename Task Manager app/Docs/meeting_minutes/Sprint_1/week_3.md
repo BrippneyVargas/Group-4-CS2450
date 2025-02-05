@@ -1,11 +1,11 @@
 In person meeting
 
 Attendence:
-Jacob: Recorder
-Brippney: Scrum Master
-Keomony: Developer
-Devin: Product Owner
-Vlad: Developer
+- **Jacob**: Recorder  
+- **Brippney**: Scrum Master  
+- **Keomony**: Developer  
+- **Devin**: Product Owner  
+- **Vlad**: Developer  
 
 ## Meeting Notes (2/3/25)
 
