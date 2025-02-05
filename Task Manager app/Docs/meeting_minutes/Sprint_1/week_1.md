@@ -2,11 +2,11 @@
 
 Everyone is here!
 
-Devin: Product Owner
-Vlad: Developer
-Brippney: Scrum Master
-Keomony: Developer
-Jacob: Recorder
+- **Devin**: Product Owner  
+- **Vlad**: Developer  
+- **Brippney**: Scrum Master  
+- **Keomony**: Developer  
+- **Jacob**: Recorder  
 
 Discussion about whether we should do a Task Manager or if we should switch to something else.
 Vlad suggested that we do a game instead (like Sudoku, Minesweeper, etc.)
