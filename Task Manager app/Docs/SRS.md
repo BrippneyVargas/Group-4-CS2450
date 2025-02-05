@@ -42,12 +42,8 @@
 
 #### A list of advanced features brainstormed by the team:
 
-1. Recurring tasks.
-2. AI Implementation
-3. Progress bar
-4. Task grouping
-5. Local storage for offline support
-6. Mobile Responsiveness
+1. Using Flask.
+2. Recurring tasks.
 
 #### AI-powered Task Automation:
 
