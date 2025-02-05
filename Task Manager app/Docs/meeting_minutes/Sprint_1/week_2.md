@@ -1,10 +1,11 @@
 8pm Online Meeting
 
-Jacob: Recorder
-Brippney: Scrum Master
-Keomony: Developer
-Devin: Product Owner
-Vlad: Developer (wasn't able to make it to this meeting)
+- **Jacob**: Recorder  
+- **Brippney**: Scrum Master  
+- **Keomony**: Developer  
+- **Devin**: Product Owner  
+- **Vlad**: Developer _(wasn't able to make it to this meeting)_  
+
 
 **TODO:**
 
