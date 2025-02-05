@@ -1,4 +1,8 @@
+01/29
+
 8pm Online Meeting
+
+Attendence:
 
 - **Jacob**: Recorder  
 - **Brippney**: Scrum Master  
