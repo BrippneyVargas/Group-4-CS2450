@@ -2,6 +2,8 @@
 
 Everyone is here!
 
+Attendence:
+
 - **Devin**: Product Owner  
 - **Vlad**: Developer  
 - **Brippney**: Scrum Master  
