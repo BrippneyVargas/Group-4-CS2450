@@ -1,3 +1,6 @@
+02/03/2025
+3:50pm
+
 In person meeting
 
 Attendence:
