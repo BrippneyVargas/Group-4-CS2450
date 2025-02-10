@@ -94,7 +94,7 @@ Our solution helps students:
 
 Status markers for academic tasks:
 
-- Not Started
+- To Do
 - In Progress
 - Under Review
 - Completed
