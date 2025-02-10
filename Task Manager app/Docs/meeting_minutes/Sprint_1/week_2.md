@@ -1,15 +1,10 @@
-01/29/2025
-
 8pm Online Meeting
 
-Attendence:
-
-- **Jacob**: Recorder  
-- **Brippney**: Scrum Master  
-- **Keomony**: Developer  
-- **Devin**: Product Owner  
-- **Vlad**: Developer _(wasn't able to make it to this meeting)_  
-
+Jacob: Recorder
+Brippney: Scrum Master
+Keomony: Developer
+Devin: Product Owner
+Vlad: Developer (wasn't able to make it to this meeting)
 
 **TODO:**
 
