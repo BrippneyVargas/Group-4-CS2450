@@ -56,8 +56,61 @@
         
     16. As a user, I want the system to notify me if I add duplicate tasks (task with the same title). 
 
-  - Use Cases:
-    1. ??
+  - Use Cases to reflect implemented featues:
+    - Primary Actor: student, admin
+    - Student: Use Case 1: Add Task
+      - Description: Allows students to add new tasks to the system 
+      - Main Flow:
+        - Student initiates “Add Task” function
+        - Student enters basic task details
+      - Choose the tags (optional)
+        - System prompts for tags before saving
+        - Student can add tags for their tasks: 
+          - exam
+          - assignments
+          - labworks
+          - quizzes
+          - Group projects
+          - Research etc 
+          - Student can add multiple tags to categorize task 
+      - Priority Setting (optional): student can choose to set a priority level for each task
+          - High Priority 
+          - Medium Priority 
+          - Low priority
+      - System saves the task
+      - System notifies once the task is added successfully.
+
+    - Student: Use Case 2: View Task
+        - Description: Enables students to view tasks
+        - Main Flow:
+          - Students accesses “View Tasks”
+          - System displays organized task list
+          - Student can filter by categories
+          - System displays the number of tasks per page.
+
+    - Student: Use Case 3: Delete Task
+        - Description: Enables students to delete the tasks
+          - Main Flow:
+            - Student selects task to delete
+            - System checks for existing task
+            - System processes deletion
+            - Extension points:
+              - Error Handling:
+                - Shows error if no task exists
+                - Provide recovery options
+                - 
+     - Admin: Use Case 1: Access System Settings
+         - Description: Manage system settings and task priorities
+         - Main Flow:
+             - If users enable it, the reminders will pop up to alert user if deadline of a specific task is approaching.  
+
+  - Add user stories for edge cases or additional functionality:
+      - When a user enters a duplicate task (task with the same title), the system will notify the user. 
+      - When the user accidentally deleted a task, the system can help undo the action easily. 
+      - The system allows users to view added tasks offline. 
+      - The system allows users to edit the task after it is already saved.
+
+
 
 
 ## Future Enhancements Section:
