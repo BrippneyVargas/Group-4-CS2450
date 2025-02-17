@@ -9,6 +9,7 @@
   - The system allows users to update the task’s status (to-do,  in-progress and completed).
   - The system allows users to search for a task. 
   - The system can count the total number of tasks, or filter the count to show only to-do tasks, in-progress tasks, or completed tasks.
+  - The system will notify the user if the same task title is added. 
 
 ### Non-Functional Requirements:
   - The system must load tasks from a JSON file within 0.1 seconds.
@@ -52,6 +53,8 @@
     13. As a person who speaks multiple languages, I would like to be able to change the language the app uses. This will make it easier when I forget what a certain button does.
     
     14. As a person who forgets to lock the door when I leave work, I would like to be able to remind myself to do so when I get too far from where I work. This would help me not get in trouble with security.
+        
+    16. As a user, I want the system to notify me if I add duplicate tasks (task with the same title). 
 
   - Use Cases:
     1. ??
