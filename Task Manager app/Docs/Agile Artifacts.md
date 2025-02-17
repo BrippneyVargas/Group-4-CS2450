@@ -9,3 +9,6 @@
 2. **GitHub Repository Link:**
 
    - GitHub Repository Link: [https://github.com/BrippneyVargas/Group-4-CS2450/tree/main](https://github.com/BrippneyVargas/Group-4-CS2450/tree/main)
+
+3. Screenshot of projects managment tools (SPRINT II)
+   [image](https://github.com/user-attachments/assets/4ae1cf34-2928-421c-94da-1fee431695a6)
