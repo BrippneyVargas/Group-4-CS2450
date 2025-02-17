@@ -2,17 +2,13 @@
 # Project Setup Guide
 
 ### Step 1: Clone the Repository
-1. Copy the repository URL:
-   ```
-   https://github.com/BrippneyVargas/Group-4-CS2450.git
-   ```
 2. Open your terminal and navigate to your desired folder:
    ```bash
    cd path/to/folder
    ```
 3. Clone the repository:
    ```bash
-   git clone https://github.com/BrippneyVargas/Group-4-CS2450.git
+   git clone git@github.com:BrippneyVargas/Group-4-CS2450.git
    ```
 
 ### Step 2: Navigate to the Project Folder
