@@ -1,1 +1,1 @@
-# Task class and related logic
+# Task_manager_app/src/model
