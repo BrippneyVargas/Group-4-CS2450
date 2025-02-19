@@ -1,7 +1,7 @@
 # 2022-00-00 (Monday/Tuesday/Wednesday/Thursday/Friday)
 
 - [ ] Brippney Vargas(Product Owner)
-- [ ] Vlad Kashchuck (Recording)
+- [ ] Vlad Kashchuck (Recorder)
 - [ ] Keomony Mary (Scrum Master)
 - [ ] Jacob West (Developer)
 - [ ] Devin Winters (Developer)
