@@ -8,8 +8,8 @@
 
 ## Actions
 
-1. Devin presented UML
-2. The group discusseed our Model/View/Controller structure
+1. Devin presented UML.
+2. The group discusseed our Model/View/Controller structure.
 3. The group discussed decorated fucntions and how they can be used for our project.
 4. The group discussed JSON files, and we can use it.
 
