@@ -1,11 +1,11 @@
-from src.model.task_manager import TaskManager
-from src.model.task
+from Task_manager_app.src.model.task_manager import TaskManager
+from Task_manager_app.src.model.task import Task
 import unittest
 import shutil
 import json
 import os
 
-# USE THE FOLLOWING TO RUN ALL TESTS: python -m unittest discover src/tests/error
+# USE THE FOLLOWING TO RUN ALL TESTS: python -m unittest discover Task_manager_app/src/tests/error
 
 
 class TaskCLIErrorTests(unittest.TestCase):
@@ -31,6 +31,7 @@ class TaskCLIErrorTests(unittest.TestCase):
 
         assert tm.tasks == []
         # Check stderr for the right error message.
+
 
 if __name__ == "__main__":
     unittest.main()

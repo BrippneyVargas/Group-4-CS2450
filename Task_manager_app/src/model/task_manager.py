@@ -30,6 +30,7 @@ class TaskManager:
             if task_title_to_delete == task.title:
                 del self.tasks[i]
                 break
+        print("Task not found.")  # If the task is not found it will reach this and print to warn the user.
 
     def save_tasks(self, file_path: str) -> None:
         task_data = [task.to_dict() for task in self.tasks]

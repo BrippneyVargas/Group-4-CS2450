@@ -1,12 +1,7 @@
 [
     {
-        "Title": "Test title",
-        "Description": "14 silly business",
-        "Priority": 1
-    },
-    {
-        "Title": "Here's another one",
-        "Description": "Just a test",
-        "Priority": 4
+        "Title": "test",
+        "Description": "test",
+        "Priority": "test"
     }
 ]
