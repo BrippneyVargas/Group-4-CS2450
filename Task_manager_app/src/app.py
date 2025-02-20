@@ -4,7 +4,7 @@ from model.task_manager import TaskManager
 def add_new_task(mgr: TaskManager):
     task_title = input("Please enter the new task name: ")
     task_description = input("Please enter the new task's description: ")
-    task_priority = input("Please enter the tasks priority (enter a number; lower numbers are higher priority).")
+    task_priority = input("Please enter the tasks priority (1-3, 1 being the highest priority and 3 being the lowest).")
 
     mgr.add_task(task_title, task_description, int(task_priority))
     mgr.set_unsaved_changes_flag()  # Make sure to note that there are unsaved changes.
