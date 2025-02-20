@@ -6,7 +6,7 @@ class Task:
 
         # ADD tag (optional, can have multiple tags)
 
-    def to_dict(self, max_desc_length=30) -> dict:
+    def to_dict(self) -> dict:
         """Convert task to a dictionary, limiting the size of the description if needed.
 
         Args:
@@ -15,5 +15,6 @@ class Task:
         Returns:
             dict: Dictionary containing the data of the Task.
         """
-        truncated_desc = (self.desc[:max_desc_length] + "...") if len(self.desc) > max_desc_length else self.desc
-        return {"Title": self.title, "Description": truncated_desc, "Priority": self.priority}
+        # max_desc_length = 30
+        # truncated_desc = (self.desc[:max_desc_length] + "...") if len(self.desc) > max_desc_length else self.desc
+        return {"Title": self.title, "Description": self.desc, "Priority": self.priority}

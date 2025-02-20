@@ -1,6 +1,6 @@
 from tabulate import tabulate
 from typing import List
-from task import Task
+from .task import Task
 import json
 
 
@@ -30,13 +30,16 @@ class TaskManager:
                 del self.tasks[i]
                 break
 
-    def save_tasks(self) -> None:
+    def save_tasks(self, file_path: str) -> None:
         task_data = [task.to_dict() for task in self.tasks]
-        with open("tasks.json", "rw"):
-            json.dumps(task_data, indent=4)
+        with open(file_path, "w") as f:
+            json.dump(task_data, f, indent=4)
 
-    def load_tasks(self) -> None:
-        pass
+    def load_tasks(self, file_path: str) -> None:
+        with open(file_path, "r") as f:
+            task_data = json.load(f)
+        for task in task_data:
+            self.add_task(task["Title"], task["Description"], task["Priority"])
 
     def view_tasks(self):
         if not self.tasks:
@@ -51,5 +54,5 @@ class TaskManager:
 
 
 tm = TaskManager()
-tm.add_task("test", "test", 1)
-tm.view_tasks()
+tm.add_task("test", "test", "test")
+tm.save_tasks("tasks.json")
