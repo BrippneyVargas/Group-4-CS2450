@@ -2,10 +2,8 @@ from Task_manager_app.src.model.task_manager import TaskManager
 from tabulate import tabulate
 from io import StringIO
 import unittest
-import shutil
 import json
 import sys
-import os
 
 # USE THE FOLLOWING TO RUN ALL TESTS: python -m unittest discover Task_manager_app/src/tests/unit
 
