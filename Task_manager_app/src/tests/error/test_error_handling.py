@@ -16,7 +16,7 @@ class TaskCLIErrorTests(unittest.TestCase):
         # Check stderr for the right error message.
 
     def test_load_malformed_json(unittest.TestCase):
-        shutil.copy("test.json", ".")
+        shutil.copy("broken.json", ".")
         new_path = os.path.join(".", "tasks.json")
         shutil.move(os.path.join(".", "test.json"), new_path)
 
