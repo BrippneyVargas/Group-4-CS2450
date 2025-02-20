@@ -1,9 +1,6 @@
 from Task_manager_app.src.model.task_manager import TaskManager
-
-# from Task_manager_app.src.model.task import Task
 from io import StringIO
 import unittest
-import shutil
 import json
 import sys
 import os
