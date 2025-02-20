@@ -38,7 +38,7 @@ class TaskManager:
     def load_tasks(self) -> None:
         pass
 
-    def display_tasks(self):
+    def view_tasks(self):
         if not self.tasks:
             print("No tasks available.")
             return
@@ -52,4 +52,4 @@ class TaskManager:
 
 tm = TaskManager()
 tm.add_task("test", "test", 1)
-tm.display_tasks()
+tm.view_tasks()
