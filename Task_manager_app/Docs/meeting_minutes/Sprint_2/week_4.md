@@ -1,4 +1,4 @@
-# 2025-02-11 (Tuesday, in-person)
+# 2025-02-10 (Monday, in-person)
 
 - [✅] Brippney Vargas(Product Owner)
 - [✅] Vlad Kashchuck (Recording)
