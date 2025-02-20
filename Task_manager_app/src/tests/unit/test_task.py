@@ -26,6 +26,8 @@ class TaskCLITests(unittest.TestCase):
     def test_save_task(self):  # Rewrite this this isn't going to work.
         tm = TaskManager()
         tm.add_task("Get milk", "Go to Wal-mart and use your coupon", 2)
+        tm.add_task("Walk the dog", "It's your turn and you know it", 1)
+        tm.save_tasks()
 
         file = open("tasks.json", "r")
         data = json.load(file)
