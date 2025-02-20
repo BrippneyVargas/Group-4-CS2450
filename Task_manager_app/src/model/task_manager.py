@@ -39,4 +39,4 @@ class TaskManager:
         pass
 
     def display_tasks():
-        tabulate()
+        pass
