@@ -7,6 +7,7 @@ import json
 class TaskManager:
     def __init__(self):
         self.tasks: List[Task] = []
+        self.unsaved_changes: bool = False
 
     def add_task(self, title: str, desc: str, priority: int) -> None:
         """Create a new task and add it to the list of tasks
@@ -19,14 +20,14 @@ class TaskManager:
         self.tasks.append(Task(title, desc, priority))
         return
 
-    def delete_task(self, task_to_delete: Task) -> None:
+    def delete_task(self, task_title_to_delete: str) -> None:
         """Remove a task from the task list by the task name.
 
         Args:
             task_to_delete (Task): The task you want to remove.
         """
         for i, task in enumerate(self.tasks):
-            if task_to_delete.title == task.title:
+            if task_title_to_delete == task.title:
                 del self.tasks[i]
                 break
 
@@ -51,6 +52,12 @@ class TaskManager:
 
         # Use tabulate to format the output
         print(tabulate(task_list, headers="keys", tablefmt="fancy_grid"))
+
+    def set_unsaved_changes_flag(self):
+        self.unsaved_changes = True
+
+    def reset_unsaved_changes_flag(self):
+        self.unsaved_changes = False
 
 
 tm = TaskManager()

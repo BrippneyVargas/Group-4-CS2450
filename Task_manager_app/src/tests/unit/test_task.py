@@ -20,7 +20,7 @@ class TaskCLITests(unittest.TestCase):
     def test_delete_task(self):  # Passed: 2/19/25 by Jacob West
         tm = TaskManager()
         tm.add_task("Get milk", "Go to Wal-mart and use your coupon", 2)
-        tm.delete_task(tm.tasks[0])
+        tm.delete_task("Get milk")
 
         assert tm.tasks == []
 
