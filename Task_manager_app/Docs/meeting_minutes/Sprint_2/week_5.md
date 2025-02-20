@@ -8,7 +8,7 @@
 
 ## Actions
 
-1. Keomony started the discussion on the status of the project, and what unittesting Python library we’re going to use, probably not unittest.
+1. Keomony started the discussion on the status of the project, and what unittesting Python library we’re going to use.
 2. Jacob reverted some changes he did before.
 3. Jacob described what he did in model script.
 4. Keomony brought up error handling aspect to the discussion.
@@ -18,18 +18,23 @@
 8. Group discussed how we're doing the version release for this milestone.
 9. Group agreed to pull everytime before doing any changes locally and push frequently.
 
-## Announcements
 
-- …
+## Announcements
+1. Jacob's program successfully passed all the test cases written by Devin. 
+2. The program allows users to add multiple tasks. 
+
 
 ## Impediments
 
-- …
+- Technical issue with audio half way in the meeting, but we resolved it in less than 15 minutes. 
 
 ## Knowledge
-
-- …
+- Learnt about Tabulate module that allow users to view tasks in tabular mode. 
+- Learn about how to make sequence diagram, use case diagram 
+- Understanding story points 
+- Understand about Command-Line-Prototype 
 
 ## Other
-
-…
+Actionable steps for the next milestone.
+- Research on UI
+- Deciding on the most suitable programming language and framework, such as Flask, React, Tkinter PySimpleGUI, or JavaScript. 

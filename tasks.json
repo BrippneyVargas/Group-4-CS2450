@@ -1,7 +1,12 @@
 [
     {
-        "Title": "test",
-        "Description": "test",
-        "Priority": "test"
+        "Title": "Submit Milestone 2",
+        "Description": "Confirm with all team members for final works ",
+        "Priority": 1
+    },
+    {
+        "Title": "check Canvas for tomorrow deadline",
+        "Description": "see if there are any assignment due tomorrow ",
+        "Priority": 2
     }
 ]
