@@ -16,7 +16,7 @@ Welcome to the February 2025 release of Task Manager Program. Some of the key fu
 
 
 - Delete Task: you can delete the tasks that you have created.
-- 
+  
 - Save and Load Task: you can also save the tasks that you created to your local machine in .json format
 ![Pasted image (4)](https://github.com/user-attachments/assets/e04a614b-0f91-4f8e-b2b3-ad21e64d88d9)
 
@@ -34,6 +34,7 @@ There is no new features for this version because it is the first.
 
 ## Notable Fixes:
 When user press 'q', regardless of upper or lowercase, the program will be terminated
+
 
 ## Thank you
 Last but not least, thank you to the contributors: our team members,
