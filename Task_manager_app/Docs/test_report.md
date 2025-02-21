@@ -8,7 +8,7 @@ Date: 2/18/25
 Author: Jacob West, Devin Winters
 Project: Task Manager
 Version: 0.0.1
-Tested By: Devin Winters
+Tested By: Jacob West
 
 | Test Case               | Test Type      | Status    | Result                                                                                              |
 | ----------------------- | -------------- | --------- | --------------------------------------------------------------------------------------------------- |
