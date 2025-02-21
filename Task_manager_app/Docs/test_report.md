@@ -10,11 +10,11 @@ Project: Task Manager
 Version: 0.0.1
 Tested By: Jacob West
 
-| Test Case               | Test Type      | Status    | Result                                                                                              |
-| ----------------------- | -------------- | --------- | --------------------------------------------------------------------------------------------------- |
-| Add Task                | Unit           | ✅ Passed | Tasks are being created successfully!                                                               |
-| Delete Task             | Unit           | ✅ Passed | Tasks are being deleted successfully!                                                               |
-| Save Tasks              | Unit           | ✅ Passed | The Task Manager can save the loaded/created tasks to a json file!                                  |
+| Test Case               | Test Type      | Status    | Result                                                                                              | Input | Output | Expected Results | Actual Results |
+| ----------------------- | -------------- | --------- | --------------------------------------------------------------------------------------------------- | - | - | - | - |
+| Add Task                | Unit           | ✅ Passed | Tasks are being created successfully!                                                               |  "Get milk", "Go to Wal-mart and use your coupon", 2 | None | tm.tasks[0].title == "Get milk", tm.tasks[0].desc == "Go to Wal-mart and use your coupon", | tm.tasks[0].title == "Get milk", tm.tasks[0].desc == "Go to Wal-mart and use your coupon", |
+| Delete Task             | Unit           | ✅ Passed | Tasks are being deleted successfully!                                                               | "Get milk", "Go to Wal-mart and use your coupon", 2 | None | tm.tasks == [] | tm.tasks == [] |
+| Save Tasks              | Unit           | ✅ Passed | The Task Manager can save the loaded/created tasks to a json file!                                  | "tests.json" | 
 | Load Tasks              | Unit           | ✅ Passed | The Task Manager can load files from a json file!                                                   |
 | View Tasks              | Unit           | ✅ Passed | Tasks can be displayed in the CLI in a tabular format!                                              |
 | Delete Nonexistent Task | Error Handling | ✅ Passed | Attempting to delete a task that doesn't exist will not result in a crash!                          |
