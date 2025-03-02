@@ -22,6 +22,27 @@ To run the application, execute:
    cd Group-4-CS2450
    ```
 
+### Step 3: Switch to virtual environment
+1. Install dependencies for virtual environment:
+   ```terminal
+   pip install -r requirements.txt
+   ```
+
+### Step 4: Switch to virtual environment
+1. mac/linux/unix:
+   ```terminal
+   source bin/activate
+   ```
+   windows:
+   ```bash/shell
+   bin/activate
+   ```
+
+### Step 4: Run the fastAPI server
+1. In your terminal:
+   ```bash/termnal/shell
+   fastAPI dev Task_manager_app/src/app.py
+   ```
 ---
 
 ## IDE and Virtual Environment Setup
