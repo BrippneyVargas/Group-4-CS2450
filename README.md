@@ -1,7 +1,7 @@
 # How To Run The Program
 
 To run the application, execute:
-- ```python3 app,py``` OR ```python app.py``` (FROM terminal or command prompt)
+- ```python3 app.py``` OR ```python app.py``` (FROM terminal or command prompt)
 - excute the app.py (from IDE)
 
 # Project Setup Guide
