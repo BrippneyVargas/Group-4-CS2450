@@ -18,5 +18,6 @@
    ![image](https://github.com/user-attachments/assets/b04ca16e-b70c-47d5-9c63-9169d40c4238)
 
    Sprint III- Week 1&2:
-   ![alt text](screenshots/agile_practices_github_projects.png)
+  ![alt text](screenshots/github_project_m3.png)
+  
 
