@@ -1,5 +1,4 @@
-<<<<<<< HEAD
-=======
+
 """
 
 from fastapi import FastAPI
