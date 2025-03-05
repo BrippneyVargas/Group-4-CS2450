@@ -5,21 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6dab633c-3430-474b-8898-f1fc7de493f6" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/Group-4-CS2450.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Task_manager_app/Docs/screenshots/User Cases Diagram - M3.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Task_manager_app/Docs/screenshots/sequence_diagram - M3.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pyvenv.cfg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/csv-editor.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/csv-editor.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Task_manager_app/Docs/sequence_diagram.md" beforeDir="false" afterPath="$PROJECT_DIR$/Task_manager_app/Docs/sequence_diagram.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Task_manager_app/Docs/use_case_diagram.md" beforeDir="false" afterPath="$PROJECT_DIR$/Task_manager_app/Docs/use_case_diagram.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Task_manager_app/src/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/Task_manager_app/src/app.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Task_manager_app/src/cli/cli_faq.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Task_manager_app/src/cli/task_manager_cli.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Task_manager_app/src/cli/tasks.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Task_manager_app/src/model/task.py" beforeDir="false" afterPath="$PROJECT_DIR$/Task_manager_app/src/model/task.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tasks.json" beforeDir="false" afterPath="$PROJECT_DIR$/tasks.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

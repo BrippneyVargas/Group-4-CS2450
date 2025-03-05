@@ -42,8 +42,6 @@ async def add_tasks(task: Task):
 """
 
 
-
->>>>>>> d71db8cd751eee7540993e9d00b2753731ec5d09
 import streamlit as st
 import json
 from model.task import Task
@@ -145,11 +143,7 @@ class TaskStyler:
             background-color: {TaskColor.BACKGROUND_DARK};
             z-index: 1000;
         }}
-<<<<<<< HEAD
-
-=======
         
->>>>>>> d71db8cd751eee7540993e9d00b2753731ec5d09
         </style>
         """
         st.markdown(custom_css, unsafe_allow_html=True)
@@ -158,8 +152,6 @@ class TaskStyler:
 class TaskManagerApp:
     """
     The main application class for the Task Manager Streamlit interface.
-<<<<<<< HEAD
-=======
 
     Handles the entire task management application, including initialization,
     UI rendering, task manipulation, and persistence. Provides methods for
@@ -213,61 +205,8 @@ class TaskManagerApp:
               Task Manager © 2025   
           </div>
           """, unsafe_allow_html=True)
->>>>>>> d71db8cd751eee7540993e9d00b2753731ec5d09
 
-    Handles the entire task management application, including initialization,
-    UI rendering, task manipulation, and persistence. Provides methods for
-    adding, viewing, saving, and loading tasks with a user-friendly interface.
-    """
 
-<<<<<<< HEAD
-    def __init__(self):
-        """
-        Initialize the Streamlit Task Manager application.
-
-        Configures page settings, initializes task manager, and applies custom styling.
-        Sets up the basic structure and appearance of the application.
-        """
-        st.set_page_config(
-            page_title="Task Manager",
-            page_icon="📋",
-            layout="wide",
-            initial_sidebar_state="collapsed",
-            menu_items=None
-        )
-
-        # Initialize task manager
-        self._initialize_task_manager()
-
-        # Apply custom styling
-        TaskStyler.apply_custom_theme()
-
-    def _initialize_task_manager(self):
-        """
-        Safely initialize task manager in session state.
-
-        Ensures that the task manager is properly set up in the Streamlit
-        session state, creating it if it doesn't exist and ensuring
-        the tasks list is initialized.
-        """
-        if 'task_manager' not in st.session_state:
-            st.session_state.task_manager = TaskManager()
-
-        # Ensure tasks are of correct type
-        if not hasattr(st.session_state.task_manager, 'tasks'):
-            st.session_state.task_manager.tasks = []
-
-    def display_footer(self):
-        """
-        Display application footer.
-
-        Renders a centered footer with copyright information.
-        """
-        st.markdown("""
-          <div class="footer">
-              Task Manager © 2025   
-          </div>
-          """, unsafe_allow_html=True)
 
     def add_new_task(self, mgr: TaskManager):
         """
@@ -281,21 +220,6 @@ class TaskManagerApp:
         """
         st.markdown("<div class='task-container'>", unsafe_allow_html=True)
 
-=======
-
-    def add_new_task(self, mgr: TaskManager):
-        """
-        Render the task add/edit form.
-
-        Provides a user interface for creating new tasks or editing existing ones.
-        Handles form input, validation, and task creation/update logic.
-
-        Args:
-            mgr (TaskManager): The task manager instance to add or update tasks.
-        """
-        st.markdown("<div class='task-container'>", unsafe_allow_html=True)
-
->>>>>>> d71db8cd751eee7540993e9d00b2753731ec5d09
         # Check if editing an existing task
         editing_task = st.session_state.get('editing_task')
 
@@ -561,22 +485,4 @@ def main():
 
 
 if __name__ == "__main__":
-<<<<<<< HEAD
     main()
-=======
-    main()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
->>>>>>> d71db8cd751eee7540993e9d00b2753731ec5d09
