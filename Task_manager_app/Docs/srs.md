@@ -11,6 +11,19 @@
   - The system can count the total number of tasks, or filter the count to show only to-do tasks, in-progress tasks, or completed tasks.
   - The system will notify the user if the same task title is added. 
 
+    #### GUI: 
+    - The systems displays the task to the screen automatically once the task is succesfully added. 
+    - The task is displayed in tabular mode. 
+    - The 'edit' and 'delete' button is in-line with the task for easier navigation.
+    - The system allows mulitple tasks adding. 
+    - The system has the button 'Save Tasks' on top if user wants to save their added tasks into json file and dowload into a local machine. 
+    - The system has the the button 'Load Tasks' for user to load their json file.
+    - The system provides user with task title in the Title box.
+    - The system provides Description box for user to enter detail information related to their tasks. 
+    - The system has three radio buttons for user to select the priority level of their tasks. 
+    - Priority level is color coded (High= red, Medium= orange, Low=yellow)
+    - The interface places the 'Add Task' button at the end, creating a natural flow where users can input all details first and then simply save and complete the process.
+
 ### Non-Functional Requirements:
   - The system must load tasks from a JSON file within 0.1 seconds.
   - Task creation/modification operations must complete within 0.5 seconds
@@ -23,6 +36,10 @@
   - The application should be designed to scale horizontally to accommodate increasing users and tasks.
   - The system must support both light and dark themes.
   - The interface must be responsive across different screen sizes.
+  - The system shall delete the task once the 'delete' button has been clicked only once. 
+  - The system shall response to delete task within 1 second. 
+  - The interface should allow multiple pages that correlate with each other. 
+    
     
 ### Use Cases and User Stories:
   - User Stories:
@@ -122,6 +139,7 @@
 
 1. Using Flask.
 2. Recurring tasks.
+3. Using Streamlit (for GUI)
 
 #### AI-powered Task Automation:
 
