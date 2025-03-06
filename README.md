@@ -22,26 +22,33 @@ To run the application, execute:
    cd Group-4-CS2450
    ```
 
-### Step 3: Switch to virtual environment
-1. Install dependencies for virtual environment:
+### Step 3: Create a virtual environment
+1. Create a virtual Python environment inside project folder:
    ```terminal
-   pip install -r requirements.txt
+   python3 -m venv ./ 
+   If you want to install it directly in the folder you currently are, otherwise provide a different directory name. IMPORTANT: if you intstall it elsewhere and not inside Group-4-CS2450, make sure you're updating the same requirements.txt located inside the Group-4-CS2450
    ```
 
-### Step 4: Switch to virtual environment
-1. mac/linux/unix:
+### Step 4: Install required dependecies
+1. Install dependencies for virtual environment:
    ```terminal
-   source bin/activate
+   pip install -r requirements.txt (Assuming you are inside Group-4-CS2450)
+   ```
+
+### Step 5: Switch to virtual environment
+1. mac/linux:
+   ```terminal
+   source bin/activate (Assumng you installe VE directly inside Group-4-CS2450, otherwise provide the correct path)
    ```
    windows:
    ```bash/shell
    bin/activate
    ```
 
-### Step 4: Run the fastAPI server
+### Step 6: Run the fastAPI server
 1. In your terminal:
    ```bash/termnal/shell
-   fastAPI dev Task_manager_app/src/app.py
+   fastAPI dev Task_manager_app/src/main.py
    ```
 ---
 
