@@ -26,14 +26,14 @@ To run the application, execute:
    git switch dev
    ```
    
-### Step 3: Create a Python virtual environment
+### Step 4: Create a Python virtual environment
    ```bash
    python3 -m venv ./ 
    ```
    If you want to install it directly in the folder you are currently in, otherwise provide a different directory name.
    IMPORTANT: If you intstall it elsewhere and not inside Group-4-CS2450, make sure you're updating the same requirements.txt located inside the Group-4-CS2450.
 
-### Step 4: Switch to virtual environment
+### Step 5: Switch to virtual environment
 mac/linux:
    ```bash
    source bin/activate
