@@ -23,7 +23,7 @@ To run the application, execute:
    
 ### Step 3: Switch to dev branch
    ```bash
-   git switchout dev
+   git switch dev
    ```
    
 ### Step 3: Create a Python virtual environment
