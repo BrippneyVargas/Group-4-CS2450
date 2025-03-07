@@ -44,13 +44,13 @@ windows:
    ```
    Assumng you installed VE directly inside Group-4-CS2450, otherwise provide the correct path.
    
-### Step 5: Install required dependecies
+### Step 6: Install required dependecies
    ```bash
    pip install -r requirements.txt
    ```
    Assuming you are inside Group-4-CS2450.
 
-### Step 6: Run the fastAPI server
+### Step 7: Run the fastAPI server
    ```bash
    fastAPI dev Task_manager_app/src/main.py
    ```
