@@ -32,19 +32,20 @@ To run the application, execute:
 ### Step 4: Switch to virtual environment
 1. mac/linux:
    ```terminal
-   source bin/activate (Assumng you installe VE directly inside Group-4-CS2450, otherwise provide the correct path)
+   source bin/activate
    ```
    windows:
    ```bash/shell
    bin/activate
    ```
+   Assumng you installe VE directly inside Group-4-CS2450, otherwise provide the correct path
    
 ### Step 5: Install required dependecies
 1. Install dependencies for virtual environment:
    ```terminal
    pip install -r requirements.txt
    ```
-   (Assuming you are inside Group-4-CS2450)
+   Assuming you are inside Group-4-CS2450
 
 ### Step 6: Run the fastAPI server
 1. In your terminal:
