@@ -1,7 +1,7 @@
 # How To Run The Program
 
 To run the application, execute:
-- ```python3 app.py``` OR ```python app.py``` (FROM terminal or command prompt)
+- ```python3 main.py``` OR ```python main.py``` (FROM terminal or command prompt)
 - excute the app.py (from IDE)
 
 # Project Setup Guide
@@ -28,32 +28,31 @@ To run the application, execute:
    
 ### Step 4: Create a Python virtual environment
    ```bash
-   python3 -m venv ./ 
+   python3 -m venv venv
    ```
-   If you want to install it directly in the folder you are currently in, otherwise provide a different directory name.
-   IMPORTANT: If you intstall it elsewhere and not inside Group-4-CS2450, make sure you're updating the same requirements.txt located inside the Group-4-CS2450.
 
 ### Step 5: Switch to virtual environment
 mac/linux:
    ```bash
-   source bin/activate
+   source venv/bin/activate
    ```
 windows:
    ```bash
-   bin/activate
+   venv/bin/activate
    ```
-   Assumng you installed VE directly inside Group-4-CS2450, otherwise provide the correct path.
    
 ### Step 6: Install required dependecies
    ```bash
    pip install -r requirements.txt
    ```
-   Assuming you are inside Group-4-CS2450.
 
-### Step 7: Run the fastAPI server
+### Step 7: Run the fastAPI backend server
    ```bash
-   fastAPI dev Task_manager_app/src/main.py
+   python3 main.py
    ```
+   Note: Server watches for any changes in the project directory and reboots once any changes are detected. At the first run after installing all modules from requirements.txt, the installed modules will be changing lots of files, so I'd just wait it out before proceding using the server (for me it lasted about 5 mins).
+   To find information about available endpoints visit http://localhost:8000/docs.
+   
 ---
 
 ## IDE and Virtual Environment Setup

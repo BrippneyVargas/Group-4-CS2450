@@ -1,7 +1,28 @@
-from controller.tasks import app # this is your FastAPI controller app you should use to get anything from model
+from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
+from controller.tasks import router
+import uvicorn
 
+app = FastAPI(title="Task Manager API")
 
-# I commented it out because I don't have all the required packages installed and it was causing an error for me,
+# Register API routes
+app.include_router(router)
+
+# Enabling CORS for frontend (Streamlit). Found it on the internet that it is required.
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+if __name__ == "__main__":
+    uvicorn.run("main:app", host="localhost", port=8000, reload=True) # Run the FastAPI app
+
+# Frontend should not be here, this main.py should initialize the FastAPI app and run it.
+# The frontend should be in a separate file, for example, frontend.py, and it should be run separately.
+# And I also commented it out because I don't have all the required packages installed and it was causing an error for me,
 # but after you establish a virtual environment and update the requirements.txt file, and I, for example,
 # pull the updated requirements.txt file and then install the packages listed inthere, it will work for me as well.
 
