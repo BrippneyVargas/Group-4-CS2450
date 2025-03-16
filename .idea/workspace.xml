@@ -5,52 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6dab633c-3430-474b-8898-f1fc7de493f6" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Task_manager_app/Docs/meeting_minutes/Sprint_3/week_6.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Task_manager_app/Docs/meeting_minutes/Sprint_3/week_7.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Task_manager_app/Docs/screenshots/class_diagram_M3.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Task_manager_app/Docs/screenshots/github_project_m2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Task_manager_app/Docs/screenshots/github_project_m3.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Task_manager_app/src/controller/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Task_manager_app/src/controller/tasks.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Task_manager_app/src/error/broken.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Task_manager_app/src/error/test_error_handling.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Task_manager_app/src/integration/test_gui_backend.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Task_manager_app/src/main.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Task_manager_app/src/model/cli_task.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Task_manager_app/src/unit/test.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Task_manager_app/src/unit/test_task.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/Group-4-CS2450.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/csv-editor.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Task_manager_app/Docs/agile_artifacts.md" beforeDir="false" afterPath="$PROJECT_DIR$/Task_manager_app/Docs/agile_artifacts.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Task_manager_app/Docs/class_diagram.md" beforeDir="false" afterPath="$PROJECT_DIR$/Task_manager_app/Docs/class_diagram.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Task_manager_app/Docs/screenshots/sequence_diagram - M3.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/Task_manager_app/Docs/screenshots/sequence_diagram - M3.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Task_manager_app/Docs/srs.md" beforeDir="false" afterPath="$PROJECT_DIR$/Task_manager_app/Docs/srs.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Task_manager_app/src/app.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Task_manager_app/src/controller/gui_controller.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Task_manager_app/src/data/tasks.json" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/Task_manager_app/src/view/streamlit_app.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Task_manager_app/src/controller/cli_controller.py" beforeDir="false" afterPath="$PROJECT_DIR$/Task_manager_app/src/controller/cli_controller.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Task_manager_app/src/controller/tasks.py" beforeDir="false" afterPath="$PROJECT_DIR$/Task_manager_app/src/controller/tasks.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Task_manager_app/src/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/Task_manager_app/src/main.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Task_manager_app/src/model/task.py" beforeDir="false" afterPath="$PROJECT_DIR$/Task_manager_app/src/model/task.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Task_manager_app/src/model/task_manager.py" beforeDir="false" afterPath="$PROJECT_DIR$/Task_manager_app/src/model/task_manager.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Task_manager_app/src/tasks.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Task_manager_app/src/tests/error/broken.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Task_manager_app/src/tests/error/test_error_handling.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Task_manager_app/src/tests/integration/test_gui_backend.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Task_manager_app/src/tests/unit/test.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Task_manager_app/src/tests/unit/test_task.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Task_manager_app/src/utils/file_handler.py" beforeDir="false" afterPath="$PROJECT_DIR$/Task_manager_app/src/utils/file_handler.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Task_manager_app/src/utils/helper.py" beforeDir="false" afterPath="$PROJECT_DIR$/Task_manager_app/src/utils/helper.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Task_manager_app/src/view/cli_view.py" beforeDir="false" afterPath="$PROJECT_DIR$/Task_manager_app/src/view/cli_view.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Task_manager_app/src/view/gui_view.py" beforeDir="false" afterPath="$PROJECT_DIR$/Task_manager_app/src/view/gui_view.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Task_manager_app/src/view/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Task_manager_app/src/cli_main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pyvenv.cfg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tasks.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Task_manager_app/src/run_app.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Task_manager_app/src/streamlit_app.py" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -88,13 +51,14 @@
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;Merging dev&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;dev&quot;,
     &quot;last_opened_file_path&quot;: &quot;C:/Users/bripp/OneDrive/Documentos/CS-computer science courses/CS2450-Software Engineering/Group-4-CS2450&quot;,
     &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;
   }
 }</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\bripp\OneDrive\Documentos\CS-computer science courses\CS2450-Software Engineering\Group-4-CS2450\Task_manager_app\src\view" />
       <recent name="C:\Users\bripp\OneDrive\Documentos\CS-computer science courses\CS2450-Software Engineering\Group-4-CS2450\Task_manager_app\src" />
       <recent name="C:\Users\bripp\OneDrive\Documentos\CS-computer science courses\CS2450-Software Engineering\Group-4-CS2450\Task_manager_app\src\model" />
       <recent name="C:\Users\bripp\OneDrive\Documentos\CS-computer science courses\CS2450-Software Engineering\Group-4-CS2450\Task_manager_app\src\src" />
