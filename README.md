@@ -48,7 +48,7 @@ windows:
 
 ### Step 7: Run the fastAPI backend server
    ```bash
-   python3 main.py
+   python3 app.py
    ```
    Note: Server watches for any changes in the project directory and reboots once any changes are detected. At the first run after installing all modules from requirements.txt, the installed modules will be changing lots of files, so I'd just wait it out before proceding using the server (for me it lasted about 5 mins).
    To find information about available endpoints visit http://localhost:8000/docs.
