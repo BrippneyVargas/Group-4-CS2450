@@ -46,9 +46,9 @@ windows:
    pip install -r requirements.txt
    ```
 
-### Step 7: Run the fastAPI backend server
+### Step 7: Run the fastAPI backend and Streamlit front end servers
    ```bash
-   python3 app.py
+   python3 ./Task_manager_app/src/main.py
    ```
    Note: Server watches for any changes in the project directory and reboots once any changes are detected. At the first run after installing all modules from requirements.txt, the installed modules will be changing lots of files, so I'd just wait it out before proceding using the server (for me it lasted about 5 mins).
    To find information about available endpoints visit http://localhost:8000/docs.
