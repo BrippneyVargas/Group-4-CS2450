@@ -1,26 +1,47 @@
 {
     "tasks": [
         {
-            "title": "Test task",
-            "description": "I added storing all tasks in JSON",
+            "title": "edit_1111",
+            "description": "1111",
             "priority": 1,
             "tag": "Exam",
-            "id": 1
+            "id": 26
         },
         {
-            "title": "Another test one",
-            "description": "JSON updates upon adding, deleting and editing tasks",
+            "title": "2222",
+            "description": "222",
+            "priority": 2,
+            "tag": "Exam",
+            "id": 27
+        },
+        {
+            "title": "333",
+            "description": "333",
+            "priority": 3,
+            "tag": "Labwork",
+            "id": 28
+        },
+        {
+            "title": "edit_1111",
+            "description": "1111",
             "priority": 1,
             "tag": "Exam",
-            "id": 4
+            "id": 29
         },
         {
-            "title": "Another Test",
-            "description": "To invent a new source of dark matter.",
-            "priority": 1,
-            "tag": "Project",
-            "id": 6
+            "title": "2222",
+            "description": "222",
+            "priority": 2,
+            "tag": "Exam",
+            "id": 30
+        },
+        {
+            "title": "333",
+            "description": "333",
+            "priority": 3,
+            "tag": "Labwork",
+            "id": 31
         }
     ],
-    "task_id_counter": 7
+    "task_id_counter": 32
 }

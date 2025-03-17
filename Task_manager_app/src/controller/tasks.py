@@ -34,7 +34,8 @@ def save_tasks():
 
     with open(TASKS_FILE, "w") as file:
         data = {
-            "tasks": [task.dict() for task in tasks],
+            # "tasks": [task.dict() for task in tasks],
+            "tasks": [task.__dict__ for task in tasks],
             "task_id_counter": task_id_counter
         }
         json.dump(data, file, indent = 4)
@@ -187,10 +188,12 @@ async def update_task(task_id: int, updated_task: Task):
     '''
     for index, task in enumerate(tasks):
         if task.id == task_id:
-            task_updated = AddTask(
-                id = task_id,
-                title = updated_task.title,
-                description = updated_task.description,
-                priority = updated_task.priority,
-                tag = updated_task.tag
+            task_updated= AddTask(
+                id= task_id,
+                title= updated_task.title,
+                description= updated_task.description,
+                priority= updated_task.priority,
+                tag= updated_task.tag
             )
+            tasks[index]= task_updated
+            return task_updated

@@ -123,6 +123,7 @@ class TaskManager:
 
     def save_task(self, task):
         """Save a new task via FastAPI.
+        The json file is saved as tasks.json under the src/data directory.
 
         Precondition:
             - streamlit is downloaded and imported.
@@ -289,6 +290,7 @@ class TaskUI:
 
         if total_tasks > tasks_per_page:
             self.display_pagination_controls(total_tasks, current_page)
+
 
     def display_task(self, task):
         """Display an individual task in the table."""
