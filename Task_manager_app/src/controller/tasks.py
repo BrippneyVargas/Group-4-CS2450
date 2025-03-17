@@ -1,4 +1,4 @@
-#controller/tasks.py
+
 from fastapi import APIRouter
 from model.task import Task, AddTask
 import json
@@ -194,6 +194,11 @@ async def update_task(task_id: int, updated_task: Task):
                 priority = updated_task.priority,
                 tag = updated_task.tag
             )
+<<<<<<< HEAD
             tasks[index] = task_updated
             save_tasks()
             return task_updated
+=======
+            tasks[index]= task_updated
+            return task_updated
+>>>>>>> 0ef0a8a278710d7a33e35edf428e7259c0f38b07
