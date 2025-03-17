@@ -143,7 +143,7 @@ class TaskManager:
             try:
                 response = requests.post(self.API_URL, json=task)
                 response.raise_for_status()
-                st.success("Task added successfully!")
+                st.success("Task saved successfully!")
             except requests.RequestException as e:
                 st.error(f"Error saving task: {e}")
 
@@ -178,7 +178,7 @@ class TaskManager:
             try:
                 response = requests.delete(f"{self.API_URL}/{task_id}")
                 response.raise_for_status()
-                st.success("Task deleted successfully!")
+                st.warning("delete?")
             except requests.RequestException as e:
                 st.error(f"Error deleting task: {e}")
 
@@ -313,6 +313,9 @@ class TaskUI:
                 if st.button("🗑️", key=f"delete_{task['id']}"):
                     self.task_manager.delete_task(task['id'])
                     self.task_manager.load_tasks()  # Refresh task list
+                    if st.button("✅"):
+                        st.write("")
+    
 
     def edit_task(self):
         """Create a form for editing an existing task.

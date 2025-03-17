@@ -1,47 +1,4 @@
 {
-    "tasks": [
-        {
-            "title": "edit_1111",
-            "description": "1111",
-            "priority": 1,
-            "tag": "Exam",
-            "id": 26
-        },
-        {
-            "title": "2222",
-            "description": "222",
-            "priority": 2,
-            "tag": "Exam",
-            "id": 27
-        },
-        {
-            "title": "333",
-            "description": "333",
-            "priority": 3,
-            "tag": "Labwork",
-            "id": 28
-        },
-        {
-            "title": "edit_1111",
-            "description": "1111",
-            "priority": 1,
-            "tag": "Exam",
-            "id": 29
-        },
-        {
-            "title": "2222",
-            "description": "222",
-            "priority": 2,
-            "tag": "Exam",
-            "id": 30
-        },
-        {
-            "title": "333",
-            "description": "333",
-            "priority": 3,
-            "tag": "Labwork",
-            "id": 31
-        }
-    ],
-    "task_id_counter": 32
+    "tasks": [],
+    "task_id_counter": 64
 }
