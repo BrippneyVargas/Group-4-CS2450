@@ -311,8 +311,8 @@ class TaskUI:
                 if st.button("✏️", key=f"edit_{task['title']}"):
                     st.session_state.editing_task = task
             with same_line_columns[2]:
-                if st.button("🗑️", key=f"delete_{task['title']}"):
-                    self.task_manager.delete_task(task['title'])
+                if st.button("🗑️", key=f"delete_{task['id']}"):
+                    self.task_manager.delete_task(task['id'])
                     self.task_manager.load_tasks()  # Refresh task list
         
 
