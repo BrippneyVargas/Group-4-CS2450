@@ -13,7 +13,14 @@
             "priority": 1,
             "tag": "Exam",
             "id": 4
+        },
+        {
+            "title": "Another Test",
+            "description": "To invent a new source of dark matter.",
+            "priority": 1,
+            "tag": "Project",
+            "id": 6
         }
     ],
-    "task_id_counter": 6
+    "task_id_counter": 7
 }
