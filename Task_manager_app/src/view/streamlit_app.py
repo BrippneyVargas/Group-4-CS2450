@@ -59,6 +59,20 @@ class TaskStyler:
 
     @staticmethod
     def apply_custom_theme():
+        """
+        Customize the Streamlit application with colors, theme and styles.
+
+        Precondition:
+                -  streamlit is downloaded and imported. 
+            
+        Postcondition:
+            - The tasks are displayed in a table format.
+            - If no tasks exist, a message is displayed as "No tasks to display."
+        
+        Known issues:
+            - If streamlit package is not installed, there'll be an error: ModuleNotFoundError: No module named 'streamlit'
+        
+        """
         custom_css = f"""
         <style>
         body, .stApp {{ overflow: hidden !important; max-height: 100vh; }}
@@ -84,17 +98,49 @@ class TaskManager:
         self.load_tasks()
 
     def fetch_tasks(self):
-        """Load tasks from the FastAPI backend."""
+        """Load tasks from the FastAPI backend.
+
+        Precondition:
+            - streamlit is downloaded and imported. 
+            - FastAPI is installed 
+            - self.API_URL is a valid URL for the FastAPI backend.
+            
+        Postcondition:
+            - If successful, list of task is fetched from the API and stored in self.tasks. 
+            - self.tasks remains an empty list of there is no task in the task list. 
+        
+        Exceptions:
+            - If there's an error fetching tasks, raise RequestException with the error message.
+        
+        Known issues:
+            - If streamlit and FastAPI package is not installed, there'll be an error.       
+            
+        """
         try:
             response = requests.get(self.API_URL)
             response.raise_for_status()
             self.tasks = response.json().get("tasks", [])
-            st.success("Tasks loaded successfully!")
+            # st.success("Tasks loaded successfully!")
         except requests.RequestException as e:
             st.error(f"Error fetching tasks: {e}")
 
     def save_task(self, task):
-        """Save a new task via FastAPI."""
+        """Save a new task via FastAPI.
+
+        Precondition:
+            - streamlit is downloaded and imported. 
+            - FastAPI is installed 
+            - self.API_URL is a valid URL for the FastAPI backend.
+            
+        Postcondition:
+            - The tasks added is successfully saved to a json file. 
+        
+        Exceptions:
+            - If there's an error fetching tasks, raise RequestException with the error message.
+        
+        Known issues:
+             If streamlit and FastAPI package is not installed, there'll be an error.  
+        """
         with st.spinner("Saving task..."):
             try:
                 response = requests.post(self.API_URL, json=task)
@@ -104,7 +150,22 @@ class TaskManager:
                 st.error(f"Error saving task: {e}")
 
     def update_task(self, task_id, updated_task):
-        """Update a task identified by task_id via FastAPI."""
+        """Update a task identified by task_id via FastAPI.
+        
+        Precondition:
+            - streamlit is downloaded and imported. 
+            - FastAPI is installed 
+            - task_id is a valid task id and it matches the task already in the task list 
+            
+        Postcondition:
+            - The task is successfully updated. 
+        
+        Exceptions:
+            - If there's an error fetching tasks, raise RequestException with the error message.
+        
+        Known issues:
+            - "INFO: 127.0.0.1:46460 - "PUT /tasks/111 HTTP/1.1" 500 Internal Server Error" can show up and prevent task to be updated
+        """
         with st.spinner("Updating task..."):
             try:
                 response = requests.put(f"{self.API_URL}/{task_id}", json=updated_task)
@@ -137,7 +198,16 @@ class TaskUI:
         TaskStyler.apply_custom_theme()
 
     def initialize_session_state(self):
-        """Initialize session state for editing tasks."""
+        """Initialize session state for editing tasks.
+
+        Precondition:
+            - streamlit is downloaded and imported. 
+           
+        Postcondition:
+            - editing_task and current_page are properly initialized in st.session_state.
+            - editing_task is intilized to None.
+            - current_page is intilized to 1.
+        """
         if 'editing_task' not in st.session_state:
             st.session_state.editing_task = None
         if 'current_page' not in st.session_state:
@@ -148,7 +218,21 @@ class TaskUI:
         st.markdown("<h1 class='app-title'>Task Manager</h1>", unsafe_allow_html=True)
 
     def add_new_task(self):
-        """Create a form for adding a new task."""
+        """Create a form for adding a new task.
+
+        Precondition:
+            - streamlit is downloaded and imported. 
+            - Title and description cannot be blank or emptty.
+        
+        Postcondition:
+            - New task is appended to the task list.
+
+        Exceptions:
+            - None
+
+        Known issues:
+            - "INFO: 127.0.0.1:35790 - "POST /tasks HTTP/1.1" 422 Unprocessable Entity" can show up and prevent task to be added   
+        """
         st.markdown("## ✏️ Add New Task")
         title = st.text_input("Title", placeholder="Enter task title")
         tag = st.selectbox("Tag", ["Exam", "Assignment", "Labwork", "Project", "Other"])
@@ -169,8 +253,20 @@ class TaskUI:
             else:
                 st.warning("Title and description are required.")
 
+
     def view_tasks(self):
-        """Display the list of tasks."""
+        """Display the list of tasks.
+
+        Precondition:
+            -  streamlit is downloaded and imported.
+        
+        Postcondition:
+            - The tasks are displayed in a table format.
+            - If no tasks exist, a message is displayed as "No tasks to display."
+
+        Returns:
+            - None
+        """
         tasks = self.task_manager.tasks
         if not tasks:
             st.info("No tasks to display.")
@@ -183,9 +279,9 @@ class TaskUI:
         start_idx = (current_page - 1) * tasks_per_page
         current_tasks = tasks[start_idx:start_idx + tasks_per_page]
 
-        # Table headers
-        cols = st.columns([2, 1, 3, 1, 0.5])
-        for col, header in zip(cols, ["Title", "Tag", "Description", "Priority", "Actions"]):
+        # Table headers0
+        cols = st.columns([2, 1, 3, 1.5, 0.85, 1])
+        for col, header in zip(cols, ["Title", "Tag", "Description", "Priority", "Edit", "Delete"]):
             with col:
                 st.write(f"**{header}**")
 
@@ -195,9 +291,10 @@ class TaskUI:
         if total_tasks > tasks_per_page:
             self.display_pagination_controls(total_tasks, current_page)
 
+
     def display_task(self, task):
         """Display an individual task in the table."""
-        cols = st.columns([2, 1, 3, 1, 0.5])
+        cols = st.columns([2, 1, 3, 1.5, 0.85, 1])
         with cols[0]:
             st.write(task['title'])
         with cols[1]:
@@ -208,14 +305,31 @@ class TaskUI:
             priority_text = {1: "High", 2: "Medium", 3: "Low"}[task.get('priority', 2)]
             st.markdown(f"<div class='priority-{priority_text.lower()}'>{priority_text}</div>", unsafe_allow_html=True)
         with cols[4]:
-            if st.button("✏️ Edit", key=f"edit_{task['id']}"):
-                st.session_state.editing_task = task
-            if st.button("🗑️ Delete", key=f"delete_{task['id']}"):
-                self.task_manager.delete_task(task['id'])
-                self.task_manager.load_tasks()  # Refresh task list
+            same_line_columns= st.columns([1, 3.5, 1])
+            with same_line_columns[0]:
+                if st.button("✏️", key=f"edit_{task['title']}"):
+                    st.session_state.editing_task = task
+            with same_line_columns[2]:
+                if st.button("🗑️", key=f"delete_{task['title']}"):
+                    self.task_manager.delete_task(task['title'])
+                    self.task_manager.load_tasks()  # Refresh task list
+        
 
     def edit_task(self):
-        """Create a form for editing an existing task."""
+        """Create a form for editing an existing task.
+        
+        Precondition:
+        - streamlit is downloaded and imported. 
+            
+        Postcondition:
+            - The tasks added is successfully edited and updated to the task list. 
+        
+        Exceptions:
+            - If there's an error fetching tasks, raise RequestException with the error message.
+        
+        Known issues:
+            - "INFO: 127.0.0.1:46460 - "PUT /tasks/111 HTTP/1.1" 500 Internal Server Error" shows up and prevent task to be updated
+        """
         task = st.session_state.editing_task
         if task:
             st.markdown("## ✏️ Edit Task")
@@ -235,6 +349,8 @@ class TaskUI:
                 self.task_manager.update_task(task['id'], updated_task)
                 st.session_state.editing_task = None
                 self.task_manager.load_tasks()  # Refresh task list
+                st.success("Task updated successfully!")
+
 
     def display_pagination_controls(self, total_tasks, current_page):
         """Display pagination controls for navigating through tasks."""
