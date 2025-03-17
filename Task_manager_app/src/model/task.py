@@ -2,7 +2,6 @@
 from fastapi import FastAPI
 from pydantic import BaseModel
 
-
 class Task(BaseModel):
     '''
     Class that handle details needed for each task to be added
@@ -18,7 +17,6 @@ class Task(BaseModel):
     priority: int
     tag: str
 
-
 class AddTask(Task):
     '''
     Class inherits from Task class that handles new task to be added and auto increment the id 
@@ -32,6 +30,3 @@ class AddTask(Task):
 
     '''
     id: int
-
-
-

@@ -1,0 +1,19 @@
+{
+    "tasks": [
+        {
+            "title": "Test task",
+            "description": "I added storing all tasks in JSON",
+            "priority": 1,
+            "tag": "Exam",
+            "id": 1
+        },
+        {
+            "title": "Another test one",
+            "description": "JSON updates upon adding, deleting and editing tasks",
+            "priority": 1,
+            "tag": "Exam",
+            "id": 4
+        }
+    ],
+    "task_id_counter": 6
+}

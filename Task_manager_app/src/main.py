@@ -24,7 +24,6 @@ app.add_middleware(
 def run_fastapi():
     """Function to run the FastAPI application."""
     uvicorn.run("main:app", host="127.0.0.1", port=8000, log_level="info")  # Change to 8001 if needed
-    # uvicorn.run("main:app", host="127.0.0.1", port=8001, log_level="info")  # Change to 8001 if needed
 
 def run_streamlit():
     """Function to run the Streamlit application."""
