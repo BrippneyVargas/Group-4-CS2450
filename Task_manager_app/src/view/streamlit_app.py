@@ -410,4 +410,3 @@ def main():
 if __name__ == "__main__":
     TaskStyler.apply_custom_theme()  # Apply custom styles before running the app
     main()
-

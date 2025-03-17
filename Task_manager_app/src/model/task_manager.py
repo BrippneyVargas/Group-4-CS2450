@@ -1,4 +1,3 @@
-
 from typing import List, Literal
 from tabulate import tabulate
 from .task import Task
@@ -45,7 +44,6 @@ class TaskManager:
             raise ValueError("Priority must be 1, 2, or 3")
         self.tasks.append(Task(title, desc, priority))
         return
-    
 
     def delete_task(self, task_title_to_delete: str) -> None:
         """
@@ -124,7 +122,8 @@ class TaskManager:
         except FileNotFoundError:
             raise FileNotFoundError(f"Error: The file '{file_path}' was not found.")
         except json.JSONDecodeError:
-            raise json.JSONDecodeError(f"Error: Failed to decode JSON. The file '{file_path}' is not in valid JSON format.")
+            raise json.JSONDecodeError(
+                f"Error: Failed to decode JSON. The file '{file_path}' is not in valid JSON format.")
         except KeyError as e:
             raise KeyError(f"Error: {e}. Ensure all tasks contain 'Title', 'Description', and 'Priority'.")
         except ValueError as e:

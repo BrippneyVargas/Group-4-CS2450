@@ -19,3 +19,5 @@ class Task:
         # truncated_desc = (self.desc[:max_desc_length] + "...") if len(self.desc) > max_desc_length else self.desc
         return {"Title": self.title, "Description": self.desc, "Priority": self.priority}
 
+
+
