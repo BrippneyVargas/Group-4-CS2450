@@ -45,6 +45,7 @@ class TaskManager:
             raise ValueError("Priority must be 1, 2, or 3")
         self.tasks.append(Task(title, desc, priority))
         return
+    
 
     def delete_task(self, task_title_to_delete: str) -> None:
         """
