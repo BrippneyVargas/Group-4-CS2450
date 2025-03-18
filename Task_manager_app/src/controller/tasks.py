@@ -2,6 +2,7 @@ from fastapi import APIRouter
 from model.task import Task, AddTask
 import json
 import os
+from fastapi import HTTPException
 
 TASKS_FILE = "./Task_manager_app/src/data/tasks.json"
 router = APIRouter()
@@ -105,7 +106,7 @@ async def get_task(task_id: int):
     for task in tasks:
         if task.id == task_id:
             return {"task": task}
-    return {"message": "task not found"}
+    raise HTTPException(status_code=404, detail="Task not found")
 
 
 @router.delete("/tasks/{task_id}")
@@ -132,12 +133,13 @@ async def delete_task(task_id: int):
         if task.id == task_id:
             tasks.remove(task)
             save_tasks()
-            return {"message": "task has been deleted"}
-    return {"message": "task not found"}
+            return {"message": "task has been deleted"}, 204
+    raise HTTPException(status_code=404, detail="Task not found")
 
 
 @router.post("/tasks", response_model=AddTask)
 async def add_task(task: Task):
+    print(task)
     '''Add a new task to the task list
     The add_task() function accepts a user input (a task object), auto increments the id, and append the object to the task list.
 

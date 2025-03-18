@@ -1,3 +1,6 @@
+"""
+This is the main file to run the FastAPI and Streamlit applications.
+"""
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from controller.tasks import router

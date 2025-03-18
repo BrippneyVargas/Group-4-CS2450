@@ -46,7 +46,7 @@ windows:
    pip install -r requirements.txt
    ```
 
-### Step 7: Run the fastAPI backend and Streamlit front end servers
+### Step 7: Run the fastAPI backend and Streamlit frontend servers
    ```bash
    python3 ./Task_manager_app/src/main.py
    ```
