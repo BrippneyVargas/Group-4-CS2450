@@ -1,8 +1,8 @@
 # How To Run The Program
 
 To run the application, execute:
-- ```python3 main.py``` OR ```python main.py``` (FROM terminal or command prompt)
-- excute the app.py (from IDE)
+- ```python3 main.py``` OR ```python main.py``` OR
+- ```python3 ./Task_manager_app/src/main.py``` (FROM terminal or command prompt)
 
 # Project Setup Guide
 
