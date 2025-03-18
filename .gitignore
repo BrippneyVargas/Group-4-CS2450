@@ -1,9 +1,12 @@
 reflections/
-# Byte-compiled / optimized / DLL files
-__pycache__/
+# Byte-compiled / optimized / DLL files / etc
 *.py[cod]
 *$py.class
 .DS_Store
+**/__pycache__/
+.idea/
+.vscode/
+*.suo
 
 # C extensions
 *.so

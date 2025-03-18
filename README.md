@@ -1,8 +1,8 @@
 # How To Run The Program
 
 To run the application, execute:
-- ```python3 app,py``` OR ```python app.py``` (FROM terminal or command prompt)
-- excute the app.py (from IDE)
+- ```python3 main.py``` OR ```python main.py``` OR
+- ```python3 ./Task_manager_app/src/main.py``` (FROM terminal or command prompt)
 
 # Project Setup Guide
 
@@ -17,11 +17,42 @@ To run the application, execute:
    ```
 
 ### Step 2: Navigate to the Project Folder
-1. Change into the project directory:
    ```bash
    cd Group-4-CS2450
    ```
+   
+### Step 3: Switch to dev branch
+   ```bash
+   git switch dev
+   ```
+   
+### Step 4: Create a Python virtual environment
+   ```bash
+   python3 -m venv venv
+   ```
 
+### Step 5: Switch to virtual environment
+mac/linux:
+   ```bash
+   source venv/bin/activate
+   ```
+windows:
+   ```bash
+   venv/bin/activate
+   ```
+   
+### Step 6: Install required dependecies
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+### Step 7: Run the fastAPI backend and Streamlit frontend servers
+   ```bash
+   python3 ./Task_manager_app/src/main.py
+   ```
+   Note: Server watches for any changes in the project directory and reboots once any changes are detected. At the first run after installing all modules from requirements.txt, the installed modules will be changing lots of files, so I'd just wait it out before proceding using the server (for me it lasted about 5 mins).
+   To find information about available endpoints visit http://localhost:8000/docs.
+   
 ---
 
 ## IDE and Virtual Environment Setup

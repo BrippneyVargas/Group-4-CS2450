@@ -1,20 +1,32 @@
-class Task:
-    def __init__(self, title: str, desc: str, priority: int):
-        self.title: str = title
-        self.desc = desc
-        self.priority = priority
 
-        # ADD tag (optional, can have multiple tags)
+from fastapi import FastAPI
+from pydantic import BaseModel
 
-    def to_dict(self) -> dict:
-        """Convert task to a dictionary, limiting the size of the description if needed.
+class Task(BaseModel):
+    '''
+    Class that handle details needed for each task to be added
 
-        Args:
-            max_desc_length (int, optional): The maximum number of characters that can be in a description. Defaults to 30.
+    Attributes: 
+        - title: str - title of the task
+        - description: str - description of the task
+        - priority: int - level of priority (1:high, 2:medium, 3:low)
+        - tag: str - A tag to categorize the task
+    '''
+    title: str
+    description: str
+    priority: int
+    tag: str
 
-        Returns:
-            dict: Dictionary containing the data of the Task.
-        """
-        # max_desc_length = 30
-        # truncated_desc = (self.desc[:max_desc_length] + "...") if len(self.desc) > max_desc_length else self.desc
-        return {"Title": self.title, "Description": self.desc, "Priority": self.priority}
+class AddTask(Task):
+    '''
+    Class inherits from Task class that handles new task to be added and auto increment the id 
+
+    Attributes: 
+        - ud: int - auto increment id for each task
+        - title: str - title of the task
+        - description: str - description of the task
+        - priority: int - level of priority (1:high, 2:medium, 3:low)
+        - tag: str - A tag to categorize the task
+
+    '''
+    id: int
