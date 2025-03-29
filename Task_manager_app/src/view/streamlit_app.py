@@ -112,7 +112,7 @@ class TaskStyler:
             div[data-baseweb="select"] svg[data-baseweb="icon"] {{fill: #FF99FF;}}
             div.stTextArea label {{ background-color: {TaskColor.BACKGROUND_LIGHT}; color: {TaskColor.TEXT_COLOR}; }}
             div.stTextArea textarea {{background-color: white; color: black}}
-            div.stRadio > label {{ background-color: {TaskColor.BACKGROUND_LIGHT}; color: {TaskColor.TEXT_COLOR}; }}
+            div.stRadio > label {{ background-color: {TaskColor.BACKGROUND_LIGHT}; color: {TaskColor.TEXT_COLOR}; }}     
             .priority-high {{ background-color: {TaskColor.HIGH_PRIORITY}; color: black; padding: 5px 10px; border-radius: 5px; text-align: center; }}
             .priority-medium {{ background-color: {TaskColor.MEDIUM_PRIORITY}; color: black; padding: 5px 10px; border-radius: 5px; text-align: center; }}
             .priority-low {{ background-color: {TaskColor.LOW_PRIORITY}; color: black; padding: 5px 10px; border-radius: 5px; text-align: center; }}
@@ -225,8 +225,8 @@ class TaskManager:
         """Load tasks from the API."""
         try:
             self.fetch_tasks()
-            if self.tasks:
-                st.markdown("<p style='background-color: #3CB371'>Tasks loaded successfully!</p>", unsafe_allow_html=True)
+            # if self.tasks:
+            #     st.markdown("<p style='background-color: rgba(60, 179, 113, 0.5); padding: 10px;'>Tasks loaded successfully!</p>", unsafe_allow_html=True)
         except Exception as e:
             st.error(f"Unexpected error while loading tasks: {e}")
 
@@ -280,10 +280,10 @@ class TaskUI:
         tag = st.selectbox("Tag", ["Exam", "Assignment", "Labwork", "Project", "Other"])
         description = st.text_area("Description", placeholder="Enter task description")
         priority = st.radio("Priority", [":red[High]", ":orange[Medium]", ":green[Low]"], horizontal=True)
-
+ 
         if st.button("Add Task"):
             if title and description:
-                priority_value = {"High": 1, "Medium": 2, "Low": 3}[priority]
+                priority_value = {":red[High]": 1, ":orange[Medium]": 2, ":green[Low]": 3}[priority]
                 new_task = {
                     "title": title,
                     "description": description,
@@ -418,7 +418,7 @@ class TaskUI:
         cols = st.columns([3, 1, 1])
         with cols[0]:
             # Just a placeholder for checking if API is available
-            st.markdown("<p style='background-color: #3CB371'>✅ API Connected</p>", unsafe_allow_html=True)
+            st.markdown("<p style= 'background-color: rgba(60, 179, 113, 0.5); padding: 10px;'>✅ API Connected</p>", unsafe_allow_html=True)
         with cols[1]:
             if st.button("💾 Save Tasks"):
                 if self.task_manager.tasks:
