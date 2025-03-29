@@ -45,18 +45,25 @@ sys.path.append(current_dir)
 
 class TaskColor:
     """Define colors for styling purposes."""
+    ## Dark Mode Color
     BACKGROUND_DARK = '#121212'
     PRIMARY_LIGHT = '#7BDFF2'
     HIGH_PRIORITY = '#FF4136'
     MEDIUM_PRIORITY = '#FF851B'
     LOW_PRIORITY = '#FFDC00'
 
+    # #Light Mode Color
+    BACKGROUND_LIGHT = '#FFFFFF'
+    PRIMARY_LIGHT_LM = '#f20c59'
+    TEXT_COLOR = 'blue'
+    BUTTON_COLOR = '#FFCCFF'
+
 
 class TaskStyler:
     """Apply custom CSS styles for the application."""
 
     @staticmethod
-    def apply_custom_theme():
+    def apply_custom_theme(dark_mode: bool):
         """
         Customize the Streamlit application with colors, theme and styles.
 
@@ -71,19 +78,51 @@ class TaskStyler:
             - If streamlit package is not installed, there'll be an error: ModuleNotFoundError: No module named 'streamlit'
 
         """
-        custom_css = f"""
-        <style>
-        body, .stApp {{ overflow: hidden !important; max-height: 100vh; }}
-        .stApp {{ background-color: {TaskColor.BACKGROUND_DARK}; max-width: 1200px; margin: 0 auto; padding: 0 20px; }}
-        ::-webkit-scrollbar {{ display: none; }}
-        .priority-high {{ background-color: {TaskColor.HIGH_PRIORITY}; color: white; padding: 5px 10px; border-radius: 5px; text-align: center; }}
-        .priority-medium {{ background-color: {TaskColor.MEDIUM_PRIORITY}; color: white; padding: 5px 10px; border-radius: 5px; text-align: center; }}
-        .priority-low {{ background-color: {TaskColor.LOW_PRIORITY}; color: black; padding: 5px 10px; border-radius: 5px; text-align: center; }}
-        .footer {{ position: fixed; left: 0; bottom: 0; width: 100%; text-align: center; padding: 20px 0; color: {TaskColor.PRIMARY_LIGHT}; font-size: 0.9em; background-color: {TaskColor.BACKGROUND_DARK}; }}
-        .app-title {{ color: {TaskColor.PRIMARY_LIGHT}; text-align: center; font-size: 2.5em; margin-bottom: 20px; font-weight: bold; }}
-        </style>
-        """
-        st.markdown(custom_css, unsafe_allow_html=True)
+        if dark_mode: 
+            darkmode_css = f"""
+            <style>
+            body, .stApp {{ overflow: hidden !important; max-height: 100vh; }}
+            .stApp {{ background-color: {TaskColor.BACKGROUND_DARK}; max-width: 1200px; margin: 0 auto; padding: 0 20px; }}
+            ::-webkit-scrollbar {{ display: none; }}
+            .priority-high {{ background-color: {TaskColor.HIGH_PRIORITY}; color: white; padding: 5px 10px; border-radius: 5px; text-align: center; }}
+            .priority-medium {{ background-color: {TaskColor.MEDIUM_PRIORITY}; color: white; padding: 5px 10px; border-radius: 5px; text-align: center; }}
+            .priority-low {{ background-color: {TaskColor.LOW_PRIORITY}; color: black; padding: 5px 10px; border-radius: 5px; text-align: center; }}
+            .footer {{ position: fixed; left: 0; bottom: 0; width: 100%; text-align: center; padding: 20px 0; color: {TaskColor.PRIMARY_LIGHT}; font-size: 0.9em; background-color: {TaskColor.BACKGROUND_DARK}; }}
+            .app-title {{ color: {TaskColor.PRIMARY_LIGHT}; text-align: center; font-size: 3.5em; margin-bottom: 20px; font-weight: bold; }}
+            </style>
+            """
+            st.markdown(darkmode_css, unsafe_allow_html=True)
+
+        else: 
+            lightmode_css = f"""
+            <style>
+            
+            .stRadio label[for="High"] {{ color: black !important;}}
+            body, .stApp {{ overflow: hidden !important; max-height: 100vh; }}
+            .stApp {{ background-color: {TaskColor.BACKGROUND_LIGHT}; max-width: 100%; max-height: 100%; margin: 0 auto; padding: 0 20px; color: {TaskColor.TEXT_COLOR}; }}
+            ::-webkit-scrollbar {{ display: none; }}
+            div.stTextInput label {{ background-color: {TaskColor.BACKGROUND_LIGHT}; color: {TaskColor.TEXT_COLOR}; }}
+            div.stTextInput input {{background-color: white; color: black}}
+            div.stSelectbox label {{ background-color: {TaskColor.BACKGROUND_LIGHT}; color: {TaskColor.TEXT_COLOR}; }}
+            div[data-baseweb="select"] > div {{background-color: white; color: black}}
+            #root > div:nth-child(n) > div > div > div > div > div > div > ul li[aria-selected="true"] {{background-color: #FF99FF; color: black !important;}}
+            #root > div:nth-child(2) > div > div > div > div > div > div > ul {{background-color: white;}}
+            #root > div:nth-child(2) > div > div > div > div > div > div > ul div {{color: black;}}
+            #root > div:nth-child(2) > div > div > div > div > div > div > ul li:hover {{background-color: #FFCCFF;}}
+            div[data-baseweb="select"] svg[data-baseweb="icon"] {{fill: #FF99FF;}}
+            div.stTextArea label {{ background-color: {TaskColor.BACKGROUND_LIGHT}; color: {TaskColor.TEXT_COLOR}; }}
+            div.stTextArea textarea {{background-color: white; color: black}}
+            div.stRadio > label {{ background-color: {TaskColor.BACKGROUND_LIGHT}; color: {TaskColor.TEXT_COLOR}; }}
+            .priority-high {{ background-color: {TaskColor.HIGH_PRIORITY}; color: black; padding: 5px 10px; border-radius: 5px; text-align: center; }}
+            .priority-medium {{ background-color: {TaskColor.MEDIUM_PRIORITY}; color: black; padding: 5px 10px; border-radius: 5px; text-align: center; }}
+            .priority-low {{ background-color: {TaskColor.LOW_PRIORITY}; color: black; padding: 5px 10px; border-radius: 5px; text-align: center; }}
+            .stButton > button {{ background-color: {TaskColor.BUTTON_COLOR}; color: black; padding: 5px 10px; border-radius: 5px; text-align: center; }}
+            .footer {{ position: fixed; left: 0; bottom: 0; width: 100%; text-align: center; padding: 20px 0; color: {TaskColor.PRIMARY_LIGHT_LM}; font-size: 0.9em; background-color: {TaskColor.BACKGROUND_LIGHT}; }}
+            .app-title {{ color: {TaskColor.PRIMARY_LIGHT_LM}; text-align: center; font-size: 3.5em; margin-bottom: 20px; font-weight: bold; }}
+            
+            </style>
+            """
+            st.markdown(lightmode_css, unsafe_allow_html=True)
 
 
 class TaskManager:
@@ -178,7 +217,7 @@ class TaskManager:
             try:
                 response = requests.delete(f"{self.API_URL}/{task_id}")
                 response.raise_for_status()
-                st.warning("delete?")
+                st.markdown("<p style='background-color: #BDB76B; color: red;'>&nbsp;&nbsp;delete</p>", unsafe_allow_html=True)
             except requests.RequestException as e:
                 st.error(f"Error deleting task: {e}")
 
@@ -187,7 +226,7 @@ class TaskManager:
         try:
             self.fetch_tasks()
             if self.tasks:
-                st.success("Tasks loaded successfully!")
+                st.markdown("<p style='background-color: #3CB371'>Tasks loaded successfully!</p>", unsafe_allow_html=True)
         except Exception as e:
             st.error(f"Unexpected error while loading tasks: {e}")
 
@@ -218,6 +257,8 @@ class TaskUI:
         """Display the title of the application."""
         st.markdown("<h1 class='app-title'>Task Manager</h1>", unsafe_allow_html=True)
 
+
+
     def add_new_task(self):
         """Create a form for adding a new task.
 
@@ -234,11 +275,11 @@ class TaskUI:
         Known issues:
             - "INFO: 127.0.0.1:35790 - "POST /tasks HTTP/1.1" 422 Unprocessable Entity" can show up and prevent task to be added
         """
-        st.markdown("## ✏️ Add New Task")
+        st.markdown("## ✏️ :red[Add] :violet[New] :green[Task]")
         title = st.text_input("Title", placeholder="Enter task title")
         tag = st.selectbox("Tag", ["Exam", "Assignment", "Labwork", "Project", "Other"])
         description = st.text_area("Description", placeholder="Enter task description")
-        priority = st.radio("Priority", ["High", "Medium", "Low"], horizontal=True)
+        priority = st.radio("Priority", [":red[High]", ":orange[Medium]", ":green[Low]"], horizontal=True)
 
         if st.button("Add Task"):
             if title and description:
@@ -252,7 +293,7 @@ class TaskUI:
                 self.task_manager.save_task(new_task)
                 self.task_manager.load_tasks()  # Refresh task list
             else:
-                st.warning("Title and description are required.")
+                st.markdown("<p style='background-color: #BDB76B; color: red;'>&nbsp;&nbsp;Title and description are required.</p>", unsafe_allow_html=True)
 
     def view_tasks(self):
         """Display the list of tasks.
@@ -377,14 +418,14 @@ class TaskUI:
         cols = st.columns([3, 1, 1])
         with cols[0]:
             # Just a placeholder for checking if API is available
-            st.success("✅ API Connected")
+            st.markdown("<p style='background-color: #3CB371'>✅ API Connected</p>", unsafe_allow_html=True)
         with cols[1]:
             if st.button("💾 Save Tasks"):
                 if self.task_manager.tasks:
                     for task in self.task_manager.tasks:
                         self.task_manager.save_task(task)
                 else:
-                    st.warning("No tasks to save.")
+                    st.markdown("<p style='background-color: #BDB76B; color: red;'>&nbsp;&nbsp;No tasks to save</p>", unsafe_allow_html=True)
         with cols[2]:
             if st.button("📂 Load Tasks"):
                 self.task_manager.load_tasks()
@@ -398,7 +439,7 @@ class TaskUI:
             self.edit_task()
         else:
             self.add_new_task()
-        st.markdown("## 📋 Tasks")
+        st.markdown("## 📋 :orange[T]:green[a]:red[s]:blue[k]:violet[s]")
         self.view_tasks()
         self.display_footer()
 
@@ -411,5 +452,16 @@ def main():
     task_ui.run()  # Run the UI
 
 if __name__ == "__main__":
-    TaskStyler.apply_custom_theme()  # Apply custom styles before running the app
+    if "dark_mode" not in st.session_state:
+        st.session_state.dark_mode = True
+    
+    if st.button("Switch Theme"):
+        st.session_state.dark_mode = not st.session_state.dark_mode
+
+
+    TaskStyler.apply_custom_theme(st.session_state.dark_mode)
+
     main()
+
+
+
