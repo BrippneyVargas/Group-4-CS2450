@@ -1,5 +1,6 @@
 import streamlit as st
 
+st.set_page_config(layout="centered")
 st.markdown("<h1 class='about' style='text-align: center; color: #FFCCFF;'>About TaskZen</h1>", unsafe_allow_html=True)
 st.markdown("")
 st.markdown(
