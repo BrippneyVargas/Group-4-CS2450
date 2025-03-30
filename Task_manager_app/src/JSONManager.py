@@ -6,6 +6,8 @@ from Task import *
 class JSONManager(DatabaseManager):
     def __init__(self, json_path: str) -> None:
         self.__json_path = json_path
+        self.__tasks = []
+        
         self.load_all()
 
     def load_all(self) -> None:
