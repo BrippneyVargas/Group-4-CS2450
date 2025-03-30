@@ -13,6 +13,7 @@ class Task(BaseModel):
     task_id: int
     title: str
     description: str
-    priority: int
-    tag: str
+    priority_id: int
+    tag_id: int
+    status_id: int
     

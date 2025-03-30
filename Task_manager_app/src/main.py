@@ -7,7 +7,6 @@ from controller.tasks import router
 import threading
 import uvicorn
 import os
-import sys
 
 app = FastAPI(title="Task Manager API")
 
