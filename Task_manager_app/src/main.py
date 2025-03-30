@@ -29,7 +29,7 @@ def run_fastapi():
 
 def run_streamlit():
     """Function to run the Streamlit application."""
-    os.system("streamlit run ./Task_manager_app/src/view/streamlit_app.py ")
+    os.system("streamlit run ./Task_manager_app/src/TaskManager.py")
 
 if __name__ == "__main__":
     # Create threads for running FastAPI and Streamlit

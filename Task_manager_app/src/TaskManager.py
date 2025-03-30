@@ -1,16 +1,60 @@
 from DatabaseManager import *
-from fastapi import APIRouter
+from JSONManager import *
+from SQLiteManager import *
+from fastapi import APIRouter, HTTPException
+import os
 import requests
+import streamlit as st
+from Styler import *
+import sys
 from Task import *
+from UI import *
 
+"""
+Task Manager Streamlit Application
+
+This Streamlit application provides a user interface for managing tasks with a FastAPI backend.
+The application allows users to create, view, edit, and delete tasks with features such as
+priority levels, tags, and pagination.
+
+Classes:
+    TaskColor: Defines color constants used for styling the application.
+    TaskStyler: Applies custom CSS styling to the Streamlit application.
+    TaskManager: Handles communication with the FastAPI backend for CRUD operations.
+        - fetch_tasks: Retrieves tasks from the backend API
+        - save_task: Sends a new task to the backend for storage
+        - update_task: Modifies an existing task in the backend
+        - delete_task: Removes a task from the backend
+        - load_tasks: Loads tasks from the API by calling fetch_tasks
+    TaskUI: Manages the user interface components and interactions.
+        - Provides forms for adding and editing tasks
+        - Displays tasks with pagination support
+        - Handles session state for editing tasks and pagination
+
+Usage:
+    Run this application with Streamlit:
+        $ streamlit run app.py
+
+    Note: Requires a FastAPI backend running on http://localhost:8000/tasks
+
+Dependencies:
+    - streamlit
+    - requests
+    - os
+    - sys
+
+Author: Group 4
+Copyright: Task Manager © 2025
+"""
 class TaskManager:
     """Manage tasks using the FastAPI backend."""
+    router = APIRouter()
 
     API_URL = "http://localhost:8000/tasks"  # Make sure FastAPI is running on this URL
 
-    def __init__(self, db_manager: DatabaseManager, router: API):
+    def __init__(self, db_manager: DatabaseManager, router: APIRouter):
         self.__db_manager = db_manager
-        self.tasks = []
+        self.__tasks = []
 
         self.__db_manager.load_tasks()
 
@@ -230,14 +274,14 @@ class TaskManager:
             - None (yet)
         '''
         new_task = Task(task_id=self.__task_id_counter, title=task.title, description=task.description, priority=task.priority, tag=task.tag)
-        tasks.append(new_task)
+        self.__tasks.append(new_task)
         self.__task_id_counter += 1
         self.save_tasks()
         return new_task
 
 
     @router.put("/tasks/{task_id}", response_model=Task)
-    async def update_task(task_id: int, updated_task: Task):
+    async def update_task(self, task_id: int, updated_task: Task):
         '''Update the existing task
             The update_task() function accepts a user input (a task object) on the task that is already in the task list, using task_id as a reference or identifier.
 
@@ -258,7 +302,7 @@ class TaskManager:
         Exceptions:
             - None (yet)
         '''
-        for index, task in enumerate(tasks):
+        for index, task in enumerate(self.__tasks):
             if task.id == task_id:
                 task_updated = Task(
                     id=task_id,
@@ -267,5 +311,25 @@ class TaskManager:
                     priority=updated_task.priority,
                     tag=updated_task.tag
                 )
-                tasks[index] = task_updated
+                self.__tasks[index] = task_updated
                 return task_updated
+
+def main():
+    current_dir = os.path.dirname(os.path.abspath(__file__))
+    sys.path.append(current_dir)
+
+    if "dark_mode" not in st.session_state:
+        st.session_state.dark_mode = True
+    
+    if st.button("Switch Theme"):
+        st.session_state.dark_mode = not st.session_state.dark_mode
+
+    Styler.apply_custom_theme(st.session_state.dark_mode)
+
+    task_manager = TaskManager(JSONManager("data/test.json"))  # Initialize TaskManager communicating with FastAPI
+    task_ui = UI(task_manager)  # Initialize UI
+    task_ui.initialize_session_state()  # Initialize session state
+    task_ui.run()  # Run the UI
+
+if __name__ == "__main__":
+    main()
