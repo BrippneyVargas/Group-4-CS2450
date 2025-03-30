@@ -17,3 +17,5 @@ class Task(BaseModel):
     tag_id: int
     # status_id: int
 
+class AddTask(BaseModel):
+    id: int

@@ -48,6 +48,8 @@ import sys
 from Task import Task
 from UI import UI
 
+router = APIRouter()
+
 class TaskManager:
     """Manage tasks using the FastAPI backend."""
     router = APIRouter()
@@ -60,6 +62,8 @@ class TaskManager:
         self.__task_id_counter = 1
 
         self.__db_manager.load_all() #load tasks from database 
+
+        self.load_tasks()
 
     def fetch_tasks(self):
         """Load tasks from the FastAPI backend.
@@ -261,7 +265,7 @@ class TaskManager:
         
         self.__tasks.append(new_task)
         self.__task_id_counter += 1
-        # self.save_tasks()
+        self.save_tasks()
         return new_task
 
 
@@ -328,6 +332,7 @@ class TaskManager:
         raise HTTPException(status_code=404, detail="Task not found")
 
 def main():
+
     current_dir = os.path.dirname(os.path.abspath(__file__))
     sys.path.append(current_dir)
 
@@ -342,6 +347,7 @@ def main():
     db_manager = JSONManager("data/test.json")
     task_manager = TaskManager(db_manager, router)
     # task_manager = TaskManager(JSONManager("data/test.json"))  # Initialize TaskManager communicating with FastAPI
+    
     task_ui = UI(task_manager)  # Initialize UI
     task_ui.initialize_session_state()  # Initialize session state
     task_ui.run()  # Run the UI

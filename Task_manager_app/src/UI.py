@@ -1,4 +1,5 @@
 import streamlit as st
+st.set_page_config(layout="wide")
 
 class UI:
     """Manage the user interface for the Task Manager."""
@@ -24,9 +25,9 @@ class UI:
 
     def display_title(self):
         """Display the title of the application."""
-        st.markdown("<h1 class='app-title'>Task Manager</h1>", unsafe_allow_html=True)
-
-
+        st.markdown("<h1 class='app-title'>TaskZen</h1>", unsafe_allow_html=True)
+        st.markdown("<h5 class='app-slogan' style='text-align: center; color: orange;'>A Task Manager that keeps you on track and organized.</h5>", unsafe_allow_html=True)
+        st.markdown("\n")
 
     def add_new_task(self):
         """Create a form for adding a new task.
@@ -182,7 +183,7 @@ class UI:
 
     def display_footer(self):
         """Display the footer of the application."""
-        st.markdown("<div class='footer'>Task Manager © 2025</div>", unsafe_allow_html=True)
+        st.markdown("<div class='footer'>TaskZen © 2025</div>", unsafe_allow_html=True)
 
     def display_save_load_buttons(self):
         """Display buttons for saving and loading tasks."""
@@ -205,6 +206,7 @@ class UI:
     def run(self):
         """Run the UI for the Task Manager."""
         self.display_title()
+        st.sidebar
         self.display_save_load_buttons()
         if st.session_state.editing_task:
             self.edit_task()
@@ -213,3 +215,4 @@ class UI:
         st.markdown("## 📋 :orange[T]:green[a]:red[s]:blue[k]:violet[s]")
         self.view_tasks()
         self.display_footer()
+
