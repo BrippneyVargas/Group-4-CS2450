@@ -45,6 +45,7 @@ class UI:
             - "INFO: 127.0.0.1:35790 - "POST /tasks HTTP/1.1" 422 Unprocessable Entity" can show up and prevent task to be added
         """
         st.markdown("## ✏️ :red[Add] :violet[New] :green[Task]")
+        # task_id = st.text_input("Task ID", placeholder="Enter task ID")
         title = st.text_input("Title", placeholder="Enter task title")
         tag = st.selectbox("Tag", ["Exam", "Assignment", "Labwork", "Project", "Other"])
         description = st.text_area("Description", placeholder="Enter task description")
@@ -54,6 +55,7 @@ class UI:
             if title and description:
                 priority_value = {":red[High]": 1, ":orange[Medium]": 2, ":green[Low]": 3}[priority]
                 new_task = {
+                    # "task_id": task_id,
                     "title": title,
                     "description": description,
                     "priority": priority_value,
@@ -112,7 +114,7 @@ class UI:
         with cols[2]:
             st.write(task['description'])
         with cols[3]:
-            priority_text = {1: "High", 2: "Medium", 3: "Low"}[task.get('priority', 2)]
+            priority_text = {1: ":red[High]", 2: ":orange[Medium]", 3: ":green[Low]"}[task.get('priority', 2)]
             st.markdown(f"<div class='priority-{priority_text.lower()}'>{priority_text}</div>", unsafe_allow_html=True)
         with cols[4]:
             same_line_columns = st.columns([1, 3.5, 1])
@@ -149,13 +151,13 @@ class UI:
             tag = st.selectbox("Edit Tag", ["Exam", "Assignment", "Labwork", "Project", "Other"], index=0)
             description = st.text_area("Edit Description", value=task['description'])
             priority_value = task.get('priority', 2)
-            priority = st.radio("Edit Priority", ["High", "Medium", "Low"], index={1: 0, 2: 1, 3: 2}[priority_value])
+            priority = st.radio("Edit Priority", [":red[High]", ":orange[Medium]", ":green[Low]"], index={1: 0, 2: 1, 3: 2}[priority_value])
 
             if st.button("Update Task"):
                 updated_task = {
                     "title": title,
                     "description": description,
-                    "priority": {"High": 1, "Medium": 2, "Low": 3}[priority],
+                    "priority": {":red[High]": 1, ":orange[Medium]": 2, ":green[Low]": 3}[priority],
                     "tag": tag
                 }
                 self.task_manager.update_task(task['id'], updated_task)

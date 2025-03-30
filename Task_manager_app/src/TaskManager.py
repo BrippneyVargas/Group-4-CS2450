@@ -1,15 +1,3 @@
-from DatabaseManager import *
-from JSONManager import *
-from SQLiteManager import *
-from fastapi import APIRouter, HTTPException
-import os
-import requests
-import streamlit as st
-from Styler import *
-import sys
-from Task import *
-from UI import *
-
 """
 Task Manager Streamlit Application
 
@@ -46,6 +34,20 @@ Dependencies:
 Author: Group 4
 Copyright: Task Manager © 2025
 """
+
+from DatabaseManager import DatabaseManager
+from JSONManager import JSONManager
+from SQLiteManager import *
+from fastapi import APIRouter, HTTPException
+from controller import router
+import os
+import requests
+import streamlit as st
+from Styler import Styler
+import sys
+from Task import Task
+from UI import UI
+
 class TaskManager:
     """Manage tasks using the FastAPI backend."""
     router = APIRouter()
@@ -55,8 +57,9 @@ class TaskManager:
     def __init__(self, db_manager: DatabaseManager, router: APIRouter):
         self.__db_manager = db_manager
         self.__tasks = []
+        self.__task_id_counter = 1
 
-        self.__db_manager.load_tasks()
+        self.__db_manager.load_all() #load tasks from database 
 
     def fetch_tasks(self):
         """Load tasks from the FastAPI backend.
@@ -79,7 +82,7 @@ class TaskManager:
         try:
             response = requests.get(self.API_URL)
             response.raise_for_status()
-            self.tasks = response.json().get("tasks", [])
+            self.__tasks = response.json().get("tasks", [])
         except requests.RequestException as e:
             st.error(f"Error fetching tasks: {e}")
 
@@ -148,37 +151,41 @@ class TaskManager:
         """Load tasks from the API."""
         try:
             self.fetch_tasks()
-            # if self.tasks:
-            #     st.markdown("<p style='background-color: rgba(60, 179, 113, 0.5); padding: 10px;'>Tasks loaded successfully!</p>", unsafe_allow_html=True)
+            if self.tasks:
+                st.markdown("<p style='background-color: rgba(60, 179, 113, 0.5); padding: 10px;'>Tasks loaded successfully!</p>", unsafe_allow_html=True)
         except Exception as e:
             st.error(f"Unexpected error while loading tasks: {e}")
 
-    @router.get("/")
-    async def root():
-        """ Root of the backend application
-        Root endpoint of the application.
-        Param:
-            - None
+    @property
+    def tasks(self):
+        """return the list of tasks"""
+        return self.__tasks   
 
-        Precondition:
-            - None
+    
+    # @router.get("/")
+    # async def root():
+    #     """ Root of the backend application
+    #     Root endpoint of the application.
+    #     Param:
+    #         - None
 
-        Postcondition:
-            - Returns a welcome message
+    #     Precondition:
+    #         - None
 
-        Returns:
-            json object (Dictionary turns into JSON): An object containing a welcome message.
-        """
-        return {"message": "Root of the app"}
+    #     Postcondition:
+    #         - Returns a welcome message
+
+    #     Returns:
+    #         json object (Dictionary turns into JSON): An object containing a welcome message.
+    #     """
+    #     return {"message": "Root of the app"}
 
 
-    @router.get("/tasks")
+    @router.get("/tasks", response_model=Task)
     async def get_tasks(self):
         """ Get all tasks
         Endpoint to retrieve all tasks.
-        Param:
-            - None
-
+        Param:    load_tasks()
         Precondition:
             - None
 
@@ -191,62 +198,34 @@ class TaskManager:
         return {"tasks": self.__tasks}
 
 
-    @router.get("/tasks/{task_id}")
-    async def get_task(self, task_id: int):
-        """ Get a task by id
-        Retrieve a task by its id.
-        Param:
-            - task_id (int): The id of the task to retrieve.
+    # @router.get("/tasks/{task_id}")
+    # async def get_task(self, task_id: int):
+    #     """ Get a task by id
+    #     Retrieve a task by its id.
+    #     Param:
+    #         - task_id (int): The id of the task to retrieve.
 
-        Precondition:
-            - task_id must be a valid integer.
-            - The task with the given task_id should exist in the tasks list.
+    #     Precondition:
+    #         - task_id must be a valid integer.
+    #         - The task with the given task_id should exist in the tasks list.
 
-        Postcondition:
-            - If the task with the given task_id exists, it is returned.
-            - If the task with the given task_id does not exist, a message indicating that the task was not found is returned.
+    #     Postcondition:
+    #         - If the task with the given task_id exists, it is returned.
+    #         - If the task with the given task_id does not exist, a message indicating that the task was not found is returned.
 
-        Returns:
-            json object: An object containing the task if found, or a message indicating that the task was not found.
-        """
+    #     Returns:
+    #         json object: An object containing the task if found, or a message indicating that the task was not found.
+    #     """
 
-        for task in self.__tasks:
-            if task.task_id == task_id:
-                return {"task": task}
-        raise HTTPException(status_code=404, detail="Task not found")
-
-
-    @router.delete("/tasks/{task_id}")
-    async def delete_task(self, task_id: int):
-        """ Delete a task by id
-        Deletes a task with the given task_id from the tasks list.
-        Param:
-            - task_id (int): The id of the task to delete.
-
-        Precondition:
-            - task_id must be a valid integer.
-            - The task with the given task_id should exist in the tasks list.
-
-        Postcondition:
-            - If the task with the given task_id exists, it is removed from the tasks list.
-            - If the task with the given task_id does not exist, a message indicating that the task was not found is returned.
-        Args:
-            task_id (int): The ID of the task to be deleted.
-        Returns:
-            json object: An object containing a message indicating whether the task was successfully deleted or not.
-        """
-
-        for task in self.__tasks:
-            if task.id == task_id:
-                self.__tasks.remove(task)
-                self.save_tasks()
-                return {"message": "task has been deleted"}, 204
-        raise HTTPException(status_code=404, detail="Task not found")
+    #     for task in self.__tasks:
+    #         if task.task_id == task_id:
+    #             return {"task": task}
+    #     raise HTTPException(status_code=404, detail="Task not found")
 
 
     @router.post("/tasks", response_model=Task)
     async def add_task(self, task: Task):
-        print(task)
+        # print(task)
         '''Add a new task to the task list
         The add_task() function accepts a user input (a task object), auto increments the id, and append the object to the task list.
 
@@ -273,10 +252,16 @@ class TaskManager:
         Exceptions:
             - None (yet)
         '''
-        new_task = Task(task_id=self.__task_id_counter, title=task.title, description=task.description, priority=task.priority, tag=task.tag)
+        new_task = Task(
+            task_id=self.__task_id_counter, 
+            title=task.title, 
+            description=task.description, 
+            priority=task.priority, 
+            tag=task.tag)
+        
         self.__tasks.append(new_task)
         self.__task_id_counter += 1
-        self.save_tasks()
+        # self.save_tasks()
         return new_task
 
 
@@ -313,6 +298,34 @@ class TaskManager:
                 )
                 self.__tasks[index] = task_updated
                 return task_updated
+            
+
+    @router.delete("/tasks/{task_id}")
+    async def delete_task(self, task_id: int):
+        """ Delete a task by id
+        Deletes a task with the given task_id from the tasks list.
+        Param:
+            - task_id (int): The id of the task to delete.
+
+        Precondition:
+            - task_id must be a valid integer.
+            - The task with the given task_id should exist in the tasks list.
+
+        Postcondition:
+            - If the task with the given task_id exists, it is removed from the tasks list.
+            - If the task with the given task_id does not exist, a message indicating that the task was not found is returned.
+        Args:
+            task_id (int): The ID of the task to be deleted.
+        Returns:
+            json object: An object containing a message indicating whether the task was successfully deleted or not.
+        """
+
+        for task in self.__tasks:
+            if task.id == task_id:
+                self.__tasks.remove(task)
+                self.save_tasks()
+                return {"message": "task has been deleted"}, 204
+        raise HTTPException(status_code=404, detail="Task not found")
 
 def main():
     current_dir = os.path.dirname(os.path.abspath(__file__))
@@ -326,7 +339,9 @@ def main():
 
     Styler.apply_custom_theme(st.session_state.dark_mode)
 
-    task_manager = TaskManager(JSONManager("data/test.json"))  # Initialize TaskManager communicating with FastAPI
+    db_manager = JSONManager("data/test.json")
+    task_manager = TaskManager(db_manager, router)
+    # task_manager = TaskManager(JSONManager("data/test.json"))  # Initialize TaskManager communicating with FastAPI
     task_ui = UI(task_manager)  # Initialize UI
     task_ui.initialize_session_state()  # Initialize session state
     task_ui.run()  # Run the UI

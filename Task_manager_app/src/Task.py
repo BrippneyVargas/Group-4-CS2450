@@ -15,5 +15,5 @@ class Task(BaseModel):
     description: str
     priority_id: int
     tag_id: int
-    status_id: int
-    
+    # status_id: int
+
