@@ -1,7 +1,18 @@
 import streamlit as st
+from Styler import Styler
 
 st.set_page_config(layout="centered")
-st.markdown("<h1 class='about' style='text-align: center; color: #FFCCFF;'>About TaskZen</h1>", unsafe_allow_html=True)
+
+if "dark_mode" not in st.session_state:
+    st.session_state.dark_mode = True
+
+if st.button("Switch Theme"):
+    st.session_state.dark_mode = not st.session_state.dark_mode
+
+Styler.apply_custom_theme(st.session_state.dark_mode)
+
+
+st.markdown("<h1 class='about' style='text-align: center; color: #FF69B4;'>About TaskZen</h1>", unsafe_allow_html=True)
 st.markdown("")
 st.markdown(
     """
@@ -20,3 +31,6 @@ st.markdown(
     Built with ❤️ by Group 4 for CS 2450.
     """
      , unsafe_allow_html=True)
+
+
+

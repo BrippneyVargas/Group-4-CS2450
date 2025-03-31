@@ -1,26 +1,40 @@
 {
-    "tasks": [
-        {
-            "id": 5,
-            "title": "Milestone 4",
-            "description": "submit group assignment ",
-            "priority": 3,
-            "tag": "Exam"
-        },
-        {
-            "id": 6,
-            "title": "in-class activity ",
-            "description": "hw",
-            "priority": 2,
-            "tag": "Assignment"
-        },
-        {
-            "id": 7,
-            "title": "quiz 7",
-            "description": "quiz 7",
-            "priority": 1,
-            "tag": "Exam"
-        }
-    ],
-    "task_id_counter": 8
+  "tasks": [
+    {
+      "id": 5,
+      "title": "Milestone 4",
+      "description": "submit group assignment ",
+      "priority": 2,
+      "tag": "Exam"
+    },
+    {
+      "id": 6,
+      "title": "in-class activity ",
+      "description": "hw",
+      "priority": 3,
+      "tag": "Exam"
+    },
+    {
+      "id": 7,
+      "title": "quiz 7",
+      "description": "quiz 7",
+      "priority": 1,
+      "tag": "Exam"
+    },
+    {
+      "id": 8,
+      "title": "quiz 1",
+      "description": "quiz 1",
+      "priority": 1,
+      "tag": "Exam"
+    },
+    {
+      "id": 11,
+      "title": "class participation",
+      "description": "class participation",
+      "priority": 3,
+      "tag": "Labwork"
+    }
+  ],
+  "task_id_counter": 12
 }

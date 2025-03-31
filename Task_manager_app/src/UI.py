@@ -217,6 +217,8 @@ class UI:
                 st.markdown("<p style='background-color: rgba(60, 179, 113, 0.5); padding: 10px;'>Tasks loaded successfully!</p>", unsafe_allow_html=True)
                 # st.experimental_rerun()  # Refresh the app after loading
 
+
+    
     def run(self):
         """Run the UI for the Task Manager."""
         self.display_title()

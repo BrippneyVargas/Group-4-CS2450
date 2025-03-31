@@ -24,7 +24,7 @@ class Styler:
             darkmode_css = f"""
             <style>
             body, .stApp {{ overflow: hidden !important; max-height: 100vh; }}
-            .stApp {{ background-color: {ThemeColor.BACKGROUND_DARK}; max-width: 1200px; margin: 0 auto; padding: 0 20px; }}
+            .stApp {{ background-color: {ThemeColor.BACKGROUND_DARK}; max-width: 100vw !important; margin: 0; padding: 0; }}
             ::-webkit-scrollbar {{ display: none; }}
             .priority-high {{ background-color: {ThemeColor.HIGH_PRIORITY}; color: white; padding: 5px 10px; border-radius: 5px; text-align: center; }}
             .priority-medium {{ background-color: {ThemeColor.MEDIUM_PRIORITY}; color: white; padding: 5px 10px; border-radius: 5px; text-align: center; }}

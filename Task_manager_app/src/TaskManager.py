@@ -112,7 +112,9 @@ class TaskManager:
             try:
                 response = requests.delete(f"{self.API_URL}/{task_id}")
                 response.raise_for_status()
-                st.markdown("<p style='background-color: #BDB76B; color: red;'>&nbsp;&nbsp;delete</p>", unsafe_allow_html=True)
+                # st.markdown("<p style='background-color: #BDB76B; color: red;'>&nbsp;&nbsp;delete</p>", unsafe_allow_html=True)
+                st.markdown("<p style='background-color: #BDB76B; color: red; padding: 5px 15px; text-align: center;'>delete?</p>", unsafe_allow_html=True)
+
             except requests.RequestException as e:
                 st.error(f"Error deleting task: {e}")
 
@@ -140,6 +142,7 @@ def main():
 
     db_manager = JSONManager(TaskManager.API_URL, "data/test.json")
     task_manager = TaskManager(db_manager, router)
+
     task_ui = UI(task_manager)  # Initialize UI
     task_ui.initialize_session_state()  # Initialize session state
     task_ui.run()  # Run the UI
