@@ -1,6 +1,6 @@
 from typing import List, Literal
 from tabulate import tabulate
-from .task import Task
+from Task import Task
 import json
 
 

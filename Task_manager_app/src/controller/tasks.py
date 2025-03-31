@@ -1,13 +1,14 @@
 from fastapi import APIRouter
-from model.task import Task, AddTask
+from Task import Task
 import json
 import os
 from fastapi import HTTPException
 
-TASKS_FILE = "./Task_manager_app/src/data/tasks.json"
-router = APIRouter()
 tasks = []
 task_id_counter = 1
+TASKS_FILE = "./Task_manager_app/src/data/tasks.json"
+router = APIRouter()
+
 
 
 def load_tasks():
@@ -16,14 +17,19 @@ def load_tasks():
     This function reads tasks from a JSON file specified by the global variable TASKS_FILE.
     It updates the global variables 'tasks' and 'task_id_counter' with the data from the file.
     Each task in the JSON file is converted into an AddTask object.
-    """
+    """    
     global tasks, task_id_counter
     if os.path.exists(TASKS_FILE):
-        with open(TASKS_FILE, "r") as file:
-            data = json.load(file)
-            tasks = [AddTask(**task) for task in data["tasks"]]
-            task_id_counter = data["task_id_counter"]
-
+        try:
+            with open(TASKS_FILE, "r") as file:
+                data = json.load(file)
+                tasks = [Task(**task) for task in data.get("tasks", [])]
+                task_id_counter = data.get("task_id_counter", 1)
+        except (json.JSONDecodeError, KeyError):
+            #where JSON is empty or invalid
+            tasks = []
+            task_id_counter = 1
+            
 
 def save_tasks():
     """
@@ -33,11 +39,9 @@ def save_tasks():
     Raises:
         IOError: If there is an issue writing to the file.
     """
-
     with open(TASKS_FILE, "w") as file:
         data = {
-            # "tasks": [task.dict() for task in tasks],
-            "tasks": [task.__dict__ for task in tasks],
+            "tasks": [task.to_dict() for task in tasks],
             "task_id_counter": task_id_counter
         }
         json.dump(data, file, indent=4)
@@ -81,7 +85,8 @@ async def get_tasks():
     Returns:
         json object: An object containing all of tasks.
     """
-    return {"tasks": tasks}
+    return {"tasks": [task.__dict__ for task in tasks]} 
+
 
 
 @router.get("/tasks/{task_id}")
@@ -105,7 +110,7 @@ async def get_task(task_id: int):
 
     for task in tasks:
         if task.id == task_id:
-            return {"task": task}
+            return {"task": task.__dict__}
     raise HTTPException(status_code=404, detail="Task not found")
 
 
@@ -137,9 +142,8 @@ async def delete_task(task_id: int):
     raise HTTPException(status_code=404, detail="Task not found")
 
 
-@router.post("/tasks", response_model=AddTask)
-async def add_task(task: Task):
-    print(task)
+@router.post("/tasks")
+async def add_task(task: Task): 
     '''Add a new task to the task list
     The add_task() function accepts a user input (a task object), auto increments the id, and append the object to the task list.
 
@@ -166,16 +170,20 @@ async def add_task(task: Task):
     Exceptions:
          - None (yet)
     '''
+    print("@router add_task():", task.dict())  
     global task_id_counter
-    new_task = AddTask(id=task_id_counter, title=task.title, description=task.description, priority=task.priority,
-                       tag=task.tag)
+    new_task = Task(id=task_id_counter, title=task.title, description=task.description, priority=task.priority, tag=task.tag)
+    
+    print("@router new_task:", new_task.dict())  
+    
     tasks.append(new_task)
     task_id_counter += 1
     save_tasks()
     return new_task
 
 
-@router.put("/tasks/{task_id}", response_model=AddTask)
+
+@router.put("/tasks/{task_id}")
 async def update_task(task_id: int, updated_task: Task):
     '''Update the existing task
         The update_task() function accepts a user input (a task object) on the task that is already in the task list, using task_id as a reference or identifier.
@@ -199,7 +207,7 @@ async def update_task(task_id: int, updated_task: Task):
     '''
     for index, task in enumerate(tasks):
         if task.id == task_id:
-            task_updated = AddTask(
+            task_updated = Task(
                 id=task_id,
                 title=updated_task.title,
                 description=updated_task.description,
@@ -207,4 +215,5 @@ async def update_task(task_id: int, updated_task: Task):
                 tag=updated_task.tag
             )
             tasks[index] = task_updated
+            save_tasks()
             return task_updated

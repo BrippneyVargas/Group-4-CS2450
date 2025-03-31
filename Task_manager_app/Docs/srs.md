@@ -135,13 +135,15 @@
   - The system allows users to view added tasks offline.
   - The system allows users to edit the task after it is already saved.
 
+
+#### Advanced features:
+
+1. **Progress Visualization:**
+   * Use a library like `Matplotlib` to display task completion progress via charts (e.g., bar or pie charts).
+2. **Dark/Light Mode:**
+   * Allow users to toggle between dark and light themes to improve visual comfort and accessibility.
+
 ## Future Enhancements Section:
-
-#### A list of advanced features brainstormed by the team:
-
-1. Using Flask.
-2. Recurring tasks.
-3. Using Streamlit (for GUI)
 
 #### AI-powered Task Automation:
 
