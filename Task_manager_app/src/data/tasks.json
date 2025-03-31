@@ -1,47 +1,35 @@
 {
     "tasks": [
         {
-            "title": "Secret Project",
-            "description": "Survail the enemy.",
+            "title": "sdf",
+            "description": "sdf",
+            "priority": 1,
+            "tag": "Exam"
+        },
+        {
+            "title": "eee",
+            "description": "eee",
+            "priority": 1,
+            "tag": "Exam"
+        },
+        {
+            "title": "bbb",
+            "description": "bbb",
+            "priority": 1,
+            "tag": "Exam"
+        },
+        {
+            "title": "ccc",
+            "description": "ccc",
             "priority": 3,
-            "tag": "Assignment",
-            "id": 64
+            "tag": "Exam"
         },
         {
-            "title": "New Source of Energy for Propulsion System",
-            "description": "Find a new solid-state source of energy.",
+            "title": "ddd",
+            "description": "ccc",
             "priority": 2,
-            "tag": "Project",
-            "id": 65
-        },
-        {
-            "title": "CS3370 Exam",
-            "description": "Badass exam I need to prepare for.",
-            "priority": 1,
-            "tag": "Exam",
-            "id": 66
-        },
-        {
-            "title": "Test Task",
-            "description": "This is a test task",
-            "priority": 1,
-            "tag": "test",
-            "id": 188
-        },
-        {
-            "title": "Test Task",
-            "description": "This is a test task",
-            "priority": 1,
-            "tag": "test",
-            "id": 190
-        },
-        {
-            "title": "Test Task",
-            "description": "This is a test task",
-            "priority": 1,
-            "tag": "test",
-            "id": 191
+            "tag": "Exam"
         }
     ],
-    "task_id_counter": 192
+    "task_id_counter": 6
 }

@@ -65,12 +65,13 @@ class TaskManager:
         try:
             response = requests.get(self.API_URL)
             response.raise_for_status()
-            self.__tasks = [Task(**task) for task in response.json().get("tasks", [])]
+            self.tasks = [Task(**task) for task in response.json().get("tasks", [])]
         except requests.RequestException as e:
             st.error(f"Error fetching tasks: {e}")
 
 
     def save_task(self, task):
+        print("save_task TaskManager.py ", task)
         with st.spinner("Saving task..."):
             try:
                 response = requests.post(self.API_URL, json=task)

@@ -1,4 +1,5 @@
 import streamlit as st
+
 st.set_page_config(layout="wide")
 
 class UI:
@@ -46,7 +47,6 @@ class UI:
             - "INFO: 127.0.0.1:35790 - "POST /tasks HTTP/1.1" 422 Unprocessable Entity" can show up and prevent task to be added
         """
         st.markdown("## ✏️ :red[Add] :violet[New] :green[Task]")
-        # task_id = st.text_input("Task ID", placeholder="Enter task ID")
         title = st.text_input("Title", placeholder="Enter task title")
         tag = st.selectbox("Tag", ["Exam", "Assignment", "Labwork", "Project", "Other"])
         description = st.text_area("Description", placeholder="Enter task description")
@@ -56,7 +56,6 @@ class UI:
             if title and description:
                 priority_value = {":red[High]": 1, ":orange[Medium]": 2, ":green[Low]": 3}[priority]
                 new_task = {
-                    # "task_id": task_id,
                     "title": title,
                     "description": description,
                     "priority": priority_value,
@@ -109,25 +108,28 @@ class UI:
         """Display an individual task in the table."""
         cols = st.columns([2, 1, 3, 1.5, 0.85, 1])
         with cols[0]:
-            st.write(task['title'])
+            st.write(task.title)
         with cols[1]:
-            st.write(task.get('tag', 'Other'))  # Use default value for tag
+            st.write(task.tag if task.tag else 'Other')
         with cols[2]:
-            st.write(task['description'])
+            st.write(task.description) 
         with cols[3]:
-            priority_text = {1: ":red[High]", 2: ":orange[Medium]", 3: ":green[Low]"}[task.get('priority', 2)]
+            priority_value = task.priority if task.priority is not None else 2
+            priority_text = {1: "High", 2: "Medium", 3: "Low"}[priority_value]
             st.markdown(f"<div class='priority-{priority_text.lower()}'>{priority_text}</div>", unsafe_allow_html=True)
         with cols[4]:
             same_line_columns = st.columns([1, 3.5, 1])
             with same_line_columns[0]:
-                if st.button("✏️", key=f"edit_{task['id']}"):
+                if st.button("✏️", key=f"edit_{task.title}"):
                     st.session_state.editing_task = task
             with same_line_columns[2]:
-                if st.button("🗑️", key=f"delete_{task['id']}"):
-                    self.task_manager.delete_task(task['id'])
+                if st.button("🗑️", key=f"delete_{task.title}"):
+                    self.task_manager.delete_task(task.title)
                     self.task_manager.load_tasks()  # Refresh task list
                     if st.button("✅"):
                         st.write("")
+    
+
     
 
     def edit_task(self):
@@ -151,7 +153,8 @@ class UI:
             title = st.text_input("Edit Title", value=task['title'])
             tag = st.selectbox("Edit Tag", ["Exam", "Assignment", "Labwork", "Project", "Other"], index=0)
             description = st.text_area("Edit Description", value=task['description'])
-            priority_value = task.get('priority', 2)
+            # priority_value = task.get('priority', 2)
+            priority_value = task.priority if task.priority is not None else 2
             priority = st.radio("Edit Priority", [":red[High]", ":orange[Medium]", ":green[Low]"], index={1: 0, 2: 1, 3: 2}[priority_value])
 
             if st.button("Update Task"):

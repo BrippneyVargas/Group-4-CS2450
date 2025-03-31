@@ -37,7 +37,8 @@ def save_tasks():
 
     with open(TASKS_FILE, "w") as file:
         data = {
-            "tasks": [task.__dict__ for task in tasks],
+            # "tasks": [task.__dict__ for task in tasks],
+            "tasks": [task.to_dict() for task in tasks],
             "task_id_counter": task_id_counter
         }
         json.dump(data, file, indent=4)
@@ -107,9 +108,7 @@ async def get_task(task_id: int):
 
     for task in tasks:
         if task.id == task_id:
-            # return {"task": task}
             return {"task": task.__dict__}
-
     raise HTTPException(status_code=404, detail="Task not found")
 
 
@@ -142,8 +141,7 @@ async def delete_task(task_id: int):
 
 
 @router.post("/tasks", response_model=AddTask)
-async def add_task(task: Task):
-    print(task)
+async def add_task(task: Task):  # Use Task for input, AddTask for output
     '''Add a new task to the task list
     The add_task() function accepts a user input (a task object), auto increments the id, and append the object to the task list.
 
@@ -170,13 +168,17 @@ async def add_task(task: Task):
     Exceptions:
          - None (yet)
     '''
+    print("@router add_task():", task.dict())  # Print the incoming Task object
     global task_id_counter
-    new_task = AddTask(id=task_id_counter, title=task.title, description=task.description, priority=task.priority,
-                       tag=task.tag)
+    new_task = AddTask(id=task_id_counter, title=task.title, description=task.description, priority=task.priority, tag=task.tag)
+    
+    print("@router new_task:", new_task.dict())  # Print the AddTask object after assigning id
+    
     tasks.append(new_task)
     task_id_counter += 1
     save_tasks()
     return new_task
+
 
 
 @router.put("/tasks/{task_id}", response_model=AddTask)
