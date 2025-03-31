@@ -10,21 +10,11 @@ class Task(BaseModel):
         - priority: int - level of priority (1:high, 2:medium, 3:low)
         - tag: str - A tag to categorize the task
     '''
+    id: int  
     title: str
     description: str
     priority: int
     tag: str
-
-    def to_dict(self):
-        return {
-            "title": self.title,
-            "description": self.description,
-            "priority": self.priority,
-            "tag": self.tag,
-        }
-
-class AddTask(Task):
-    id: int  
 
     def to_dict(self):
         return {
@@ -34,7 +24,6 @@ class AddTask(Task):
             "priority": self.priority,
             "tag": self.tag,
         }
-
 
 
 

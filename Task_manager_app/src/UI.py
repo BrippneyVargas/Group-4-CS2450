@@ -1,6 +1,5 @@
 import streamlit as st
-from Task import AddTask
-from controller.tasks import AddTask, task_id_counter
+
 
 st.set_page_config(layout="wide")
 
@@ -10,17 +9,21 @@ class UI:
     def __init__(self, task_manager):
         self.task_manager = task_manager
 
+
     def initialize_session_state(self):
         """Initialize session state for editing tasks.
-
+        
         Precondition:
             - streamlit is downloaded and imported.
 
         Postcondition:
             - editing_task and current_page are properly initialized in st.session_state.
             - editing_task is initialized to None.
-            - current_page is initialized to 1.
+            - current_page is initialized to 1.        
         """
+        if 'tasks' not in st.session_state:
+            self.task_manager.load_tasks()  # Assuming load_tasks() loads tasks from the API/file
+            # st.session_state.tasks = self.task_manager.tasks  # Store tasks in session state
         if 'editing_task' not in st.session_state:
             st.session_state.editing_task = None
         if 'current_page' not in st.session_state:
@@ -58,6 +61,7 @@ class UI:
             if title and description:
                 priority_value = {":red[High]": 1, ":orange[Medium]": 2, ":green[Low]": 3}[priority]
                 new_task = {
+                    "id": len(self.task_manager.tasks) + 1,
                     "title": title,
                     "description": description,
                     "priority": priority_value,
@@ -65,7 +69,7 @@ class UI:
                 }
 
                 self.task_manager.save_task(new_task)
-                self.task_manager.load_tasks()  # Refresh task list
+                self.task_manager.load_tasks() 
             else:
                 st.markdown("<p style='background-color: #BDB76B; color: red;'>&nbsp;&nbsp;Title and description are required.</p>", unsafe_allow_html=True)
 
@@ -86,7 +90,8 @@ class UI:
         """
         tasks = self.task_manager.tasks
         if not tasks:
-            st.info("No tasks to display.")
+            # st.info("No tasks to display.")
+            st.markdown("<p style= 'background-color: rgba(60, 179, 113, 0.5); padding: 10px;''>&nbsp;&nbsp;No tasks to display.</p>", unsafe_allow_html=True)
             return
 
         # Pagination logic
@@ -109,10 +114,8 @@ class UI:
             self.display_pagination_controls(total_tasks, current_page)
 
 
-    def display_task(self, task: AddTask):
+    def display_task(self, task):
         """Display an individual task in the table."""
-        # if not isinstance(task, AddTask):
-        #     raise TypeError(f"Expected AddTask, got {type(task).__name__}")
         cols = st.columns([2, 1, 3, 1.5, 0.85, 1])
         with cols[0]:
             st.write(task.title)
@@ -127,16 +130,15 @@ class UI:
         with cols[4]:
             same_line_columns = st.columns([1, 3.5, 1])
             with same_line_columns[0]:
-                if st.button("✏️", key=f"edit_{task.title}"):
-                # if st.button("✏️", key=f"edit_{task.id}_{task.title}"):
+                if st.button("✏️", key=f"edit_{task.id}"):
                     st.session_state.editing_task = task
             with same_line_columns[2]:
-                if st.button("🗑️", key=f"delete_{task.title}"):
-                # if st.button("✅", key=f"confirm_delete_{task.id}_{task.title}"):
-                    self.task_manager.delete_task(task.title)
+                if st.button("🗑️", key=f"delete_{task.id}"):
+                    self.task_manager.delete_task(task.id)
                     self.task_manager.load_tasks()  # Refresh task list
                     if st.button("✅"):
                         st.write("")
+
     
 
     def edit_task(self):
@@ -160,12 +162,12 @@ class UI:
             title = st.text_input("Edit Title", value=task['title'])
             tag = st.selectbox("Edit Tag", ["Exam", "Assignment", "Labwork", "Project", "Other"], index=0)
             description = st.text_area("Edit Description", value=task['description'])
-            # priority_value = task.get('priority', 2)
             priority_value = task.priority if task.priority is not None else 2
             priority = st.radio("Edit Priority", [":red[High]", ":orange[Medium]", ":green[Low]"], index={1: 0, 2: 1, 3: 2}[priority_value])
 
             if st.button("Update Task"):
                 updated_task = {
+                    "id": task['id'],
                     "title": title,
                     "description": description,
                     "priority": {":red[High]": 1, ":orange[Medium]": 2, ":green[Low]": 3}[priority],
@@ -204,13 +206,15 @@ class UI:
         with cols[1]:
             if st.button("💾 Save Tasks"):
                 if self.task_manager.tasks:
-                    for task in self.task_manager.tasks:
-                        self.task_manager.save_task(task)
+                    # for task in self.task_manager.tasks:
+                    #     self.task_manager.save_task(task)
+                    st.markdown("<p style= 'background-color: rgba(60, 179, 113, 0.5); padding: 10px;'>Tasks saved sucessfully</p>", unsafe_allow_html=True)
                 else:
                     st.markdown("<p style='background-color: #BDB76B; color: red;'>&nbsp;&nbsp;No tasks to save</p>", unsafe_allow_html=True)
         with cols[2]:
             if st.button("📂 Load Tasks"):
                 self.task_manager.load_tasks()
+                st.markdown("<p style='background-color: rgba(60, 179, 113, 0.5); padding: 10px;'>Tasks loaded successfully!</p>", unsafe_allow_html=True)
                 # st.experimental_rerun()  # Refresh the app after loading
 
     def run(self):

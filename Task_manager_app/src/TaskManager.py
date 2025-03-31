@@ -62,6 +62,7 @@ class TaskManager:
         # self.load_tasks()
 
     def fetch_tasks(self):
+        """Fetch a task from the backend via FastAPI."""
         try:
             response = requests.get(self.API_URL)
             response.raise_for_status()
@@ -71,14 +72,17 @@ class TaskManager:
 
 
     def save_task(self, task):
-        print("save_task TaskManager.py ", task)
+        """Save a task to the backend via FastAPI."""
         with st.spinner("Saving task..."):
             try:
-                response = requests.post(self.API_URL, json=task)
+                task_dict = task.to_dict() if hasattr(task, "to_dict") else task  # Convert Task object to dict               
+                response = requests.post(self.API_URL, json=task_dict)
                 response.raise_for_status()
-                st.success("Task saved successfully!")
+                # st.success("Task saved successfully!")
             except requests.RequestException as e:
-                        st.error(f"Error saving task: {e}")
+                st.error(f"Error saving task: {e}")
+
+
 
 
 
@@ -121,8 +125,8 @@ class TaskManager:
         """Load tasks from the API."""
         try:
             self.fetch_tasks()
-            if self.tasks:
-                st.markdown("<p style='background-color: rgba(60, 179, 113, 0.5); padding: 10px;'>Tasks loaded successfully!</p>", unsafe_allow_html=True)
+            # if self.tasks:
+                # st.markdown("<p style='background-color: rgba(60, 179, 113, 0.5); padding: 10px;'>Tasks loaded successfully!</p>", unsafe_allow_html=True)
         except Exception as e:
             st.error(f"Unexpected error while loading tasks: {e}")
 
@@ -141,7 +145,6 @@ def main():
 
     db_manager = JSONManager(TaskManager.API_URL, "data/test.json")
     task_manager = TaskManager(db_manager, router)
-    # task_manager = TaskManager(JSONManager("data/test.json"))  # Initialize TaskManager communicating with FastAPI
     task_ui = UI(task_manager)  # Initialize UI
     task_ui.initialize_session_state()  # Initialize session state
     task_ui.run()  # Run the UI

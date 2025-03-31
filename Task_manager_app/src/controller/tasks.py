@@ -1,5 +1,5 @@
 from fastapi import APIRouter
-from Task import Task, AddTask
+from Task import Task
 import json
 import os
 from fastapi import HTTPException
@@ -17,25 +17,21 @@ def load_tasks():
     This function reads tasks from a JSON file specified by the global variable TASKS_FILE.
     It updates the global variables 'tasks' and 'task_id_counter' with the data from the file.
     Each task in the JSON file is converted into an AddTask object.
-    """
-    # global tasks, task_id_counter
-    # if os.path.exists(TASKS_FILE):
-    #     with open(TASKS_FILE, "r") as file:
-    #         data = json.load(file)
-    #         # If any task doesn't have an 'id', assign it a default value
-    #         for task in data["tasks"]:
-    #             if "id" not in task:  # If the task doesn't have an id, assign one
-    #                 task["id"] = task_id_counter
-    #             task_id_counter = max(task_id_counter, task["id"] + 1)  # Update task_id_counter accordingly
-    #         tasks = [AddTask(**task) for task in data["tasks"]]
-    #         print(f"Loaded {len(tasks)} tasks from file.")
+    """    
     global tasks, task_id_counter
     if os.path.exists(TASKS_FILE):
-        with open(TASKS_FILE, "r") as file:
-            data = json.load(file)
-            tasks = [AddTask(**task) for task in data["tasks"]]  # This ensures AddTask objects are used
-            task_id_counter = data["task_id_counter"]
+        try:
+            with open(TASKS_FILE, "r") as file:
+                data = json.load(file)
 
+                # Ensure data has the correct keys
+                tasks = [Task(**task) for task in data.get("tasks", [])]
+                task_id_counter = data.get("task_id_counter", 1)
+        except (json.JSONDecodeError, KeyError):
+            #where JSON is empty or invalid
+            tasks = []
+            task_id_counter = 1
+            
 
 def save_tasks():
     """
@@ -91,7 +87,6 @@ async def get_tasks():
     Returns:
         json object: An object containing all of tasks.
     """
-    # return {"tasks": tasks}
     return {"tasks": [task.__dict__ for task in tasks]} 
 
 
@@ -149,8 +144,8 @@ async def delete_task(task_id: int):
     raise HTTPException(status_code=404, detail="Task not found")
 
 
-@router.post("/tasks", response_model=AddTask)
-async def add_task(task: Task):  # Use Task for input, AddTask for output
+@router.post("/tasks")
+async def add_task(task: Task): 
     '''Add a new task to the task list
     The add_task() function accepts a user input (a task object), auto increments the id, and append the object to the task list.
 
@@ -177,11 +172,11 @@ async def add_task(task: Task):  # Use Task for input, AddTask for output
     Exceptions:
          - None (yet)
     '''
-    print("@router add_task():", task.dict())  # Print the incoming Task object
+    print("@router add_task():", task.dict())  
     global task_id_counter
-    new_task = AddTask(id=task_id_counter, title=task.title, description=task.description, priority=task.priority, tag=task.tag)
+    new_task = Task(id=task_id_counter, title=task.title, description=task.description, priority=task.priority, tag=task.tag)
     
-    print("@router new_task:", new_task.dict())  # Print the AddTask object after assigning id
+    print("@router new_task:", new_task.dict())  
     
     tasks.append(new_task)
     task_id_counter += 1
@@ -190,7 +185,7 @@ async def add_task(task: Task):  # Use Task for input, AddTask for output
 
 
 
-@router.put("/tasks/{task_id}", response_model=AddTask)
+@router.put("/tasks/{task_id}")
 async def update_task(task_id: int, updated_task: Task):
     '''Update the existing task
         The update_task() function accepts a user input (a task object) on the task that is already in the task list, using task_id as a reference or identifier.
@@ -214,7 +209,7 @@ async def update_task(task_id: int, updated_task: Task):
     '''
     for index, task in enumerate(tasks):
         if task.id == task_id:
-            task_updated = AddTask(
+            task_updated = Task(
                 id=task_id,
                 title=updated_task.title,
                 description=updated_task.description,
