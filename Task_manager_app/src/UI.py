@@ -22,8 +22,7 @@ class UI:
             - current_page is initialized to 1.        
         """
         if 'tasks' not in st.session_state:
-            self.task_manager.load_tasks()  # Assuming load_tasks() loads tasks from the API/file
-            # st.session_state.tasks = self.task_manager.tasks  # Store tasks in session state
+            self.task_manager.load_tasks() 
         if 'editing_task' not in st.session_state:
             st.session_state.editing_task = None
         if 'current_page' not in st.session_state:
@@ -90,7 +89,6 @@ class UI:
         """
         tasks = self.task_manager.tasks
         if not tasks:
-            # st.info("No tasks to display.")
             st.markdown("<p style= 'background-color: rgba(60, 179, 113, 0.5); padding: 10px;''>&nbsp;&nbsp;No tasks to display.</p>", unsafe_allow_html=True)
             return
 
@@ -184,14 +182,12 @@ class UI:
         with cols[0]:
             if st.button("Previous", disabled=current_page <= 1):
                 st.session_state.current_page -= 1
-                # st.experimental_rerun()  # Refresh the app
         with cols[1]:
             st.write(
                 f"Showing {((current_page - 1) * 10) + 1}-{min(current_page * 10, total_tasks)} of {total_tasks} tasks")
         with cols[2]:
             if st.button("Next", disabled=(current_page >= (total_tasks + 9) // 10)):
                 st.session_state.current_page += 1
-                # st.experimental_rerun()  # Refresh the app
 
     def display_footer(self):
         """Display the footer of the application."""
@@ -206,8 +202,6 @@ class UI:
         with cols[1]:
             if st.button("💾 Save Tasks"):
                 if self.task_manager.tasks:
-                    # for task in self.task_manager.tasks:
-                    #     self.task_manager.save_task(task)
                     st.markdown("<p style= 'background-color: rgba(60, 179, 113, 0.5); padding: 10px;'>Tasks saved sucessfully</p>", unsafe_allow_html=True)
                 else:
                     st.markdown("<p style='background-color: #BDB76B; color: red;'>&nbsp;&nbsp;No tasks to save</p>", unsafe_allow_html=True)
@@ -215,8 +209,6 @@ class UI:
             if st.button("📂 Load Tasks"):
                 self.task_manager.load_tasks()
                 st.markdown("<p style='background-color: rgba(60, 179, 113, 0.5); padding: 10px;'>Tasks loaded successfully!</p>", unsafe_allow_html=True)
-                # st.experimental_rerun()  # Refresh the app after loading
-
 
     
     def run(self):

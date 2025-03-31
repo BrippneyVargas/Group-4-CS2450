@@ -57,9 +57,9 @@ class TaskManager:
     def __init__(self, db_manager: DatabaseManager, router: APIRouter):
         self.db_manager = db_manager
         self.tasks = []
+        
+        self.db_manager.load_all() 
 
-        self.db_manager.load_all() #load tasks from database 
-        # self.load_tasks()
 
     def fetch_tasks(self):
         """Fetch a task from the backend via FastAPI."""
@@ -78,7 +78,6 @@ class TaskManager:
                 task_dict = task.to_dict() if hasattr(task, "to_dict") else task  # Convert Task object to dict               
                 response = requests.post(self.API_URL, json=task_dict)
                 response.raise_for_status()
-                # st.success("Task saved successfully!")
             except requests.RequestException as e:
                 st.error(f"Error saving task: {e}")
 
@@ -112,7 +111,6 @@ class TaskManager:
             try:
                 response = requests.delete(f"{self.API_URL}/{task_id}")
                 response.raise_for_status()
-                # st.markdown("<p style='background-color: #BDB76B; color: red;'>&nbsp;&nbsp;delete</p>", unsafe_allow_html=True)
                 st.markdown("<p style='background-color: #BDB76B; color: red; padding: 5px 15px; text-align: center;'>delete?</p>", unsafe_allow_html=True)
 
             except requests.RequestException as e:
@@ -122,8 +120,6 @@ class TaskManager:
         """Load tasks from the API."""
         try:
             self.fetch_tasks()
-            # if self.tasks:
-                # st.markdown("<p style='background-color: rgba(60, 179, 113, 0.5); padding: 10px;'>Tasks loaded successfully!</p>", unsafe_allow_html=True)
         except Exception as e:
             st.error(f"Unexpected error while loading tasks: {e}")
 

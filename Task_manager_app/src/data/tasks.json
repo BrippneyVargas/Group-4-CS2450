@@ -1,40 +1,40 @@
 {
-  "tasks": [
-    {
-      "id": 5,
-      "title": "Milestone 4",
-      "description": "submit group assignment ",
-      "priority": 2,
-      "tag": "Exam"
-    },
-    {
-      "id": 6,
-      "title": "in-class activity ",
-      "description": "hw",
-      "priority": 3,
-      "tag": "Exam"
-    },
-    {
-      "id": 7,
-      "title": "quiz 7",
-      "description": "quiz 7",
-      "priority": 1,
-      "tag": "Exam"
-    },
-    {
-      "id": 8,
-      "title": "quiz 1",
-      "description": "quiz 1",
-      "priority": 1,
-      "tag": "Exam"
-    },
-    {
-      "id": 11,
-      "title": "class participation",
-      "description": "class participation",
-      "priority": 3,
-      "tag": "Labwork"
-    }
-  ],
-  "task_id_counter": 12
+    "tasks": [
+        {
+            "id": 6,
+            "title": "in-class activity ",
+            "description": "hw",
+            "priority": 3,
+            "tag": "Exam"
+        },
+        {
+            "id": 7,
+            "title": "quiz 7",
+            "description": "quiz 7",
+            "priority": 1,
+            "tag": "Exam"
+        },
+        {
+            "id": 8,
+            "title": "quiz 1",
+            "description": "quiz 1",
+            "priority": 1,
+            "tag": "Exam"
+        },
+        {
+            "id": 11,
+            "title": "class participation",
+            "description": "class participation",
+            "priority": 3,
+            "tag": "Labwork"
+        },
+        {
+            "id": 12,
+            "title": "Test 2",
+            "description": "Test 2",
+            "priority": 2,
+            "tag": "Exam"
+        }
+    ],
+    "task_id_counter": 13
 }

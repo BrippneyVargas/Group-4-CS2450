@@ -5,7 +5,7 @@ class Styler:
     """Apply custom CSS styles for the application."""
 
     @staticmethod
-    def apply_custom_theme(dark_mode: bool): #TODO Change the two modes to a composition.
+    def apply_custom_theme(dark_mode: bool): #Change the two modes to a composition.
         """
         Customize the Streamlit application with colors, theme and styles.
 

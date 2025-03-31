@@ -23,8 +23,6 @@ def load_tasks():
         try:
             with open(TASKS_FILE, "r") as file:
                 data = json.load(file)
-
-                # Ensure data has the correct keys
                 tasks = [Task(**task) for task in data.get("tasks", [])]
                 task_id_counter = data.get("task_id_counter", 1)
         except (json.JSONDecodeError, KeyError):

@@ -41,6 +41,7 @@ class DataFetching:
             st.error(f"Error reading JSON file: {e}")
             return None
 
+
 class DataProcessing:
     def __init__(self, data_frame: pd.DataFrame) -> None:
         self.data_frame = data_frame

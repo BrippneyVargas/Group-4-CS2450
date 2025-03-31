@@ -33,3 +33,26 @@ This test report documents the results of the UI testing process for Task Manage
 | Character Limit Handling | manual    | ✅ Passed | Description field handles long text | Enter very long description | Text should be contained within field with scrolling | Description field correctly handles overflow with scrollbar |
 
 
+
+
+## Milestone IV
+
+Date: 3/31/2025
+Author: Keomony mary
+Project: Task Manager
+Version: 0.0.2
+Tested By: 
+
+This test report documents the results of the UI testing process for Task Manager app. The testing methodology focuses on verifying the user interface elements and interactions meet the required specifications. It only includes elements that are not mentioned in Milestone III above. 
+
+| Test Case | Test Type | Status | Result | Input | Expected Results | Actual Results |
+|-----------|-----------|--------|--------|-------|------------------|---------------|
+Integrating backend and GUI after restructuring the code based on design principles | manual | ✅ Passed | FastAPI and Streamlit Integrated successfully | Add New Task, Edit Task, Save Tasks, Load Tasks, Delete Tasks | All buttons functions succesfully when click | Tasks are added, updated, deleted, saved and loaded once click on the button 
+Light mode theme activation | manual    | ✅ Passed | Default dark theme is switched to light theme mode | click "Switch Theme" button | background change from black to white and font color changes from white to blue | The background, title and text color changes accordingly. 
+Switch theme button  | manual    | ✅ Passed | The button appears on top of the page | None | Once click, default dark mode switches to light mode | Once click, the dark background and white color changes to white background and blue color 
+Multiple pages | manual | ✅ Passed | The sidebar contains mulitple pages | None | The page has clickable sidebars | The sidebars appear and are clickable directing from the main page (TaskManager)
+Create a dataframe using Pandas | manual | ✅ Passed | Dataframe is created using pandas module | JSON File | Put data in JSON file into pandas dataframe  | Create DataFetching class to read JSON data and put it into pandas Dataframes
+Processing Data | manual | ✅ Passed | Data is being processed sucessfully | JSON file | JSON data's priority is being read and counted | The priority column is read and counted 
+Data Visualization | manual | ✅ Passed | Pie Chart  | JSON File  | DataProcessing class use pandas to create dataframe and create a pie chart | A dataframe is created and formated then integrated with matplotlit to create a pie chart showing percentage of tasks based on priority level. 
+Pie chart | manual | ✅ Passed | 3 slides/wedges: one for high priority, another for mediumm priority and another for low priority | Pandas Dataframe| A pie chart showing 3 slides | A pie chart shows label and percentage. Each slide is color customized: red=high, orange=medium and yellow=low 
+A seperate page for showing progress bar/pie chart | manual | ✅ Passed | Statistic Page is created in streamlit | None | Showing a pie chart | A pie chart along with tasks view in tabular format are displayed in statistic page 
