@@ -48,27 +48,36 @@ import sys
 from Task import Task
 from UI import UI
 
+
 class TaskManager:
     """Manage tasks using the FastAPI backend."""
 
     API_URL = "http://localhost:8000/tasks"  # Make sure FastAPI is running on this URL
 
     def __init__(self, db_manager: DatabaseManager, router: APIRouter):
-        self.__db_manager = db_manager
-        self.__tasks = []
+        self.db_manager = db_manager
+        self.tasks = []
 
-        self.__db_manager.load_all() #load tasks from database 
+        # self.db_manager.load_all() #load tasks from database 
+        self.load_tasks()
 
     def fetch_tasks(self):
         try:
-            self.__tasks = self.__db_manager.load_all()
-            if self.__tasks:
-                st.markdown("<p style='background-color: rgba(60, 179, 113, 0.5); padding: 10px;'>Tasks loaded successfully!</p>", unsafe_allow_html=True)
-        except Exception as e:
-            st.error(f"Unexpected error while loading tasks: {e}")
+            response = requests.get(self.API_URL)
+            response.raise_for_status()
+            self.__tasks = [Task(**task) for task in response.json().get("tasks", [])]
+        except requests.RequestException as e:
+            st.error(f"Error fetching tasks: {e}")
+
 
     def save_task(self, task):
-        pass
+        with st.spinner("Saving task..."):
+            try:
+                response = requests.post(self.API_URL, json=task)
+                response.raise_for_status()
+                st.success("Task saved successfully!")
+            except requests.RequestException as e:
+                        st.error(f"Error saving task: {e}")
 
     def update_task(self, task_id, updated_task):
         """Update a task identified by task_id via FastAPI.
@@ -107,12 +116,13 @@ class TaskManager:
 
     def load_tasks(self):
         """Load tasks from the API."""
-        pass
+        try:
+            self.fetch_tasks()
+            if self.tasks:
+                st.markdown("<p style='background-color: rgba(60, 179, 113, 0.5); padding: 10px;'>Tasks loaded successfully!</p>", unsafe_allow_html=True)
+        except Exception as e:
+            st.error(f"Unexpected error while loading tasks: {e}")
 
-    @property
-    def tasks(self):
-        """return the list of tasks"""
-        return self.__tasks
 
 def main():
     current_dir = os.path.dirname(os.path.abspath(__file__))
@@ -126,7 +136,7 @@ def main():
 
     Styler.apply_custom_theme(st.session_state.dark_mode)
 
-    db_manager = JSONManager("data/test.json")
+    db_manager = JSONManager(TaskManager.API_URL, "data/test.json")
     task_manager = TaskManager(db_manager, router)
     # task_manager = TaskManager(JSONManager("data/test.json"))  # Initialize TaskManager communicating with FastAPI
     task_ui = UI(task_manager)  # Initialize UI

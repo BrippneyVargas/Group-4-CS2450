@@ -4,12 +4,13 @@ import streamlit as st
 from Task import *
 
 class JSONManager(DatabaseManager):
-    def __init__(self, json_path: str) -> None:
-        self.__json_path = json_path
-        
+    def __init__(self, API_URL, json_path: str) -> None:
+        self.json_path = json_path
+        self.API_URL = API_URL
+        self.tasks = []
         self.load_all()
 
-    def load_all(self) -> None:
+    def load_all(self) -> list:
         """Load tasks from the FastAPI backend.
 
         Precondition:
@@ -30,11 +31,12 @@ class JSONManager(DatabaseManager):
         try:
             response = requests.get(self.API_URL)
             response.raise_for_status()
-            return response.json().get("tasks", [])
+            tasks = response.json().get("tasks", [])
         except requests.RequestException as e:
             st.error(f"Error fetching tasks: {e}")
 
-    def save_all(self) -> None:
+
+    def save_all(self, task: dict) -> None:
         """Save a new task via FastAPI.
         The json file is saved as tasks.json under the src/data directory.
 
