@@ -13,18 +13,18 @@ class Task(BaseModel):
     # task_id: int
     title: str
     description: str
-    priority_id: int
-    tag_id: int
+    priority: int
+    tag: int
     # status_id: int
 
     def to_dict(self):
         return {
             "title": self.title,
             "description": self.description,
-            "priority_id": self.priority_id,
+            "priority": self.priority,
         }
 
-class AddTask(BaseModel):
+class AddTask(Task):
     id: int
 
 

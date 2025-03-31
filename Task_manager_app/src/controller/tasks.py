@@ -43,7 +43,7 @@ def save_tasks():
         json.dump(data, file, indent=4)
 
 
-load_tasks()
+# load_tasks()
 
 
 @router.get("/")

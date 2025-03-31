@@ -58,8 +58,8 @@ class TaskManager:
         self.db_manager = db_manager
         self.tasks = []
 
-        # self.db_manager.load_all() #load tasks from database 
-        self.load_tasks()
+        self.db_manager.load_all() #load tasks from database 
+        # self.load_tasks()
 
     def fetch_tasks(self):
         try:
