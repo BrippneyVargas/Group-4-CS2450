@@ -1,4 +1,6 @@
 import streamlit as st
+from Task import AddTask
+from controller.tasks import AddTask, task_id_counter
 
 st.set_page_config(layout="wide")
 
@@ -61,11 +63,14 @@ class UI:
                     "priority": priority_value,
                     "tag": tag
                 }
+
                 self.task_manager.save_task(new_task)
                 self.task_manager.load_tasks()  # Refresh task list
             else:
                 st.markdown("<p style='background-color: #BDB76B; color: red;'>&nbsp;&nbsp;Title and description are required.</p>", unsafe_allow_html=True)
 
+   
+   
     def view_tasks(self):
         """Display the list of tasks.
 
@@ -104,8 +109,10 @@ class UI:
             self.display_pagination_controls(total_tasks, current_page)
 
 
-    def display_task(self, task):
+    def display_task(self, task: AddTask):
         """Display an individual task in the table."""
+        # if not isinstance(task, AddTask):
+        #     raise TypeError(f"Expected AddTask, got {type(task).__name__}")
         cols = st.columns([2, 1, 3, 1.5, 0.85, 1])
         with cols[0]:
             st.write(task.title)
@@ -121,15 +128,15 @@ class UI:
             same_line_columns = st.columns([1, 3.5, 1])
             with same_line_columns[0]:
                 if st.button("✏️", key=f"edit_{task.title}"):
+                # if st.button("✏️", key=f"edit_{task.id}_{task.title}"):
                     st.session_state.editing_task = task
             with same_line_columns[2]:
                 if st.button("🗑️", key=f"delete_{task.title}"):
+                # if st.button("✅", key=f"confirm_delete_{task.id}_{task.title}"):
                     self.task_manager.delete_task(task.title)
                     self.task_manager.load_tasks()  # Refresh task list
                     if st.button("✅"):
                         st.write("")
-    
-
     
 
     def edit_task(self):
@@ -175,14 +182,14 @@ class UI:
         with cols[0]:
             if st.button("Previous", disabled=current_page <= 1):
                 st.session_state.current_page -= 1
-                st.experimental_rerun()  # Refresh the app
+                # st.experimental_rerun()  # Refresh the app
         with cols[1]:
             st.write(
                 f"Showing {((current_page - 1) * 10) + 1}-{min(current_page * 10, total_tasks)} of {total_tasks} tasks")
         with cols[2]:
             if st.button("Next", disabled=(current_page >= (total_tasks + 9) // 10)):
                 st.session_state.current_page += 1
-                st.experimental_rerun()  # Refresh the app
+                # st.experimental_rerun()  # Refresh the app
 
     def display_footer(self):
         """Display the footer of the application."""
@@ -204,7 +211,7 @@ class UI:
         with cols[2]:
             if st.button("📂 Load Tasks"):
                 self.task_manager.load_tasks()
-                st.experimental_rerun()  # Refresh the app after loading
+                # st.experimental_rerun()  # Refresh the app after loading
 
     def run(self):
         """Run the UI for the Task Manager."""

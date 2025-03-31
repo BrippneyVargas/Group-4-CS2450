@@ -80,6 +80,8 @@ class TaskManager:
             except requests.RequestException as e:
                         st.error(f"Error saving task: {e}")
 
+
+
     def update_task(self, task_id, updated_task):
         """Update a task identified by task_id via FastAPI.
 

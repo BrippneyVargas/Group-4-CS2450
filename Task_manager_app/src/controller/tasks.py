@@ -4,10 +4,11 @@ import json
 import os
 from fastapi import HTTPException
 
-TASKS_FILE = "./Task_manager_app/src/data/tasks.json"
-router = APIRouter()
 tasks = []
 task_id_counter = 1
+TASKS_FILE = "./Task_manager_app/src/data/tasks.json"
+router = APIRouter()
+
 
 
 def load_tasks():
@@ -17,13 +18,23 @@ def load_tasks():
     It updates the global variables 'tasks' and 'task_id_counter' with the data from the file.
     Each task in the JSON file is converted into an AddTask object.
     """
+    # global tasks, task_id_counter
+    # if os.path.exists(TASKS_FILE):
+    #     with open(TASKS_FILE, "r") as file:
+    #         data = json.load(file)
+    #         # If any task doesn't have an 'id', assign it a default value
+    #         for task in data["tasks"]:
+    #             if "id" not in task:  # If the task doesn't have an id, assign one
+    #                 task["id"] = task_id_counter
+    #             task_id_counter = max(task_id_counter, task["id"] + 1)  # Update task_id_counter accordingly
+    #         tasks = [AddTask(**task) for task in data["tasks"]]
+    #         print(f"Loaded {len(tasks)} tasks from file.")
     global tasks, task_id_counter
     if os.path.exists(TASKS_FILE):
         with open(TASKS_FILE, "r") as file:
             data = json.load(file)
-            tasks = [AddTask(**task) for task in data["tasks"]]
+            tasks = [AddTask(**task) for task in data["tasks"]]  # This ensures AddTask objects are used
             task_id_counter = data["task_id_counter"]
-
 
 
 def save_tasks():
@@ -34,17 +45,15 @@ def save_tasks():
     Raises:
         IOError: If there is an issue writing to the file.
     """
-
     with open(TASKS_FILE, "w") as file:
         data = {
-            # "tasks": [task.__dict__ for task in tasks],
             "tasks": [task.to_dict() for task in tasks],
             "task_id_counter": task_id_counter
         }
         json.dump(data, file, indent=4)
 
 
-# load_tasks()
+load_tasks()
 
 
 @router.get("/")

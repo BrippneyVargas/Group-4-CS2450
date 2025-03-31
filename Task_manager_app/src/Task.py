@@ -24,7 +24,16 @@ class Task(BaseModel):
         }
 
 class AddTask(Task):
-    id: int  # Include id field here
+    id: int  
+
+    def to_dict(self):
+        return {
+            "id": self.id,
+            "title": self.title,
+            "description": self.description,
+            "priority": self.priority,
+            "tag": self.tag,
+        }
 
 
 
