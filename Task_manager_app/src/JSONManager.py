@@ -1,39 +1,61 @@
 from DatabaseManager import *
-import json
-import os
+import requests
+import streamlit as st
 from Task import *
 
 class JSONManager(DatabaseManager):
     def __init__(self, json_path: str) -> None:
         self.__json_path = json_path
-        self.__tasks = []
         
         self.load_all()
 
     def load_all(self) -> None:
+        """Load tasks from the FastAPI backend.
+
+        Precondition:
+            - streamlit is downloaded and imported.
+            - FastAPI is installed
+            - self.API_URL is a valid URL for the FastAPI backend.
+
+        Postcondition:
+            - If successful, list of task is fetched from the API and stored in self.tasks.
+            - self.tasks remains an empty list if there is no task in the task list.
+
+        Exceptions:
+            - If there's an error fetching tasks, raise RequestException with the error message.
+
+        Known issues:
+            - If streamlit and FastAPI package is not installed, there'll be an error.
         """
-        Load tasks from a JSON file.
-        This function reads tasks from a JSON file specified by the global variable TASKS_FILE.
-        It updates the global variables 'tasks' and 'task_id_counter' with the data from the file.
-        Each task in the JSON file is converted into an AddTask object.
-        """
-        if os.path.exists(self.__json_path):
-            with open(self.__json_path, "r") as file:
-                data = json.load(file)
-                self.__tasks = [Task(**task) for task in data["tasks"]]
-                self.__task_id_counter = data["task_id_counter"]
+        try:
+            response = requests.get(self.API_URL)
+            response.raise_for_status()
+            return response.json().get("tasks", [])
+        except requests.RequestException as e:
+            st.error(f"Error fetching tasks: {e}")
 
     def save_all(self) -> None:
+        """Save a new task via FastAPI.
+        The json file is saved as tasks.json under the src/data directory.
+
+        Precondition:
+            - streamlit is downloaded and imported.
+            - FastAPI is installed
+            - self.API_URL is a valid URL for the FastAPI backend.
+
+        Postcondition:
+            - The task added is successfully saved to a JSON file.
+
+        Exceptions:
+            - If there's an error saving task, raise RequestException with the error message.
+
+        Known issues:
+             If streamlit and FastAPI package is not installed, there'll be an error.
         """
-        Saves the current list of tasks and the task ID counter to a file.
-        This function serializes the tasks and task ID counter into a JSON format
-        and writes them to the file specified by TASKS_FILE.
-        Raises:
-            IOError: If there is an issue writing to the file.
-        """
-        with open(self.__json_path, "w") as file:
-            data = {
-                "tasks": [task.__dict__ for task in self.__tasks],
-                "task_id_counter": self.__task_id_counter
-            }
-            json.dump(data, file, indent=4)
+        with st.spinner("Saving task..."):
+            try:
+                response = requests.post(self.API_URL, json=task)
+                response.raise_for_status()
+                st.success("Task saved successfully!")
+            except requests.RequestException as e:
+                st.error(f"Error saving task: {e}")
