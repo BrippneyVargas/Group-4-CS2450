@@ -4,8 +4,8 @@
             "id": 5,
             "title": "Milestone 4",
             "description": "submit group assignment ",
-            "priority": 1,
-            "tag": "Project"
+            "priority": 3,
+            "tag": "Exam"
         },
         {
             "id": 6,
@@ -13,7 +13,14 @@
             "description": "hw",
             "priority": 2,
             "tag": "Assignment"
+        },
+        {
+            "id": 7,
+            "title": "quiz 7",
+            "description": "quiz 7",
+            "priority": 1,
+            "tag": "Exam"
         }
     ],
-    "task_id_counter": 7
+    "task_id_counter": 8
 }

@@ -217,4 +217,5 @@ async def update_task(task_id: int, updated_task: Task):
                 tag=updated_task.tag
             )
             tasks[index] = task_updated
+            save_tasks()
             return task_updated

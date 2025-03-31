@@ -158,25 +158,25 @@ class UI:
         """
         task = st.session_state.editing_task
         if task:
-            st.markdown("## ✏️ Edit Task")
-            title = st.text_input("Edit Title", value=task['title'])
+            st.markdown("## ✏️ :green[Edit] :violet[Task]")
+            title = st.text_input("Edit Title", value=task.title)
             tag = st.selectbox("Edit Tag", ["Exam", "Assignment", "Labwork", "Project", "Other"], index=0)
-            description = st.text_area("Edit Description", value=task['description'])
+            description = st.text_area("Edit Description", value=task.description)
             priority_value = task.priority if task.priority is not None else 2
             priority = st.radio("Edit Priority", [":red[High]", ":orange[Medium]", ":green[Low]"], index={1: 0, 2: 1, 3: 2}[priority_value])
 
             if st.button("Update Task"):
                 updated_task = {
-                    "id": task['id'],
+                    "id": task.id,
                     "title": title,
                     "description": description,
                     "priority": {":red[High]": 1, ":orange[Medium]": 2, ":green[Low]": 3}[priority],
                     "tag": tag
                 }
-                self.task_manager.update_task(task['id'], updated_task)
+                self.task_manager.update_task(task.id, updated_task)
                 st.session_state.editing_task = None
                 self.task_manager.load_tasks()  # Refresh task list
-                st.success("Task updated successfully!")
+                st.markdown("<p style= 'background-color: rgba(60, 179, 113, 0.5); padding: 10px;'>Tasks updated sucessfully</p>", unsafe_allow_html=True)
 
     def display_pagination_controls(self, total_tasks, current_page):
         """Display pagination controls for navigating through tasks."""

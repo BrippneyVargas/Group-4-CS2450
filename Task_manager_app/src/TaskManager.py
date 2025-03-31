@@ -82,10 +82,6 @@ class TaskManager:
             except requests.RequestException as e:
                 st.error(f"Error saving task: {e}")
 
-
-
-
-
     def update_task(self, task_id, updated_task):
         """Update a task identified by task_id via FastAPI.
 
@@ -107,7 +103,6 @@ class TaskManager:
             try:
                 response = requests.put(f"{self.API_URL}/{task_id}", json=updated_task)
                 response.raise_for_status()
-                st.success("Task updated successfully!")
             except requests.RequestException as e:
                 st.error(f"Error updating task: {e}")
 
