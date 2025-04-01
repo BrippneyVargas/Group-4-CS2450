@@ -1,5 +1,5 @@
 import streamlit as st
-
+import time
 
 st.set_page_config(layout="wide")
 
@@ -133,9 +133,9 @@ class UI:
             with same_line_columns[2]:
                 if st.button("🗑️", key=f"delete_{task.id}"):
                     self.task_manager.delete_task(task.id)
+                    time.sleep(0.05)
                     self.task_manager.load_tasks()  # Refresh task list
-                    if st.button("✅"):
-                        st.write("")
+                    st.experimental_rerun()  # Trigger a rerun to update the UI
 
     
 
