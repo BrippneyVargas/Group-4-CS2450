@@ -34,7 +34,14 @@
             "description": "Homework 5",
             "priority": 1,
             "tag": "Assignment"
+        },
+        {
+            "id": 20,
+            "title": "Get milk",
+            "description": "Go get milk at Wal-mart.",
+            "priority": 1,
+            "tag": "Other"
         }
     ],
-    "task_id_counter": 20
+    "task_id_counter": 21
 }
