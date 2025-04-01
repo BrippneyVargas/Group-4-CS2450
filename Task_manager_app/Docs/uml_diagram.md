@@ -3,5 +3,5 @@
 Screenshot of the class diagram 
 ![image](screenshots/m3_diagram.png)
 
-Link: https://lucid.app/lucidchart/51e6006e-28d3-4c1e-9582-134d0788fe82/edit?viewport_loc=-612%2C-260%2C3326%2C1710%2CfUrY4b8RF3Ji&invitationId=inv_1a78015a-811f-4fca-a64c-0c691c46ff0c
+Link: https://lucid.app/lucidchart/f8f6a57b-16b5-4e83-b97d-f00471e5037f/edit?view_items=9TS5icg182yb&invitationId=inv_60361cca-7aab-4c85-85a0-d6d54d3a4ca9
 

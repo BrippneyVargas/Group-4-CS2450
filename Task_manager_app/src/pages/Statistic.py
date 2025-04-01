@@ -47,13 +47,20 @@ class DataProcessing:
         self.data_frame = data_frame
 
     def priority_count(self):
+        if self.data_frame.empty:
+            return None
         return self.data_frame["priority"].value_counts() #counting each priority levels
 
     def pie_chart(self):
         priority_count = self.priority_count()
+        if priority_count is None:
+            st.markdown("<p style='background-color: #BDB76B; color: red; padding: 5px 15px; text-align: center;'>No Data To Display</p>", unsafe_allow_html=True)
+            st.set_option('deprecation.showPyplotGlobalUse', False)
+            return None
+
         index_to_name= {1: "High Priority", 2: "Medium Priority", 3: "Low Priority"}
         labels = [index_to_name[index] for index in priority_count.index]
-        myexplode= [0.025, 0.025, 0.025] #make the slide detached or has a gap between each slide
+        myexplode= [0.025] * len(priority_count) #make the slide detached or has a gap between each slide
         sizes = priority_count.values #determine number of slides
         fig1, ax1 = plt.subplots()
         ax1.pie(sizes, labels=labels, autopct='%1.0f%%', colors=['red', 'orange', 'yellow'], explode=myexplode, startangle=30)
