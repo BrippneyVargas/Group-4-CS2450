@@ -1,5 +1,5 @@
 import streamlit as st
-from Styler import Styler
+from Task_manager_app.src.view.Styler import Styler
 
 st.set_page_config(layout="centered")
 

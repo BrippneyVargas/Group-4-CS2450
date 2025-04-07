@@ -1,6 +1,6 @@
-from DatabaseManager import DatabaseManager
+from Task_manager_app.src.database_managers.DatabaseManager import DatabaseManager
 import sqlite3
-from Task import *
+from Task_manager_app.src.model.Task import *
 
 class SQLiteManager(DatabaseManager):
     def __init__(self, db_name: str) -> None:

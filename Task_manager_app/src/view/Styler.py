@@ -1,5 +1,5 @@
 import streamlit as st
-from ThemeColor import *
+from Task_manager_app.src.view.ThemeColor import *
 
 class Styler:
     """Apply custom CSS styles for the application."""

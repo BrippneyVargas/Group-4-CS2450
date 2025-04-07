@@ -35,53 +35,48 @@ Author: Group 4
 Copyright: Task Manager © 2025
 """
 
-from DatabaseManager import DatabaseManager
-from JSONManager import JSONManager
-from SQLiteManager import *
-from fastapi import APIRouter, HTTPException
-from controller import router
+from Task_manager_app.src.database_managers.DatabaseManager import DatabaseManager
+from Task_manager_app.src.database_managers.JSONManager import JSONManager
+from Task_manager_app.src.database_managers.SQLiteManager import *
 import os
 import requests
 import streamlit as st
-from Styler import Styler
+from Task_manager_app.src.view.Styler import Styler
 import sys
-from Task import Task
-from UI import UI
-
+from Task_manager_app.src.model.Task import Task
+from Task_manager_app.src.view.UI import UI
 
 class TaskManager:
     """Manage tasks using the FastAPI backend."""
-
-    API_URL = "http://localhost:8000/tasks"  # Make sure FastAPI is running on this URL
-
-    def __init__(self, db_manager: DatabaseManager, router: APIRouter):
-        self.db_manager = db_manager
-        self.tasks = []
+    def __init__(self, db_manager: DatabaseManager, api_url: str):
+        self.__api_url = api_url
+        self.__db_manager = db_manager
+        self.__tasks = []
         
-        self.db_manager.load_all() 
+        self.__db_manager.load_all() 
 
 
-    def fetch_tasks(self):
+    def fetch_tasks(self) -> None:
         """Fetch a task from the backend via FastAPI."""
         try:
-            response = requests.get(self.API_URL)
+            response = requests.get(self.__api_url)
             response.raise_for_status()
-            self.tasks = [Task(**task) for task in response.json().get("tasks", [])]
+            self.__tasks = [Task(**task) for task in response.json().get("tasks", [])]
         except requests.RequestException as e:
             st.error(f"Error fetching tasks: {e}")
 
 
-    def save_task(self, task):
+    def save_task(self, task) -> None:
         """Save a task to the backend via FastAPI."""
         with st.spinner("Saving task..."):
             try:
                 task_dict = task.to_dict() if hasattr(task, "to_dict") else task  # Convert Task object to dict               
-                response = requests.post(self.API_URL, json=task_dict)
+                response = requests.post(self.__api_url, json=task_dict)
                 response.raise_for_status()
             except requests.RequestException as e:
                 st.error(f"Error saving task: {e}")
 
-    def update_task(self, task_id, updated_task):
+    def update_task(self, task_id, updated_task) -> None:
         """Update a task identified by task_id via FastAPI.
 
         Precondition:
@@ -100,7 +95,7 @@ class TaskManager:
         """
         with st.spinner("Updating task..."):
             try:
-                response = requests.put(f"{self.API_URL}/{task_id}", json=updated_task)
+                response = requests.put(f"{self.__api_url}/{task_id}", json=updated_task)
                 response.raise_for_status()
             except requests.RequestException as e:
                 st.error(f"Error updating task: {e}")
@@ -109,7 +104,7 @@ class TaskManager:
         """Delete a task via FastAPI."""
         with st.spinner("Deleting task..."):
             try:
-                response = requests.delete(f"{self.API_URL}/{task_id}")
+                response = requests.delete(f"{self.__api_url}/{task_id}")
                 response.raise_for_status()
                 #st.markdown("<p style='background-color: #BDB76B; color: red; padding: 5px 15px; text-align: center;'>delete?</p>", unsafe_allow_html=True)
 
@@ -136,8 +131,8 @@ def main():
 
     Styler.apply_custom_theme(st.session_state.dark_mode)
 
-    db_manager = JSONManager(TaskManager.API_URL, "data/test.json")
-    task_manager = TaskManager(db_manager, router)
+    db_manager = JSONManager("data/test.json")
+    task_manager = TaskManager(db_manager, "http://localhost:8000/tasks")
 
     task_ui = UI(task_manager)  # Initialize UI
     task_ui.initialize_session_state()  # Initialize session state

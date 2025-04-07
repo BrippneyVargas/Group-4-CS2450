@@ -1,7 +1,7 @@
 from fastapi import APIRouter
-from Task_manager_app.src.JSONManager import *
+from Task_manager_app.src.database_managers.JSONManager import *
 import requests
-from Task_manager_app.src.TaskManager import *
+from Task_manager_app.src.model.TaskManager import *
 import unittest
 
 BASE_URL = "http://127.0.0.1:8000"  # Update with your FastAPI server URL if different
