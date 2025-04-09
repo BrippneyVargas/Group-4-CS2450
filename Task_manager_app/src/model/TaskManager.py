@@ -35,9 +35,9 @@ Author: Group 4
 Copyright: Task Manager © 2025
 """
 
-from src.database_managers.DatabaseManager import DatabaseManager
-from src.database_managers.JSONManager import JSONManager
-from src.database_managers.SQLiteManager import *
+from database_managers.DatabaseManager import *
+from database_managers.JSONManager import *
+from database_managers.SQLiteManager import *
 import os
 import requests
 import streamlit as st
