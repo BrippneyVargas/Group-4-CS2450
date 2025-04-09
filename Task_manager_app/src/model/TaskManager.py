@@ -35,16 +35,16 @@ Author: Group 4
 Copyright: Task Manager © 2025
 """
 
-from Task_manager_app.src.database_managers.DatabaseManager import DatabaseManager
-from Task_manager_app.src.database_managers.JSONManager import JSONManager
-from Task_manager_app.src.database_managers.SQLiteManager import *
+from src.database_managers.DatabaseManager import DatabaseManager
+from src.database_managers.JSONManager import JSONManager
+from src.database_managers.SQLiteManager import *
 import os
 import requests
 import streamlit as st
-from Task_manager_app.src.view.Styler import Styler
+from view.Styler import Styler
 import sys
-from Task_manager_app.src.model.Task import Task
-from Task_manager_app.src.view.UI import UI
+from model.Task import Task
+from view.UI import UI
 
 class TaskManager:
     """Manage tasks using the FastAPI backend."""

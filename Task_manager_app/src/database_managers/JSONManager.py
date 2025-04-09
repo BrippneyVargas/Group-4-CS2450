@@ -1,17 +1,17 @@
-from DatabaseManager import *
+from database_managers.DatabaseManager import DatabaseManager
 from fastapi import APIRouter, HTTPException
-from Task_manager_app.src.model.Task import Task
-from typing import override
+from model.Task import Task
+from typing import Any, override
 import json
 import os
 
-TASKS_FILE = "./Task_manager_app/src/data/tasks.json"
 router = APIRouter()
 
 class JSONManager(DatabaseManager):
     def __init__(self):
         self.__id_counter = 1
         self.__tasks = []
+        self.__tasks_file = "./Task_manager_app/src/data/tasks.json"
 
         self.load_all()
 
@@ -23,14 +23,13 @@ class JSONManager(DatabaseManager):
         It updates the global variables 'tasks' and 'task_id_counter' with the data from the file.
         Each task in the JSON file is converted into an AddTask object.
         """    
-        if os.path.exists(TASKS_FILE):
+        if os.path.exists(self.__tasks_file):
             try:
-                with open(TASKS_FILE, "r") as file:
+                with open(self.__tasks_file, "r") as file:
                     data = json.load(file)
                     self.__tasks = [Task(**task) for task in data.get("tasks", [])]
                     self.__id_counter = data.get("task_id_counter", 1)
-            except (json.JSONDecodeError, KeyError):
-                #where JSON is empty or invalid
+            except (json.JSONDecodeError, KeyError): # Where JSON is empty or invalid.
                 self.__tasks = []
                 self.__id_counter = 1
                 
@@ -43,7 +42,7 @@ class JSONManager(DatabaseManager):
         Raises:
             IOError: If there is an issue writing to the file.
         """
-        with open(TASKS_FILE, "w") as file:
+        with open(self.__tasks_file, "w") as file:
             data = {
                 "tasks": [task.to_dict() for task in self.__tasks],
                 "task_id_counter": self.__id_counter

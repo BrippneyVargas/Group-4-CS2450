@@ -1,5 +1,5 @@
 from abc import ABC, abstractmethod
-from Task_manager_app.src.model.Task import *
+from model.Task import *
 from typing import Any
 
 class DatabaseManager(ABC):
