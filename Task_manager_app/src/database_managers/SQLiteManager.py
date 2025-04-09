@@ -1,98 +1,99 @@
-from Task_manager_app.src.database_managers.DatabaseManager import DatabaseManager
 import sqlite3
-from Task_manager_app.src.model.Task import *
+from typing import List, Optional
+from model.Task import Task
 
-class SQLiteManager(DatabaseManager):
+class SQLiteManager:
     def __init__(self, db_name: str) -> None:
-        self.__conn = sqlite3.connect(db_name)
-        self.__tasks = []
+        # Use check_same_thread=False if you plan on accessing this connection from multiple threads (common with FastAPI).
+        self.__conn = sqlite3.connect(db_name, check_same_thread=False)
+        self.__conn.row_factory = sqlite3.Row  # so we can access columns by name
+        self.__create_tables()
 
-        self.__make_task_db()
-        self.__make_user_db()
-        self.__make_task_user_db()
-
-        self.load_all()
-
-    def __make_task_db(self, table_name: str):
+    def __create_tables(self) -> None:
         cursor = self.__conn.cursor()
-        cursor.execute(
-            '''
+        # Create the main task table.
+        cursor.execute("""
             CREATE TABLE IF NOT EXISTS task (
-                task_id TINYINT UNSIGNED NOT NULL AUTO_INCREMENT,
-                title VARCHAR(64),
-                description VARCHAR(256),
-                priority_id TINYINT UNSIGNED NOT NULL,
-                tag_id TINYINT UNSIGNED NOT NULL,
-                status_id TINYINT UNSIGNED NOT NULL,
-                PRIMARY KEY (task_id)
+                task_id INTEGER PRIMARY KEY AUTOINCREMENT,
+                title TEXT NOT NULL,
+                description TEXT,
+                priority INTEGER NOT NULL,
+                tag TEXT,
+                status INTEGER NOT NULL DEFAULT 0
             );
-            '''
-        )
-        cursor.commit()
+        """)
+        # Optionally, create additional tables (user, task_user) if needed.
+        self.__conn.commit()
         cursor.close()
-        
-    def __make_user_db(self):
+
+    def get_all_tasks(self) -> List[Task]:
+        cursor = self.__conn.cursor()
+        cursor.execute("SELECT * FROM task")
+        rows = cursor.fetchall()
+        tasks = []
+        for row in rows:
+            tasks.append(
+                Task(
+                    id=row["task_id"],
+                    title=row["title"],
+                    description=row["description"],
+                    priority=row["priority"],
+                    tag=row["tag"],
+                    status=row["status"],
+                )
+            )
+        cursor.close()
+        return tasks
+
+    def get_task(self, task_id: int) -> Optional[Task]:
+        cursor = self.__conn.cursor()
+        cursor.execute("SELECT * FROM task WHERE task_id = ?", (task_id,))
+        row = cursor.fetchone()
+        cursor.close()
+        if row:
+            return Task(
+                id=row["task_id"],
+                title=row["title"],
+                description=row["description"],
+                priority=row["priority"],
+                tag=row["tag"],
+                status=row["status"],
+            )
+        return None
+
+    def add_task(self, task: Task) -> Task:
         cursor = self.__conn.cursor()
         cursor.execute(
-            '''
-            CREATE TABLE IF NOT EXISTS user (
-                user_id TINYINT UNSIGNED NOT NULL,
-                email VARCHAR(64),
-                PRIMARY KEY (user_id)
-            );
-            '''
+            """
+            INSERT INTO task (title, description, priority, tag, status)
+            VALUES (?, ?, ?, ?, ?)
+        """,
+            (task.title, task.description, task.priority, task.tag, getattr(task, "status", 0)),
         )
-        cursor.commit()
+        self.__conn.commit()
+        task.id = cursor.lastrowid
         cursor.close()
+        return task
 
-    def __make_task_user_db(self):
+    def update_task(self, task: Task) -> bool:
         cursor = self.__conn.cursor()
         cursor.execute(
-            '''
-            CREATE TABLE IF NOT EXISTS task_user (
-                task_id UNSIGNED NOT NULL,
-                user_id UNSIGNED NOT NULL,
-                PRIMARY KEY (task_id, user_id),
-                CONSTRAINT fk_task_user_task FOREIGN KEY (task_id) REFERENCES task (task_id) ON DELETE RESTRICT ON UPDATE CASCADE,
-                CONSTRAINT fk_task_user_user FOREIGN KEY (user_id) REFERENCES user (user_id) ON DELETE RESTRICT ON UPDATE CASCADE
-            );
-            '''
+            """
+            UPDATE task
+            SET title = ?, description = ?, priority = ?, tag = ?, status = ?
+            WHERE task_id = ?
+        """,
+            (task.title, task.description, task.priority, task.tag, getattr(task, "status", 0), task.id),
         )
-        cursor.commit()
+        self.__conn.commit()
+        updated = cursor.rowcount > 0
         cursor.close()
+        return updated
 
-    def load_all(self) -> None:
+    def delete_task(self, task_id: int) -> bool:
         cursor = self.__conn.cursor()
-        self.__tasks = cursor.fetchall()
+        cursor.execute("DELETE FROM task WHERE task_id = ?", (task_id,))
+        self.__conn.commit()
+        deleted = cursor.rowcount > 0
         cursor.close()
-
-    def save_task(self, task: Task) -> None:
-        cursor = self.__conn.cursor
-        if task["task_id"] in self.__tasks["task_id"]:
-            cursor.execute(
-                '''
-                UPDATE task
-                SET
-                    title = %s,
-                    description = %s,
-                    priority_id = %s,
-                    tag_id = %s
-                WHERE task_id = %s;
-                ''' %
-                    task["title"],
-                    task["description"],
-                    str(task["priority_id"]),
-                    str(task["tag_id"]),
-                    str(task["task_id"])
-            )
-        else:
-            cursor.execute(
-                '''
-                INSERT INTO task
-                VALUES(%s, %s, %s, %s);
-                ''' %
-                    task["title"],
-                    task["description"],
-                    str(task["priority_id"]),
-                    str(task["tag_id"])
-            )
+        return deleted
