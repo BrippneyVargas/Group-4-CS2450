@@ -3,8 +3,7 @@ This is the main file to run the FastAPI and Streamlit applications.
 """
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-# from controller import router
-from controller.tasks import router
+from database_managers.JSONManager import router
 import threading
 import uvicorn
 import os
@@ -30,7 +29,7 @@ def run_fastapi():
 
 def run_streamlit():
     """Function to run the Streamlit application."""
-    os.system("streamlit run ./Task_manager_app/src/TaskManager.py")
+    os.system("streamlit run ./Task_manager_app/src/model/TaskManager.py")
 
 if __name__ == "__main__":
     # Create threads for running FastAPI and Streamlit

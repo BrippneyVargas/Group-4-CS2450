@@ -1,10 +1,9 @@
 from DatabaseManager import *
-from fastapi import APIRouter
+from fastapi import APIRouter, HTTPException
 from Task_manager_app.src.model.Task import Task
 from typing import override
 import json
 import os
-from fastapi import HTTPException
 
 TASKS_FILE = "./Task_manager_app/src/data/tasks.json"
 router = APIRouter()
@@ -47,7 +46,7 @@ class JSONManager(DatabaseManager):
         with open(TASKS_FILE, "w") as file:
             data = {
                 "tasks": [task.to_dict() for task in self.__tasks],
-                "task_id_counter": task_id_counter
+                "task_id_counter": self.__id_counter
             }
             json.dump(data, file, indent=4)
 
@@ -169,14 +168,13 @@ class JSONManager(DatabaseManager):
         Exceptions:
             - None (yet)
         '''
-        print("@router add_task():", task.dict())  
-        global task_id_counter
-        new_task = Task(id=task_id_counter, title=task.title, description=task.description, priority=task.priority, tag=task.tag)
+        print("@router add_task():", item_to_add.dict())
+        new_task = Task(id=self.__id_counter, title=item_to_add.title, description=item_to_add.description, priority=item_to_add.priority, tag=item_to_add.tag)
         
         print("@router new_task:", new_task.dict())  
         
         self.__tasks.append(new_task)
-        task_id_counter += 1
+        self.__id_counter += 1
         self.save_tasks()
         return new_task
 
@@ -203,15 +201,15 @@ class JSONManager(DatabaseManager):
         Exceptions:
             - None (yet)
         '''
-        for index, task in enumerate(tasks):
-            if task.id == task_id:
+        for index, task in enumerate(self.__tasks):
+            if task.id == primary_key:
                 task_updated = Task(
-                    id=task_id,
-                    title=updated_task.title,
-                    description=updated_task.description,
-                    priority=updated_task.priority,
-                    tag=updated_task.tag
+                    id=primary_key,
+                    title=updated_item.title,
+                    description=updated_item.description,
+                    priority=updated_item.priority,
+                    tag=updated_item.tag
                 )
-                tasks[index] = task_updated
-                save_tasks()
+                self.__tasks[index] = task_updated
+                self.save_tasks()
                 return task_updated
