@@ -55,17 +55,17 @@ from view.UI import UI
 class TaskManager:
     """Manage tasks using the FastAPI backend."""
     def __init__(self, db_manager: DatabaseManager, api_url: str):
-        self.__api_url = api_url
-        self.__db_manager = db_manager
-        self.__tasks = []
+        self.api_url = api_url
+        self.db_manager = db_manager
+        self.tasks = []
         
-        self.__db_manager.load_all() 
+        self.db_manager.load_all() 
 
 
     def fetch_tasks(self) -> None:
         """Fetch a task from the backend via FastAPI."""
         try:
-            response = requests.get(self.__api_url)
+            response = requests.get(self.api_url)
             response.raise_for_status()
             self.__tasks = [Task(**task) for task in response.json().get("tasks", [])]
         except requests.RequestException as e:
@@ -77,7 +77,7 @@ class TaskManager:
         with st.spinner("Saving task..."):
             try:
                 task_dict = task.to_dict() if hasattr(task, "to_dict") else task  # Convert Task object to dict               
-                response = requests.post(self.__api_url, json=task_dict)
+                response = requests.post(self.api_url, json=task_dict)
                 response.raise_for_status()
             except requests.RequestException as e:
                 st.error(f"Error saving task: {e}")
@@ -101,7 +101,7 @@ class TaskManager:
         """
         with st.spinner("Updating task..."):
             try:
-                response = requests.put(f"{self.__api_url}/{task_id}", json=updated_task)
+                response = requests.put(f"{self.api_url}/{task_id}", json=updated_task)
                 response.raise_for_status()
             except requests.RequestException as e:
                 st.error(f"Error updating task: {e}")
@@ -110,7 +110,7 @@ class TaskManager:
         """Delete a task via FastAPI."""
         with st.spinner("Deleting task..."):
             try:
-                response = requests.delete(f"{self.__api_url}/{task_id}")
+                response = requests.delete(f"{self.api_url}/{task_id}")
                 response.raise_for_status()
                 #st.markdown("<p style='background-color: #BDB76B; color: red; padding: 5px 15px; text-align: center;'>delete?</p>", unsafe_allow_html=True)
 

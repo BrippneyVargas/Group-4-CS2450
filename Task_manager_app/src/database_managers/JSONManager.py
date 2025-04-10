@@ -9,9 +9,9 @@ router = APIRouter()
 
 class JSONManager(DatabaseManager):
     def __init__(self, file_path):
-        self.__id_counter = 1
-        self.__tasks = []
-        self.__tasks_file = file_path
+        self.json_path =  file_path
+        self.API_URL = "http://localhost:8000/tasks"
+        self.tasks = []
 
         self.load_all()
 
@@ -23,9 +23,9 @@ class JSONManager(DatabaseManager):
         It updates the global variables 'tasks' and 'task_id_counter' with the data from the file.
         Each task in the JSON file is converted into an AddTask object.
         """    
-        if os.path.exists(self.__tasks_file):
+        if os.path.exists(self.json_path):
             try:
-                with open(self.__tasks_file, "r") as file:
+                with open(self.json_path, "r") as file:
                     data = json.load(file)
                     self.__tasks = [Task(**task) for task in data.get("tasks", [])]
                     self.__id_counter = data.get("task_id_counter", 1)
@@ -42,7 +42,7 @@ class JSONManager(DatabaseManager):
         Raises:
             IOError: If there is an issue writing to the file.
         """
-        with open(self.__tasks_file, "w") as file:
+        with open(self.json_path, "w") as file:
             data = {
                 "tasks": [task.to_dict() for task in self.__tasks],
                 "task_id_counter": self.__id_counter
