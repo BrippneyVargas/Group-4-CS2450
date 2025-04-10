@@ -8,10 +8,10 @@ import os
 router = APIRouter()
 
 class JSONManager(DatabaseManager):
-    def __init__(self):
+    def __init__(self, file_path):
         self.__id_counter = 1
         self.__tasks = []
-        self.__tasks_file = "./Task_manager_app/src/data/tasks.json"
+        self.__tasks_file = file_path
 
         self.load_all()
 
@@ -179,7 +179,7 @@ class JSONManager(DatabaseManager):
 
     @override
     @router.put("/tasks/{task_id}")
-    async def update_task(self, primary_key: Any, updated_item: Any) -> dict:
+    async def update(self, primary_key: Any, updated_item: Any) -> dict:
         '''Update the existing task
             The update_task() function accepts a user input (a task object) on the task that is already in the task list, using task_id as a reference or identifier.
 

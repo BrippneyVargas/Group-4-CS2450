@@ -137,7 +137,7 @@ def main():
 
     Styler.apply_custom_theme(st.session_state.dark_mode)
 
-    db_manager = JSONManager("data/test.json")
+    db_manager = JSONManager("./Task_manager_app/src/data/tasks.json")
     task_manager = TaskManager(db_manager, "http://localhost:8000/tasks")
 
     task_ui = UI(task_manager)  # Initialize UI
