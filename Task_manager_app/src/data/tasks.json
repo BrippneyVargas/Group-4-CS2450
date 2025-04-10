@@ -1,40 +1,4 @@
 {
-    "tasks": [
-        {
-            "id": 15,
-            "title": "MIlestone 4",
-            "description": "Milestone 4",
-            "priority": 1,
-            "tag": "Exam"
-        },
-        {
-            "id": 16,
-            "title": "inclass activity 2",
-            "description": "inclass activity 2",
-            "priority": 2,
-            "tag": "Assignment"
-        },
-        {
-            "id": 19,
-            "title": "homework 5",
-            "description": "Homework 5",
-            "priority": 1,
-            "tag": "Assignment"
-        },
-        {
-            "id": 25,
-            "title": "asdfasdf",
-            "description": "asdfasdfasdf",
-            "priority": 1,
-            "tag": "Exam"
-        },
-        {
-            "id": 26,
-            "title": "asdfasdf",
-            "description": "asdfasdfasdf",
-            "priority": 1,
-            "tag": "Exam"
-        }
-    ],
-    "task_id_counter": 31
+    "tasks": [],
+    "task_id_counter": 41
 }

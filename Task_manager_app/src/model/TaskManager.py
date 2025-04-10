@@ -34,7 +34,12 @@ Dependencies:
 Author: Group 4
 Copyright: Task Manager © 2025
 """
+import os
+import sys
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
+
+from database_managers.DatabaseManager import *
 from database_managers.DatabaseManager import *
 from database_managers.JSONManager import *
 from database_managers.SQLiteManager import *
@@ -45,6 +50,7 @@ from view.Styler import Styler
 import sys
 from model.Task import Task
 from view.UI import UI
+
 
 class TaskManager:
     """Manage tasks using the FastAPI backend."""
