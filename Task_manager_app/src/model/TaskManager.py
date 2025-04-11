@@ -134,8 +134,9 @@ def main():
     
     if st.button("Switch Theme"):
         st.session_state.dark_mode = not st.session_state.dark_mode
-
-    Styler.apply_custom_theme(st.session_state.dark_mode)
+    print(st.session_state.dark_mode)
+    styler = Styler()
+    styler.apply_custom_theme(st.session_state.dark_mode)
 
     db_manager = JSONManager("./Task_manager_app/src/data/tasks.json")
     task_manager = TaskManager(db_manager, "http://localhost:8000/tasks")
