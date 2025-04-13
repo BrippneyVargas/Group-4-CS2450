@@ -35,18 +35,22 @@ Author: Group 4
 Copyright: Task Manager © 2025
 """
 
-from DatabaseManager import DatabaseManager
-from JSONManager import JSONManager
-from SQLiteManager import *
+
 from fastapi import APIRouter, HTTPException
-from controller import router
 import os
 import requests
 import streamlit as st
 from Styler import Styler
 import sys
-from Task import Task
 from UI import UI
+
+current_dir = os.path.dirname(os.path.abspath(__file__))
+sys.path.append(os.path.dirname(current_dir))
+from controller.tasks import router
+from model.Task import Task
+from model.DatabaseManager import DatabaseManager
+from model.JSONManager import JSONManager
+from model.SQLiteManager import *
 
 
 class TaskManager:

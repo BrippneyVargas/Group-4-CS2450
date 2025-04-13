@@ -3,6 +3,7 @@ reflections/
 *.py[cod]
 *$py.class
 .DS_Store
+__pycache__
 **/__pycache__/
 .idea/
 .vscode/

@@ -1,7 +1,7 @@
-from DatabaseManager import *
+from model.DatabaseManager import *
 import requests
 import streamlit as st
-from Task import *
+from model.Task import *
 
 class JSONManager(DatabaseManager):
     def __init__(self, API_URL, json_path: str) -> None:
