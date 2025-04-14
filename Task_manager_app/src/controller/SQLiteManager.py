@@ -107,7 +107,6 @@ class SQLiteManager:
             tasks.append(task)
 
         cursor.close()
-        print("Loaded", len(tasks), "tasks from the database.")
         return tasks
 
     def save_tasks(self, task_list: List[Task]) -> bool:
@@ -120,7 +119,6 @@ class SQLiteManager:
         Returns:
             bool: True if all tasks are successfully saved, False otherwise.
         """
-        print(task_list)
         try:
             cursor = self.__conn.cursor()
             for task in task_list:

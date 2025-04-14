@@ -58,3 +58,9 @@ class TaskManager:
         response = self.db_manager.save_tasks(self.task_list)
         if not response:
             print("Error: Failed to save tasks to the database.")
+
+    def to_dict(self) -> dict:
+        if len(self.task_list) == 0:
+            self.load_tasks()
+        tasks = {"tasks": [task.to_dict() for task in self.task_list]}
+        return tasks

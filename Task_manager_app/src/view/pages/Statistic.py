@@ -1,13 +1,24 @@
 import streamlit as st
 import pandas as pd
 import matplotlib.pyplot as plt
-
-# import numpy as np
 import os
-import json
+import sys
 from Styler import Styler
 
+current_dir = os.path.dirname(os.path.abspath(__file__))
+sys.path.append(os.path.dirname(current_dir))
+
+from controller.tasks import task_manager, TaskManager
+
 st.set_page_config(layout="centered")
+
+
+def refresh_data(task_manager: TaskManager) -> pd.DataFrame:
+    task_manager.load_tasks()
+    tasks = task_manager.to_dict()
+    df = pd.DataFrame.from_dict(tasks["tasks"])
+    return df
+
 
 if "dark_mode" not in st.session_state:
     st.session_state.dark_mode = True
@@ -21,37 +32,15 @@ st.markdown("<h1 class='about' style='text-align: center; color: #FF69B4;'>Task 
 st.markdown("")
 st.markdown("Pie chart showing the statistics of tasks with priority levels.")
 
-TASKS_FILE = "./Task_manager_app/src/model/tasks.json"
-
-
-class DataFetching:
-    def __init__(self, file_path: str) -> None:
-        if os.path.exists(file_path):
-            self.file_path = file_path
-        else:
-            st.error(f"File not found: {file_path}")
-            self.file_path = None
-
-    def read_json_with_panda(self):
-        try:
-            with open(self.file_path, "r") as file:  # handling nested dictionary in json
-                data = json.load(file)
-            if "tasks" in data:
-                data_frame = pd.DataFrame(data["tasks"])  # extract tasks from json to panda dataframe
-                return data_frame
-        except ValueError as e:
-            st.error(f"Error reading JSON file: {e}")
-            return None
-
 
 class DataProcessing:
     def __init__(self, data_frame: pd.DataFrame) -> None:
         self.data_frame = data_frame
 
-    def priority_count(self):
+    def priority_count(self) -> int:
         if self.data_frame is None or self.data_frame.empty:
             return None
-        return self.data_frame["priority"].value_counts()  # counting each priority levels
+        return self.data_frame["priority"].value_counts()  # counting each priority level
 
     def pie_chart(self):
         priority_count = self.priority_count()
@@ -64,22 +53,30 @@ class DataProcessing:
             return None
 
         index_to_name = {1: "High Priority", 2: "Medium Priority", 3: "Low Priority"}
-        labels = [index_to_name[index] for index in priority_count.index]
-        myexplode = [0.025] * len(priority_count)  # make the slide detached or has a gap between each slide
-        sizes = priority_count.values  # determine number of slides
+        labels = [index_to_name.get(index, str(index)) for index in priority_count.index]
+        myexplode = [0.025] * len(priority_count)  # make the slices detached with a gap between them
+        sizes = priority_count.values  # determine number of slices
         fig1, ax1 = plt.subplots()
         ax1.pie(sizes, labels=labels, autopct="%1.0f%%", colors=["red", "orange", "yellow"], explode=myexplode, startangle=30)
         plt.axis("equal")  # ensure the pie is a perfect circle
         return fig1
 
 
-data_fetcher = DataFetching(TASKS_FILE)
-df = data_fetcher.read_json_with_panda()
+if st.button("Refresh Data"):
+    df = refresh_data(task_manager)
+    data_processor = DataProcessing(df)
+    fig1 = data_processor.pie_chart()
+    if fig1:
+        st.pyplot(fig1)
+    st.rerun()
+
+
+df = refresh_data(task_manager)
 
 if df is not None:
     st.write(df.head())
 
 data_processor = DataProcessing(df)
-# st.write(data_processor.priority_count())
 fig1 = data_processor.pie_chart()
-st.pyplot(fig1)
+if fig1:
+    st.pyplot(fig1)

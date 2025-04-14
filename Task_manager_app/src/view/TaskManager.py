@@ -60,7 +60,6 @@ class TaskManager:
         """Fetch a task from the backend via FastAPI."""
         try:
             response = requests.get(self.API_URL)
-            print("NEW RESPONSE", response.json().get("tasks", []))
             response.raise_for_status()
             self.tasks = [Task(**task) for task in response.json().get("tasks", [])]
         except requests.RequestException as e:
