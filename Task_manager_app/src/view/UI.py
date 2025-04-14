@@ -130,6 +130,8 @@ class UI:
             with same_line_columns[0]:
                 if st.button("✏️", key=f"edit_{task.id}"):
                     st.session_state.editing_task = task
+                    time.sleep(0.05)
+                    st.rerun()
             with same_line_columns[2]:
                 if st.button("🗑️", key=f"delete_{task.id}"):
                     self.task_manager.delete_task(task.id)

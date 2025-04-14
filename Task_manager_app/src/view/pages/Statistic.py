@@ -20,7 +20,8 @@ st.markdown("<h1 class='about' style='text-align: center; color: #FF69B4;'>Task 
 st.markdown("")
 st.markdown("Pie chart showing the statistics of tasks with priority levels.")
 
-TASKS_FILE = "./Task_manager_app/src/data/tasks.json"
+TASKS_FILE = "./Task_manager_app/tests/unit/test.json"
+
 
 class DataFetching:
     def __init__(self, file_path: str) -> None:
@@ -47,7 +48,7 @@ class DataProcessing:
         self.data_frame = data_frame
 
     def priority_count(self):
-        if self.data_frame.empty:
+        if self.data_frame is None or self.data_frame.empty:
             return None
         return self.data_frame["priority"].value_counts() #counting each priority levels
 

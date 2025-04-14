@@ -29,3 +29,5 @@
 
 ### Feature Development
 * Implementing database 
+* Log In page Interface 
+* About page

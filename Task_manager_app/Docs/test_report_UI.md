@@ -72,5 +72,6 @@ This test report documents the results of the UI testing process for Task Manage
 | Test Case | Test Type | Status | Result | Input | Expected Results | Actual Results |
 |-----------|-----------|--------|--------|-------|------------------|---------------|
 Integrating backend and GUI after restructuring the code based on design principles | manual | ✅ Passed | FastAPI and Streamlit Integrated successfully | Add New Task, Edit Task, Save Tasks, Load Tasks, Delete Tasks | All buttons functions succesfully when click | Tasks are added, updated, deleted, saved and loaded once click on the button 
-Implementing config.ini to handle color/theme | manual | In-progress | The switch theme button is able to change the textbox background to white but not the entire background | None | The background and boxes switch color from black to white | Only select boxes change the colors 
+Implementing config.ini to handle color/theme | manual | ✅ Passed  | The switch theme button is able to change the textbox background to white along with the entire background | None | The background and boxes switch color from black to white | Both select boxes change the colors 
 MVP implementation | unittestiing and manual | ✅ Passed | All testcases passed and Streamlit run properly | pre-written test cases | Test cases passed, API connected and Streamlit run | Backend and Front end have their API well connected and function properly.  
+Data Visualization |  manual | In-progress | Empty |  Data from database | Expected a pie chart | Empty 
