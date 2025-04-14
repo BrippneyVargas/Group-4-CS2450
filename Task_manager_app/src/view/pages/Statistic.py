@@ -21,7 +21,7 @@ st.markdown("<h1 class='about' style='text-align: center; color: #FF69B4;'>Task 
 st.markdown("")
 st.markdown("Pie chart showing the statistics of tasks with priority levels.")
 
-TASKS_FILE = "./Task_manager_app/tests/unit/test.json"
+TASKS_FILE = "./Task_manager_app/src/model/tasks.json"
 
 
 class DataFetching:

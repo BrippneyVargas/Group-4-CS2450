@@ -3,24 +3,31 @@
         {
             "id": 38,
             "title": "Test 1",
-            "description": "1",
+            "description": "Testing test 1",
             "priority": 1,
             "tag": "Exam"
         },
         {
             "id": 39,
             "title": "Test 2",
-            "description": "2",
+            "description": "Testing Test 2",
             "priority": 2,
-            "tag": "Assignment"
+            "tag": "Labwork"
         },
         {
             "id": 40,
             "title": "Test 3",
-            "description": "3",
+            "description": "Testing Test 3",
             "priority": 3,
-            "tag": "Exam"
+            "tag": "Other"
+        },
+        {
+            "id": 41,
+            "title": "Test 4",
+            "description": "Testing Test 4",
+            "priority": 1,
+            "tag": "Project"
         }
     ],
-    "task_id_counter": 41
+    "task_id_counter": 42
 }
