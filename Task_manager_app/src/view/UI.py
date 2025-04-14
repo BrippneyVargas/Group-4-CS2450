@@ -135,7 +135,7 @@ class UI:
                     self.task_manager.delete_task(task.id)
                     time.sleep(0.05)
                     self.task_manager.load_tasks()  # Refresh task list
-                    st.experimental_rerun()  # Trigger a rerun to update the UI
+                    st.rerun()  # Trigger a rerun to update the UI
 
     
 
