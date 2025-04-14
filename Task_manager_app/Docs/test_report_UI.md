@@ -56,3 +56,21 @@ Processing Data | manual | ✅ Passed | Data is being processed sucessfully | JS
 Data Visualization | manual | ✅ Passed | Pie Chart  | JSON File  | DataProcessing class use pandas to create dataframe and create a pie chart | A dataframe is created and formated then integrated with matplotlit to create a pie chart showing percentage of tasks based on priority level. 
 Pie chart | manual | ✅ Passed | 3 slides/wedges: one for high priority, another for mediumm priority and another for low priority | Pandas Dataframe| A pie chart showing 3 slides | A pie chart shows label and percentage. Each slide is color customized: red=high, orange=medium and yellow=low 
 A seperate page for showing progress bar/pie chart | manual | ✅ Passed | Statistic Page is created in streamlit | None | Showing a pie chart | A pie chart along with tasks view in tabular format are displayed in statistic page 
+
+
+
+## Milestone V
+
+Date: 4/14/2025
+Author: Keomony mary
+Project: Task Manager
+Version: 0.0.2
+Tested By: 
+
+This test report documents the results of the UI testing process for Task Manager app. The testing methodology focuses on verifying the user interface elements and interactions meet the required specifications.  It only includes what is new from milestone IV. 
+
+| Test Case | Test Type | Status | Result | Input | Expected Results | Actual Results |
+|-----------|-----------|--------|--------|-------|------------------|---------------|
+Integrating backend and GUI after restructuring the code based on design principles | manual | ✅ Passed | FastAPI and Streamlit Integrated successfully | Add New Task, Edit Task, Save Tasks, Load Tasks, Delete Tasks | All buttons functions succesfully when click | Tasks are added, updated, deleted, saved and loaded once click on the button 
+Implementing config.ini to handle color/theme | manual | In-progress | The switch theme button is able to change the textbox background to white but not the entire background | None | The background and boxes switch color from black to white | Only select boxes change the colors 
+MVP implementation | unittestiing and manual | ✅ Passed | All testcases passed and Streamlit run properly | pre-written test cases | Test cases passed, API connected and Streamlit run | Backend and Front end have their API well connected and function properly.  
