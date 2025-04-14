@@ -11,6 +11,8 @@ class Task(BaseModel):
         - description: str - description of the task
         - priority: int - level of priority (1:high, 2:medium, 3:low)
         - tag: str - A tag to categorize the task
+        - active: bool - a flag noting whether it is active or not
+        - completed: bool - a flag noting whether it is completed or not
     """
 
     id: Optional[int]
@@ -18,6 +20,8 @@ class Task(BaseModel):
     description: str
     priority: int
     tag: str
+    active: bool = True
+    completed: bool = False
 
     def to_dict(self):
         return {
@@ -26,6 +30,8 @@ class Task(BaseModel):
             "description": self.description,
             "priority": self.priority,
             "tag": self.tag,
+            "active": self.active,
+            "completed": self.completed,
         }
 
 
@@ -43,7 +49,7 @@ class TaskManager:
         This function reads all tasks from the SQL database and inputs the list of
         Task objects into the task_list class variable.
         """
-        self.task_list = self.db_manager.load_all()
+        self.task_list = self.db_manager.load_all_active()
 
     def save_tasks(self) -> None:
         """

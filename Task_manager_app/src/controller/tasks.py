@@ -95,12 +95,28 @@ async def delete_task(task_id: int):
         json object: An object containing a message indicating whether the task was successfully deleted or not.
     """
 
-    for task in task_manager.task_list:
+    for index, task in enumerate(task_manager.task_list):
         if task.id == task_id:
-            task_manager.task_list.remove(task)
+            removed_task = task
+            task_updated = Task(
+                id=task_id,
+                title=removed_task.title,
+                description=removed_task.description,
+                priority=removed_task.priority,
+                tag=removed_task.tag,
+                active=False,
+                completed=removed_task.completed,
+            )
+            task_manager.task_list[index] = task_updated
             task_manager.save_tasks()
+            task_manager.load_tasks()
             return {"message": "task has been deleted"}, 204
-    raise HTTPException(status_code=404, detail="Task not found")
+    # for task in task_manager.task_list:
+    #     if task.id == task_id:
+    #         task_manager.task_list.remove(task)
+    #         task_manager.save_tasks()
+    #         return {"message": "task has been deleted"}, 204
+    # raise HTTPException(status_code=404, detail="Task not found")
 
 
 @router.post("/tasks")
@@ -133,7 +149,15 @@ async def add_task(task: Task):
     """
     print("@router add_task():", task.to_dict())
     # global task_id_counter
-    new_task = Task(id=None, title=task.title, description=task.description, priority=task.priority, tag=task.tag)
+    new_task = Task(
+        id=None,
+        title=task.title,
+        description=task.description,
+        priority=task.priority,
+        tag=task.tag,
+        active=task.active,
+        completed=task.completed,
+    )
 
     print("@router new_task:", new_task.to_dict())
 
@@ -172,6 +196,8 @@ async def update_task(task_id: int, updated_task: Task):
                 description=updated_task.description,
                 priority=updated_task.priority,
                 tag=updated_task.tag,
+                active=updated_task.active,
+                completed=updated_task.completed,
             )
             task_manager.task_list[index] = task_updated
             task_manager.save_tasks()

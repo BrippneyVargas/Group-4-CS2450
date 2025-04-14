@@ -35,7 +35,6 @@ Author: Group 4
 Copyright: Task Manager © 2025
 """
 
-# from model.Task import Task
 import os
 import requests
 import streamlit as st
@@ -45,7 +44,7 @@ from UI import UI
 
 current_dir = os.path.dirname(os.path.abspath(__file__))
 sys.path.append(os.path.dirname(current_dir))
-# from controller.tasks import router
+
 from model.Task import Task
 
 
@@ -61,6 +60,7 @@ class TaskManager:
         """Fetch a task from the backend via FastAPI."""
         try:
             response = requests.get(self.API_URL)
+            print("NEW RESPONSE", response.json().get("tasks", []))
             response.raise_for_status()
             self.tasks = [Task(**task) for task in response.json().get("tasks", [])]
         except requests.RequestException as e:
@@ -100,7 +100,7 @@ class TaskManager:
             except requests.RequestException as e:
                 st.error(f"Error updating task: {e}")
 
-    def delete_task(self, task_id):
+    def delete_task(self, task_id: int):
         """Delete a task via FastAPI."""
         with st.spinner("Deleting task..."):
             try:

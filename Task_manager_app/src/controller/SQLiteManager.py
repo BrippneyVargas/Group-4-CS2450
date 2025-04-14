@@ -40,7 +40,9 @@ class SQLiteManager:
                 title TEXT,
                 description TEXT,
                 priority INTEGER NOT NULL,
-                tag TEXT NOT NULL
+                tag TEXT NOT NULL,
+                active BOOLEAN,
+                completed BOOLEAN
             );
             """
         )
@@ -77,7 +79,7 @@ class SQLiteManager:
         self.__conn.commit()
         cursor.close()
 
-    def load_all(self) -> List[Task]:
+    def load_all_active(self) -> List[Task]:
         """
         Loads all tasks from the database, converts them into Task objects,
         and updates the manager's internal task list.
@@ -89,16 +91,19 @@ class SQLiteManager:
         # Select all columns from the task table.
         cursor.execute(
             """
-            SELECT task_id, title, description, priority, tag
-            FROM task;
+            SELECT task_id, title, description, priority, tag, active, completed
+            FROM task
+            WHERE active = 1;
             """
         )
         rows = cursor.fetchall()
         tasks: List[Task] = []
 
         for row in rows:
-            # Assuming the ordering is: task_id, title, description, priority, tag
-            task = Task(title=row[1], description=row[2], priority=row[3], tag=row[4], id=row[0])
+            # Assuming the ordering is: task_id, title, description, priority, tag, active, completed
+            task = Task(
+                title=row[1], description=row[2], priority=row[3], tag=row[4], active=row[5], completed=row[6], id=row[0]
+            )
             tasks.append(task)
 
         cursor.close()
@@ -121,11 +126,10 @@ class SQLiteManager:
             for task in task_list:
                 data = task.to_dict()  # Expected keys: task_id, title, description, priority, tag
                 if data.get("id") is not None:  # Task already exists in the DB; update it.
-                    print("NEW DATA AAAAAHHHHH ", data)
                     cursor.execute(
                         """
                         UPDATE task
-                        SET title = ?, description = ?, priority = ?, tag = ?
+                        SET title = ?, description = ?, priority = ?, tag = ?, active = ?, completed = ?
                         WHERE task_id = ?
                         """,
                         (
@@ -133,6 +137,8 @@ class SQLiteManager:
                             data["description"],
                             data["priority"],
                             data["tag"],
+                            data["active"],
+                            data["completed"],
                             data["id"],
                         ),
                     )
@@ -140,10 +146,10 @@ class SQLiteManager:
                     # Insert new task. SQLite will assign a new task_id automatically.
                     cursor.execute(
                         """
-                        INSERT INTO task (title, description, priority, tag)
-                        VALUES (?, ?, ?, ?)
+                        INSERT INTO task (title, description, priority, tag, active, completed)
+                        VALUES (?, ?, ?, ?, ?, ?)
                         """,
-                        (data["title"], data["description"], data["priority"], data["tag"]),
+                        (data["title"], data["description"], data["priority"], data["tag"], data["active"], data["completed"]),
                     )
                     # Update the task object with the new task_id from SQLite.
                     task.id = cursor.lastrowid
