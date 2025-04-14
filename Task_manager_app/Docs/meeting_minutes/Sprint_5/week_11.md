@@ -24,6 +24,7 @@
 ### Team Organization
 * Discuss branch management
   * Creating a new branch Sprint5 for the new MVC's design pattern 
+  * Creating another new branch feature/configparser 
 
 ### Feature Development
 * Implementing config.ini
