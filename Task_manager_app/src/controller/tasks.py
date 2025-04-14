@@ -6,7 +6,7 @@ from fastapi import HTTPException
 
 tasks = []
 task_id_counter = 1
-TASKS_FILE = "./Task_manager_app/src/data/tasks.json"
+TASKS_FILE = "./Task_manager_app/src/model/tasks.json"
 router = APIRouter()
 
 

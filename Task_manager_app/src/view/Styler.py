@@ -1,6 +1,5 @@
 from configparser import ConfigParser
 import streamlit as st
-from ThemeColor import *
 import os
 
 class Styler:
@@ -54,7 +53,7 @@ class Styler:
             <style>
             .stRadio label[for="High"] {{ color: black !important;}}
             body, .stApp {{ overflow: hidden !important; max-height: 100vh; }}
-            .stApp {{ background-color: {theme_info['background_color']}; max-width: 100%; max-height: 100%; margin: 0 auto; padding: 0 20px; color: {ThemeColor.TEXT_COLOR}; }}
+            .stApp {{ background-color: {theme_info['background_color']}; max-width: 100%; max-height: 100%; margin: 0 auto; padding: 0 20px; color: {theme_info["text_color"]}; }}
             ::-webkit-scrollbar {{ display: none; }}
             div.stTextInput label {{ background-color: {theme_info['background_color']}; color: {theme_info['text_color']}; }}
             div.stTextInput input {{background-color: white; color: black}}

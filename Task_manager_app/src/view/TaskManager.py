@@ -35,8 +35,7 @@ Author: Group 4
 Copyright: Task Manager © 2025
 """
 
-
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter
 import os
 import requests
 import streamlit as st
@@ -48,22 +47,14 @@ current_dir = os.path.dirname(os.path.abspath(__file__))
 sys.path.append(os.path.dirname(current_dir))
 from controller.tasks import router
 from model.Task import Task
-from model.DatabaseManager import DatabaseManager
-from model.JSONManager import JSONManager
-from model.SQLiteManager import *
-
 
 class TaskManager:
     """Manage tasks using the FastAPI backend."""
 
     API_URL = "http://localhost:8000/tasks"  # Make sure FastAPI is running on this URL
 
-    def __init__(self, db_manager: DatabaseManager, router: APIRouter):
-        self.db_manager = db_manager
-        self.tasks = []
-        
-        self.db_manager.load_all() 
-
+    def __init__(self):
+        self.tasks = [] 
 
     def fetch_tasks(self):
         """Fetch a task from the backend via FastAPI."""
@@ -73,7 +64,6 @@ class TaskManager:
             self.tasks = [Task(**task) for task in response.json().get("tasks", [])]
         except requests.RequestException as e:
             st.error(f"Error fetching tasks: {e}")
-
 
     def save_task(self, task):
         """Save a task to the backend via FastAPI."""
@@ -140,8 +130,7 @@ def main():
 
     Styler.apply_custom_theme(st.session_state.dark_mode)
 
-    db_manager = JSONManager(TaskManager.API_URL, "data/test.json")
-    task_manager = TaskManager(db_manager, router)
+    task_manager = TaskManager()
 
     task_ui = UI(task_manager)  # Initialize UI
     task_ui.initialize_session_state()  # Initialize session state

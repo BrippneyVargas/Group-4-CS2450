@@ -1,8 +1,7 @@
-from model.DatabaseManager import DatabaseManager
 import sqlite3
 from model.Task import *
 
-class SQLiteManager(DatabaseManager):
+class SQLiteManager:
     def __init__(self, db_name: str) -> None:
         self.__conn = sqlite3.connect(db_name)
         self.__tasks = []
