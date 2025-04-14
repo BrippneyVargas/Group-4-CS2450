@@ -35,7 +35,7 @@ Author: Group 4
 Copyright: Task Manager © 2025
 """
 
-from fastapi import APIRouter
+# from model.Task import Task
 import os
 import requests
 import streamlit as st
@@ -45,8 +45,9 @@ from UI import UI
 
 current_dir = os.path.dirname(os.path.abspath(__file__))
 sys.path.append(os.path.dirname(current_dir))
-from controller.tasks import router
+# from controller.tasks import router
 from model.Task import Task
+
 
 class TaskManager:
     """Manage tasks using the FastAPI backend."""
@@ -54,7 +55,7 @@ class TaskManager:
     API_URL = "http://localhost:8000/tasks"  # Make sure FastAPI is running on this URL
 
     def __init__(self):
-        self.tasks = [] 
+        self.tasks = []
 
     def fetch_tasks(self):
         """Fetch a task from the backend via FastAPI."""
@@ -69,7 +70,7 @@ class TaskManager:
         """Save a task to the backend via FastAPI."""
         with st.spinner("Saving task..."):
             try:
-                task_dict = task.to_dict() if hasattr(task, "to_dict") else task  # Convert Task object to dict               
+                task_dict = task.to_dict() if hasattr(task, "to_dict") else task  # Convert Task object to dict
                 response = requests.post(self.API_URL, json=task_dict)
                 response.raise_for_status()
             except requests.RequestException as e:
@@ -105,7 +106,7 @@ class TaskManager:
             try:
                 response = requests.delete(f"{self.API_URL}/{task_id}")
                 response.raise_for_status()
-                #st.markdown("<p style='background-color: #BDB76B; color: red; padding: 5px 15px; text-align: center;'>delete?</p>", unsafe_allow_html=True)
+                # st.markdown("<p style='background-color: #BDB76B; color: red; padding: 5px 15px; text-align: center;'>delete?</p>", unsafe_allow_html=True)
 
             except requests.RequestException as e:
                 st.error(f"Error deleting task: {e}")
@@ -124,7 +125,7 @@ def main():
 
     if "dark_mode" not in st.session_state:
         st.session_state.dark_mode = True
-    
+
     if st.button("Switch Theme"):
         st.session_state.dark_mode = not st.session_state.dark_mode
 
@@ -135,6 +136,7 @@ def main():
     task_ui = UI(task_manager)  # Initialize UI
     task_ui.initialize_session_state()  # Initialize session state
     task_ui.run()  # Run the UI
+
 
 if __name__ == "__main__":
     main()

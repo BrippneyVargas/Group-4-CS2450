@@ -1,58 +1,20 @@
 from fastapi import APIRouter
-from model.Task import Task
-import json
-import os
+from model.Task import Task, TaskManager
 from fastapi import HTTPException
+from .SQLiteManager import SQLiteManager
 
-tasks = []
-task_id_counter = 1
-TASKS_FILE = "./Task_manager_app/src/model/tasks.json"
+
 router = APIRouter()
+DB_PATH = "./Task_manager_app/src/model/tasks.db"
+sql_manager = SQLiteManager(DB_PATH)
+task_manager = TaskManager(sql_manager)
 
-
-
-def load_tasks():
-    """
-    Load tasks from a JSON file.
-    This function reads tasks from a JSON file specified by the global variable TASKS_FILE.
-    It updates the global variables 'tasks' and 'task_id_counter' with the data from the file.
-    Each task in the JSON file is converted into an AddTask object.
-    """    
-    global tasks, task_id_counter
-    if os.path.exists(TASKS_FILE):
-        try:
-            with open(TASKS_FILE, "r") as file:
-                data = json.load(file)
-                tasks = [Task(**task) for task in data.get("tasks", [])]
-                task_id_counter = data.get("task_id_counter", 1)
-        except (json.JSONDecodeError, KeyError):
-            #where JSON is empty or invalid
-            tasks = []
-            task_id_counter = 1
-            
-
-def save_tasks():
-    """
-    Saves the current list of tasks and the task ID counter to a file.
-    This function serializes the tasks and task ID counter into a JSON format
-    and writes them to the file specified by TASKS_FILE.
-    Raises:
-        IOError: If there is an issue writing to the file.
-    """
-    with open(TASKS_FILE, "w") as file:
-        data = {
-            "tasks": [task.to_dict() for task in tasks],
-            "task_id_counter": task_id_counter
-        }
-        json.dump(data, file, indent=4)
-
-
-load_tasks()
+task_manager.load_tasks()
 
 
 @router.get("/")
 async def root():
-    """ Root of the backend application
+    """Root of the backend application
     Root endpoint of the application.
     Param:
         - None
@@ -71,7 +33,7 @@ async def root():
 
 @router.get("/tasks")
 async def get_tasks():
-    """ Get all tasks
+    """Get all tasks
     Endpoint to retrieve all tasks.
     Param:
         - None
@@ -83,15 +45,14 @@ async def get_tasks():
         - Returns a list of all tasks
 
     Returns:
-        json object: An object containing all of tasks.
+        dictionary object: An object containing all of tasks.
     """
-    return {"tasks": [task.__dict__ for task in tasks]} 
-
+    return {"tasks": [task.to_dict() for task in task_manager.task_list]}
 
 
 @router.get("/tasks/{task_id}")
 async def get_task(task_id: int):
-    """ Get a task by id
+    """Get a task by id
     Retrieve a task by its id.
     Param:
         - task_id (int): The id of the task to retrieve.
@@ -108,7 +69,7 @@ async def get_task(task_id: int):
         json object: An object containing the task if found, or a message indicating that the task was not found.
     """
 
-    for task in tasks:
+    for task in task_manager.task_list:
         if task.id == task_id:
             return {"task": task.__dict__}
     raise HTTPException(status_code=404, detail="Task not found")
@@ -116,7 +77,7 @@ async def get_task(task_id: int):
 
 @router.delete("/tasks/{task_id}")
 async def delete_task(task_id: int):
-    """ Delete a task by id
+    """Delete a task by id
     Deletes a task with the given task_id from the tasks list.
     Param:
         - task_id (int): The id of the task to delete.
@@ -134,17 +95,17 @@ async def delete_task(task_id: int):
         json object: An object containing a message indicating whether the task was successfully deleted or not.
     """
 
-    for task in tasks:
+    for task in task_manager.task_list:
         if task.id == task_id:
-            tasks.remove(task)
-            save_tasks()
+            task_manager.task_list.remove(task)
+            task_manager.save_tasks()
             return {"message": "task has been deleted"}, 204
     raise HTTPException(status_code=404, detail="Task not found")
 
 
 @router.post("/tasks")
-async def add_task(task: Task): 
-    '''Add a new task to the task list
+async def add_task(task: Task):
+    """Add a new task to the task list
     The add_task() function accepts a user input (a task object), auto increments the id, and append the object to the task list.
 
     Param:
@@ -169,23 +130,21 @@ async def add_task(task: Task):
 
     Exceptions:
          - None (yet)
-    '''
-    print("@router add_task():", task.dict())  
-    global task_id_counter
-    new_task = Task(id=task_id_counter, title=task.title, description=task.description, priority=task.priority, tag=task.tag)
-    
-    print("@router new_task:", new_task.dict())  
-    
-    tasks.append(new_task)
-    task_id_counter += 1
-    save_tasks()
-    return new_task
+    """
+    print("@router add_task():", task.to_dict())
+    # global task_id_counter
+    new_task = Task(id=None, title=task.title, description=task.description, priority=task.priority, tag=task.tag)
 
+    print("@router new_task:", new_task.to_dict())
+
+    task_manager.add_task(new_task)
+    task_manager.save_tasks()
+    return new_task
 
 
 @router.put("/tasks/{task_id}")
 async def update_task(task_id: int, updated_task: Task):
-    '''Update the existing task
+    """Update the existing task
         The update_task() function accepts a user input (a task object) on the task that is already in the task list, using task_id as a reference or identifier.
 
     Param:
@@ -204,16 +163,16 @@ async def update_task(task_id: int, updated_task: Task):
 
     Exceptions:
         - None (yet)
-    '''
-    for index, task in enumerate(tasks):
+    """
+    for index, task in enumerate(task_manager.task_list):
         if task.id == task_id:
             task_updated = Task(
                 id=task_id,
                 title=updated_task.title,
                 description=updated_task.description,
                 priority=updated_task.priority,
-                tag=updated_task.tag
+                tag=updated_task.tag,
             )
-            tasks[index] = task_updated
-            save_tasks()
+            task_manager.task_list[index] = task_updated
+            task_manager.save_tasks()
             return task_updated
