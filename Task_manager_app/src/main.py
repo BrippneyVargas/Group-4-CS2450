@@ -1,9 +1,9 @@
 """
 This is the main file to run the FastAPI and Streamlit applications.
 """
+
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-# from controller import router
 from controller.tasks import router
 import threading
 import uvicorn
@@ -28,9 +28,11 @@ def run_fastapi():
     """Function to run the FastAPI application."""
     uvicorn.run("main:app", host="127.0.0.1", port=8000, log_level="info")  # Change to 8001 if needed
 
+
 def run_streamlit():
     """Function to run the Streamlit application."""
-    os.system("streamlit run ./Task_manager_app/src/TaskManager.py")
+    os.system("streamlit run ./Task_manager_app/src/view/TaskManager.py")
+
 
 if __name__ == "__main__":
     # Create threads for running FastAPI and Streamlit

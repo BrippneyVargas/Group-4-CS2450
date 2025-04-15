@@ -35,18 +35,17 @@ Author: Group 4
 Copyright: Task Manager © 2025
 """
 
-from DatabaseManager import DatabaseManager
-from JSONManager import JSONManager
-from SQLiteManager import *
-from fastapi import APIRouter, HTTPException
-from controller import router
 import os
 import requests
 import streamlit as st
 from Styler import Styler
 import sys
-from Task import Task
 from UI import UI
+
+current_dir = os.path.dirname(os.path.abspath(__file__))
+sys.path.append(os.path.dirname(current_dir))
+
+from model.Task import Task
 
 
 class TaskManager:
@@ -54,12 +53,8 @@ class TaskManager:
 
     API_URL = "http://localhost:8000/tasks"  # Make sure FastAPI is running on this URL
 
-    def __init__(self, db_manager: DatabaseManager, router: APIRouter):
-        self.db_manager = db_manager
+    def __init__(self):
         self.tasks = []
-        
-        self.db_manager.load_all() 
-
 
     def fetch_tasks(self):
         """Fetch a task from the backend via FastAPI."""
@@ -70,14 +65,20 @@ class TaskManager:
         except requests.RequestException as e:
             st.error(f"Error fetching tasks: {e}")
 
-
     def save_task(self, task):
         """Save a task to the backend via FastAPI."""
         with st.spinner("Saving task..."):
             try:
-                task_dict = task.to_dict() if hasattr(task, "to_dict") else task  # Convert Task object to dict               
+                task_dict = task.to_dict() if hasattr(task, "to_dict") else task  # Convert Task object to dict
                 response = requests.post(self.API_URL, json=task_dict)
-                response.raise_for_status()
+                # response.raise_for_status()
+                if response.status_code == 409:
+                    st.markdown(
+                    "<p style='background-color: #BDB76B; color: red;'>&nbsp;&nbsp;Duplicate task title.</p>",
+                    unsafe_allow_html=True)
+            except requests.RequestException as e:
+                st.error(f"Error saving task: {e}")
+
             except requests.RequestException as e:
                 st.error(f"Error saving task: {e}")
 
@@ -105,13 +106,13 @@ class TaskManager:
             except requests.RequestException as e:
                 st.error(f"Error updating task: {e}")
 
-    def delete_task(self, task_id):
+    def delete_task(self, task_id: int):
         """Delete a task via FastAPI."""
         with st.spinner("Deleting task..."):
             try:
                 response = requests.delete(f"{self.API_URL}/{task_id}")
                 response.raise_for_status()
-                #st.markdown("<p style='background-color: #BDB76B; color: red; padding: 5px 15px; text-align: center;'>delete?</p>", unsafe_allow_html=True)
+                # st.markdown("<p style='background-color: #BDB76B; color: red; padding: 5px 15px; text-align: center;'>delete?</p>", unsafe_allow_html=True)
 
             except requests.RequestException as e:
                 st.error(f"Error deleting task: {e}")
@@ -130,18 +131,18 @@ def main():
 
     if "dark_mode" not in st.session_state:
         st.session_state.dark_mode = True
-    
+
     if st.button("Switch Theme"):
         st.session_state.dark_mode = not st.session_state.dark_mode
 
     Styler.apply_custom_theme(st.session_state.dark_mode)
 
-    db_manager = JSONManager(TaskManager.API_URL, "data/test.json")
-    task_manager = TaskManager(db_manager, router)
+    task_manager = TaskManager()
 
     task_ui = UI(task_manager)  # Initialize UI
     task_ui.initialize_session_state()  # Initialize session state
     task_ui.run()  # Run the UI
+
 
 if __name__ == "__main__":
     main()
