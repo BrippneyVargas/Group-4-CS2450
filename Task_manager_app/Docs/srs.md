@@ -140,15 +140,11 @@
 1. **Progress Visualization:**
    - Use a library like `Matplotlib` to display task completion progress via charts (e.g., bar or pie charts).
 2. **Dark/Light Mode:**
-<<<<<<< HEAD
    * Allow users to toggle between dark and light themes to improve visual comfort and accessibility.
 2. **Avoiding task duplication based on title:**
    * Backend implementation of checking for existing tasks and displaying correct message in the fronend.
 3. **SQLite integration to store data (tasks/users):**
-   * Storing bothe task and user data in sequal database.
-=======
-   - Allow users to toggle between dark and light themes to improve visual comfort and accessibility.
->>>>>>> 70476d3d32b9855ac47b4e992f141bdf6a592805
+   * Storing both task and user data in database.
 
 ## Future Enhancements Section:
 
