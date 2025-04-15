@@ -29,7 +29,7 @@
 
 ### Non-Functional Requirements:
 
-- The system must load tasks from a JSON file within 0.1 seconds.
+- The system must load tasks from a SQL database within 0.1 seconds
 - Task creation/modification operations must complete within 0.5 seconds
 - Ensure privacy and security, such as user authentication.
 - Task deletion operations must complete within 0.3 seconds.
@@ -135,17 +135,20 @@
   - The system allows users to view added tasks offline.
   - The system allows users to edit the task after it is already saved.
 
-
 #### Advanced features:
 
 1. **Progress Visualization:**
-   * Use a library like `Matplotlib` to display task completion progress via charts (e.g., bar or pie charts).
+   - Use a library like `Matplotlib` to display task completion progress via charts (e.g., bar or pie charts).
 2. **Dark/Light Mode:**
+<<<<<<< HEAD
    * Allow users to toggle between dark and light themes to improve visual comfort and accessibility.
 2. **Avoiding task duplication based on title:**
    * Backend implementation of checking for existing tasks and displaying correct message in the fronend.
 3. **SQLite integration to store data (tasks/users):**
    * Storing bothe task and user data in sequal database.
+=======
+   - Allow users to toggle between dark and light themes to improve visual comfort and accessibility.
+>>>>>>> 70476d3d32b9855ac47b4e992f141bdf6a592805
 
 ## Future Enhancements Section:
 
