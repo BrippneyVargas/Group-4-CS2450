@@ -59,6 +59,7 @@ class DataProcessing:
         fig1, ax1 = plt.subplots()
         ax1.pie(sizes, labels=labels, autopct="%1.0f%%", colors=["red", "orange", "yellow"], explode=myexplode, startangle=30)
         plt.axis("equal")  # ensure the pie is a perfect circle
+        ax1.set_facecolor("black")  # Set the background color to black
         return fig1
 
 
