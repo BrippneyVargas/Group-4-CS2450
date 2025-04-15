@@ -147,7 +147,6 @@ async def add_task(task: Task):
     Exceptions:
          - None (yet)
     """
-    print("@router add_task():", task.to_dict())
     # global task_id_counter
     new_task = Task(
         id=None,
@@ -159,7 +158,10 @@ async def add_task(task: Task):
         completed=task.completed,
     )
 
-    print("@router new_task:", new_task.to_dict())
+    for task in task_manager.task_list:
+        if task.title == new_task.title:
+            raise HTTPException(status_code=400, detail="Duplicate task title")
+
 
     task_manager.add_task(new_task)
     task_manager.save_tasks()
