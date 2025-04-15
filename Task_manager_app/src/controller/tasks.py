@@ -160,7 +160,7 @@ async def add_task(task: Task):
 
     for task in task_manager.task_list:
         if task.title == new_task.title:
-            raise HTTPException(status_code=400, detail="Duplicate task title")
+            raise HTTPException(status_code=409, detail="Duplicate task title")
 
 
     task_manager.add_task(new_task)

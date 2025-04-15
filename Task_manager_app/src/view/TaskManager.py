@@ -72,7 +72,7 @@ class TaskManager:
                 task_dict = task.to_dict() if hasattr(task, "to_dict") else task  # Convert Task object to dict
                 response = requests.post(self.API_URL, json=task_dict)
                 # response.raise_for_status()
-                if response.status_code == 400:
+                if response.status_code == 409:
                     st.markdown(
                     "<p style='background-color: #BDB76B; color: red;'>&nbsp;&nbsp;Duplicate task title.</p>",
                     unsafe_allow_html=True)
