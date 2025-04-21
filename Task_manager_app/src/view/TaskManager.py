@@ -46,6 +46,7 @@ current_dir = os.path.dirname(os.path.abspath(__file__))
 sys.path.append(os.path.dirname(current_dir))
 
 from model.Task import Task
+from view.utils.auth import AuthGuard
 
 
 class TaskManager:
@@ -74,8 +75,9 @@ class TaskManager:
                 # response.raise_for_status()
                 if response.status_code == 409:
                     st.markdown(
-                    "<p style='background-color: #BDB76B; color: red;'>&nbsp;&nbsp;Duplicate task title.</p>",
-                    unsafe_allow_html=True)
+                        "<p style='background-color: #BDB76B; color: red;'>&nbsp;&nbsp;Duplicate task title.</p>",
+                        unsafe_allow_html=True,
+                    )
             except requests.RequestException as e:
                 st.error(f"Error saving task: {e}")
 
@@ -125,23 +127,64 @@ class TaskManager:
             st.error(f"Unexpected error while loading tasks: {e}")
 
 
+# def main():
+#     current_dir = os.path.dirname(os.path.abspath(__file__))
+#     sys.path.append(current_dir)
+
+#     if "dark_mode" not in st.session_state:
+#         st.session_state.dark_mode = True
+
+#     if st.button("Switch Theme"):
+#         st.session_state.dark_mode = not st.session_state.dark_mode
+
+#     Styler.apply_custom_theme(st.session_state.dark_mode)
+
+#     task_manager = TaskManager()
+
+#     task_ui = UI(task_manager)  # Initialize UI
+#     task_ui.initialize_session_state()  # Initialize session state
+#     task_ui.run()  # Run the UI
+
+
+# if __name__ == "__main__":
+#     main()
+
+
+# def main():
+#     st.set_page_config(layout="centered")
+
+#     if "logged_in" not in st.session_state:
+#         st.session_state.logged_in = False
+
+#     if not st.session_state.logged_in:
+#         show_login_form()
+#         return
+
+#     # Normal UI
+#     if "dark_mode" not in st.session_state:
+#         st.session_state.dark_mode = True
+
+#     if st.button("Switch Theme"):
+#         st.session_state.dark_mode = not st.session_state.dark_mode
+
+#     if st.button("🚪 Log Out"):
+#         st.session_state.logged_in = False
+#         st.experimental_rerun()
+
+#     Styler.apply_custom_theme(st.session_state.dark_mode)
+
+#     task_manager = TaskManager()
+#     task_ui = UI(task_manager)
+#     task_ui.initialize_session_state()
+#     task_ui.run()
+
+
+@AuthGuard.require_login
 def main():
-    current_dir = os.path.dirname(os.path.abspath(__file__))
-    sys.path.append(current_dir)
-
-    if "dark_mode" not in st.session_state:
-        st.session_state.dark_mode = True
-
-    if st.button("Switch Theme"):
-        st.session_state.dark_mode = not st.session_state.dark_mode
-
-    Styler.apply_custom_theme(st.session_state.dark_mode)
-
     task_manager = TaskManager()
-
-    task_ui = UI(task_manager)  # Initialize UI
-    task_ui.initialize_session_state()  # Initialize session state
-    task_ui.run()  # Run the UI
+    task_ui = UI(task_manager)
+    task_ui.initialize_session_state()
+    task_ui.run()
 
 
 if __name__ == "__main__":

@@ -1,7 +1,7 @@
 import streamlit as st
 import time
 
-st.set_page_config(layout="centered")
+# st.set_page_config(layout="centered")
 
 
 class UI:
