@@ -38,7 +38,8 @@ Copyright: Task Manager © 2025
 import os
 import requests
 import streamlit as st
-from Styler import Styler
+
+# from Styler import Styler
 import sys
 from UI import UI
 
@@ -125,58 +126,6 @@ class TaskManager:
             self.fetch_tasks()
         except Exception as e:
             st.error(f"Unexpected error while loading tasks: {e}")
-
-
-# def main():
-#     current_dir = os.path.dirname(os.path.abspath(__file__))
-#     sys.path.append(current_dir)
-
-#     if "dark_mode" not in st.session_state:
-#         st.session_state.dark_mode = True
-
-#     if st.button("Switch Theme"):
-#         st.session_state.dark_mode = not st.session_state.dark_mode
-
-#     Styler.apply_custom_theme(st.session_state.dark_mode)
-
-#     task_manager = TaskManager()
-
-#     task_ui = UI(task_manager)  # Initialize UI
-#     task_ui.initialize_session_state()  # Initialize session state
-#     task_ui.run()  # Run the UI
-
-
-# if __name__ == "__main__":
-#     main()
-
-
-# def main():
-#     st.set_page_config(layout="centered")
-
-#     if "logged_in" not in st.session_state:
-#         st.session_state.logged_in = False
-
-#     if not st.session_state.logged_in:
-#         show_login_form()
-#         return
-
-#     # Normal UI
-#     if "dark_mode" not in st.session_state:
-#         st.session_state.dark_mode = True
-
-#     if st.button("Switch Theme"):
-#         st.session_state.dark_mode = not st.session_state.dark_mode
-
-#     if st.button("🚪 Log Out"):
-#         st.session_state.logged_in = False
-#         st.experimental_rerun()
-
-#     Styler.apply_custom_theme(st.session_state.dark_mode)
-
-#     task_manager = TaskManager()
-#     task_ui = UI(task_manager)
-#     task_ui.initialize_session_state()
-#     task_ui.run()
 
 
 @AuthGuard.require_login
