@@ -4,6 +4,27 @@ To run the application, execute:
 - ```python3 main.py``` OR ```python main.py``` OR
 - ```python3 ./Task_manager_app/src/main.py``` (FROM terminal or command prompt)
 
+# Project Description
+
+TaskZen is a simple yet powerful task manager designed to help you stay organized and on top of your responsibilities. Whether you're handling assignments, projects, exams, or personal tasks, TaskZen provides an easy-to-use interface to add, view, edit, and delete tasks. You can categorize your tasks with tags, set priorities, and track your progress all in one place. 
+
+        Key Features:
+        - **Add new tasks**: Create tasks with titles, descriptions, tags, and priorities.
+        - **View and manage tasks**: See your tasks in a table with pagination for easy navigation.
+        - **Edit tasks**: Update tasks with new information or modify existing details.
+        - **Delete tasks**: Remove tasks when they’re completed or no longer needed.
+        - **Save and load tasks**: Keep your tasks persistent with the option to save and load them.
+
+TaskZen helps you stay focused and productive, ensuring you never miss a deadline or forget a task again.
+
+
+# Application in Use 
+
+Refer the pdf that contains screenshot of the application in use 
+
+[TaskZen_application_in_use.pdf](Task_manager_app/Docs/TaskZen_application_in_use.pdf)
+
+
 # Project Setup Guide
 
 ### Step 1: Clone the Repository

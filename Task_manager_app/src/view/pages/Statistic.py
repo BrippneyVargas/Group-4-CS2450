@@ -26,9 +26,6 @@ def main():
     if "dark_mode" not in st.session_state:
         st.session_state.dark_mode = True
 
-    if st.button("Switch Theme"):
-        st.session_state.dark_mode = not st.session_state.dark_mode
-
     Styler.apply_custom_theme(st.session_state.dark_mode)
 
     st.markdown("<h1 class='about' style='text-align: center; color: #FF69B4;'>Task Progress Bar</h1>", unsafe_allow_html=True)
